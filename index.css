@@ -244,12 +244,11 @@
   }
   
   .photo-icon {
-  width:618px;
+  width: 550px;
   position:relative;
   max-height:100%;
   object-fit:cover;
   max-width:100%;
-  width: calc(40vw + 30px);
   }
   
   .frame-container,.frame-group {
@@ -668,6 +667,26 @@
   font-weight:500;
   display:inline-block;
   height:auto
+  }
+
+  p {
+    padding-bottom: 18px;
+  }
+
+  a:link {
+    color: #761297;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:visited {
+    color: #761297;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #761297;
+    background-color: transparent;
+    text-decoration: underline;
   }
   
   .download-icon {
@@ -1672,7 +1691,7 @@
   overflow:hidden;
   flex-direction:row;
   align-items:flex-start;
-  padding:41px 0 180px;
+  padding:27px 0 180px;
   box-sizing:border-box;
   line-height:normal;
   letter-spacing:normal
