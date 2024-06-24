@@ -1691,7 +1691,7 @@
   overflow:hidden;
   flex-direction:row;
   align-items:flex-start;
-  padding:20px 0 180px;
+  padding-top:15px;
   box-sizing:border-box;
   line-height:normal;
   letter-spacing:normal
