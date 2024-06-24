@@ -90,6 +90,7 @@
   }
   
   .hire-me-wrapper {
+  transition:ease .2s;
   cursor:pointer;
   border:0;
   padding:var(--padding-xs) 39px;
@@ -827,7 +828,6 @@
   border-radius:var(--br-xl);
   object-fit:cover
   }
-  
   .a79bb8f-icon,.a7a991-icon,.bc614e0b-icon,.d0d01b10-icon {
   width:152px
   }
@@ -858,7 +858,25 @@
   gap:11px 15px;
   min-height:439px
   }
-  
+
+.a0219ef5-parent img,
+.c3cee56-parent img,
+.aj-fitness-tshirt-front-parent img,
+.f136318-parent img,
+.rectangle-parent img,
+.fa6dd210-1-wrapper img {
+  transition: transform 0.2s ease-in-out;
+}
+
+.a0219ef5-parent img:hover,
+.c3cee56-parent img:hover,
+.aj-fitness-tshirt-front-parent img:hover,
+.f136318-parent img:hover,
+.rectangle-parent img:hover,
+.fa6dd210-1-wrapper img:hover {
+  transform: scale(1.1);
+}
+
   .frame-parent11 {
   flex-direction:column
   }
@@ -1691,7 +1709,7 @@
   overflow:hidden;
   flex-direction:row;
   align-items:flex-start;
-  padding-top:15px;
+  padding:15px;
   box-sizing:border-box;
   line-height:normal;
   letter-spacing:normal
