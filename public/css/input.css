@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root[class~="dark"] {
+:root {
     --background: #111111;
     --foreground: #fff;
     --muted: #111;
@@ -12,11 +12,61 @@
 }
 
 @layer base {
-    html {
+    html, body {
         @apply font-mono;
         background-color: var(--background);
         color: var(--foreground);
     }
+}
+
+@theme {
+    --animate-fade-in: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    --animate-slide-up: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-up {
+        from {
+            transform: translateY(24px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+@utility animation-delay-100 {
+    animation-delay: 100ms;
+}
+@utility animation-delay-200 {
+    animation-delay: 200ms;
+}
+@utility animation-delay-300 {
+    animation-delay: 300ms;
+}
+@utility animation-delay-400 {
+    animation-delay: 400ms;
+}
+@utility animation-delay-500 {
+    animation-delay: 500ms;
+}
+@utility animation-delay-600 {
+    animation-delay: 600ms;
+}
+@utility animation-delay-700 {
+    animation-delay: 700ms;
+}
+@utility animation-delay-800 {
+    animation-delay: 800ms;
 }
 
 @layer components {
@@ -25,7 +75,7 @@
     }
 
     .tag {
-        @apply border-solid border-[1px] border-[#FFFFFF] bg-[#151515]/50 text-white px-2 py-1 rounded-full flex items-center justify-center text-xs w-fit;
+        @apply border-solid border-[1px] border-[#FFFFFF] bg-[#151515]/50 text-white px-2 py-1 rounded-xl md:rounded-full flex items-center justify-center text-xs w-fit;
     }
 
     .project-card {
