@@ -41,7 +41,7 @@ export const IdolChantView: React.FC<IdolChantViewProps> = ({ onBack }) => {
         <div className="flex flex-col gap-8">
           {/* Preview Section */}
           <div className="w-full group animate-fade-in animate-slide-up animation-delay-200">
-            <div className="w-full rounded-xl overflow-hidden border border-card-border bg-card-bg relative shadow-2xl transition-transform duration-500 hover:-translate-y-1">
+            <div className="w-full rounded-xl overflow-hidden border border-card-border bg-card-bg relative shadow-2xl">
               <img 
                 src="assets/images/idol_chant_preview.png" 
                 alt="Idol Chant Finder Preview"
@@ -52,8 +52,8 @@ export const IdolChantView: React.FC<IdolChantViewProps> = ({ onBack }) => {
 
           {/* Tech Stack Section */}
           <div className="w-full animate-fade-in animate-slide-up animation-delay-300">
-            <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2 group/tech">
-              <IconCode size={18} className="text-neutral-500 group-hover/tech:text-pink-500 transition-colors" />
+            <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+              <IconCode size={18} className="text-neutral-500" />
               Tech Stack
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -74,8 +74,8 @@ export const IdolChantView: React.FC<IdolChantViewProps> = ({ onBack }) => {
 
           {/* About Section */}
           <div className="w-full animate-fade-in animate-slide-up animation-delay-400">
-            <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2 group/info">
-              <IconInfoCircle size={18} className="text-neutral-500 group-hover/info:text-pink-500 transition-colors" />
+            <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+              <IconInfoCircle size={18} className="text-neutral-500" />
               About the Project
             </h2>
             <p className="text-neutral-400 leading-relaxed text-sm max-w-4xl">

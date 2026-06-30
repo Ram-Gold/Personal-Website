@@ -78,7 +78,7 @@
 
 @layer components {
     .card {
-        @apply border border-card-border bg-card-bg/50 backdrop-blur-md rounded-xl transition-all duration-300 hover:border-neutral-700/50 hover:shadow-xl hover:shadow-black/25;
+        @apply border border-card-border bg-card-bg/50 backdrop-blur-md rounded-xl;
     }
 
     .tag {
@@ -86,19 +86,10 @@
     }
 
     .project-card {
-        @apply border border-card-border bg-card-bg/30 rounded-xl p-5 mb-2.5 transition-all duration-300 hover:border-pink-500/30 hover:bg-pink-500/[0.02] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-pink-500/[0.01];
+        @apply border border-card-border bg-card-bg/30 rounded-xl p-5 mb-2.5;
     }
 
     .action-card {
-        @apply relative overflow-hidden bg-card-bg/40 border border-card-border rounded-xl transition-all duration-300 hover:-translate-y-1 hover:border-pink-500/30 hover:shadow-lg hover:shadow-pink-500/10 cursor-pointer z-10;
-    }
-
-    .action-card::before {
-        content: '';
-        @apply absolute inset-0 bg-gradient-to-r from-pink-600 to-red-600 opacity-0 transition-opacity duration-300 -z-10 rounded-xl;
-    }
-
-    .action-card:hover::before {
-        @apply opacity-100;
+        @apply relative overflow-hidden bg-card-bg/40 border border-card-border rounded-xl cursor-pointer z-10;
     }
 }

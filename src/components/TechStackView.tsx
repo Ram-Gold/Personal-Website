@@ -19,8 +19,8 @@ export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
         <IconArrowLeft size={16} className="text-neutral-400 group-hover:text-white transition-colors" /> Back to Home
       </a>
       <div className="card p-4 col-span-1 md:col-span-4 md:row-span-2 flex flex-col gap-y-3 animate-fade-in animate-slide-up animation-delay-100">
-        <div className="flex items-center gap-2 mb-4 group/tech text-white">
-          <IconFlask size={20} className="text-neutral-400 group-hover/tech:text-pink-500 transition-colors" />
+        <div className="flex items-center gap-2 mb-4 text-white">
+          <IconFlask size={20} className="text-neutral-400" />
           <p className="font-semibold">Tech Stack</p>
         </div>
         <div className="flex flex-col gap-2">
