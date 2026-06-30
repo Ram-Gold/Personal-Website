@@ -19,7 +19,7 @@ import {
 } from '@tabler/icons-react';
 
 interface HomeViewProps {
-  onNavigate: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'gear') => void;
+  onNavigate: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear') => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
@@ -364,6 +364,54 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     </div>
                     <div className="tag">
                       <p>Miscellaneous</p>
+                    </div>
+                  </div>
+                </a>
+                <a
+                  href="project_koncentrate.html"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('project_koncentrate');
+                  }}
+                  className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                >
+                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
+                    <p className="text-white font-semibold text-sm leading-tight">Koncentrate</p>
+                    <span className="text-neutral-500 text-[11px] font-mono">2026</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <div className="tag">
+                      <p>Linux</p>
+                    </div>
+                    <div className="tag">
+                      <p>Widget</p>
+                    </div>
+                    <div className="tag">
+                      <p>KDE</p>
+                    </div>
+                  </div>
+                </a>
+                <a
+                  href="project_domodomo.html"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('project_domodomo');
+                  }}
+                  className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                >
+                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
+                    <p className="text-white font-semibold text-sm leading-tight">DomoDomo</p>
+                    <span className="text-neutral-500 text-[11px] font-mono">2026</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <div className="tag">
+                      <p>Co-Founded</p>
+                    </div>
+                    <div className="tag">
+                      <p>AI</p>
+                    </div>
+                    <div className="tag-more">
+                      <p>(more +)</p>
                     </div>
                   </div>
                 </a>

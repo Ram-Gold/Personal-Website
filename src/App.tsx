@@ -4,17 +4,19 @@ import { CertificationsView } from './components/CertificationsView';
 import { TechStackView } from './components/TechStackView';
 import { IdolChantView } from './components/IdolChantView';
 import { PubmatsView } from './components/PubmatsView';
+import { KoncentrateView } from './components/KoncentrateView';
+import { DomoDomoView } from './components/DomoDomoView';
 import { GearView } from './components/GearView';
 
 export default function App() {
-  const [view, setView] = useState<'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'gear'>('home');
+  const [view, setView] = useState<'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear'>('home');
 
   const handleBack = () => {
     setView('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleNavigate = (targetView: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'gear') => {
+  const handleNavigate = (targetView: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear') => {
     setView(targetView);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -28,6 +30,10 @@ export default function App() {
       return <IdolChantView onBack={handleBack} />;
     case 'pubmats':
       return <PubmatsView onBack={handleBack} />;
+    case 'project_koncentrate':
+      return <KoncentrateView onBack={handleBack} />;
+    case 'project_domodomo':
+      return <DomoDomoView onBack={handleBack} />;
     case 'gear':
       return <GearView onBack={handleBack} />;
     case 'home':

@@ -8,8 +8,8 @@ interface TechStackViewProps {
 export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <a 
-        className="inline-flex items-center gap-1.5 text-sm text-neutral-400 mb-4 animate-fade-in hover:text-white transition-colors cursor-pointer group/back" 
+      <a
+        className="inline-flex items-center gap-1.5 text-sm text-neutral-400 mb-4 animate-fade-in hover:text-white transition-colors cursor-pointer group/back"
         href="index.html"
         onClick={(e) => {
           e.preventDefault();
@@ -30,26 +30,26 @@ export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
             <div className="tag"><p>Tailwind CSS</p></div>
             <div className="tag"><p>React</p></div>
           </div>
-          
+
           <p className="font-semibold">Backend</p>
           <div className="flex gap-2">
             <div className="tag"><p>MySQL</p></div>
             <div className="tag"><p>Supabase</p></div>
           </div>
-          
+
           <p className="font-semibold">CMS & No-Code</p>
           <div className="flex gap-2">
             <div className="tag"><p>Carrd</p></div>
             <div className="tag"><p>WebFlow</p></div>
           </div>
-          
+
           <p className="font-semibold">AI & Machine Learning</p>
           <div className="flex flex-wrap gap-2">
             <div className="tag"><p>Ollama</p></div>
             <div className="tag"><p>Hugging Face</p></div>
             <div className="tag"><p>OpenAI</p></div>
           </div>
-          
+
           <p className="font-semibold">AI IDE</p>
           <div className="flex flex-wrap gap-2">
             <div className="tag"><p>Cursor</p></div>
@@ -58,7 +58,7 @@ export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
             <div className="tag"><p>JetBrains Junie</p></div>
             <div className="tag"><p>Github Copilot</p></div>
           </div>
-          
+
           <p className="font-semibold">Dev Tools</p>
           <div className="flex flex-wrap gap-2">
             <div className="tag"><p>Git</p></div>
@@ -68,9 +68,10 @@ export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
             <div className="tag"><p>Android Studio</p></div>
             <div className="tag"><p>Figma</p></div>
             <div className="tag"><p>Notion</p></div>
-            <div className="tag"><p>Anytype</p></div>
+            <div className="tag"><p>Obsidian</p></div>
             <div className="tag"><p>Discord</p></div>
             <div className="tag"><p>Linux</p></div>
+            <div className="tag"><p>Docker</p></div>
           </div>
         </div>
       </div>
