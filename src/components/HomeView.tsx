@@ -3,7 +3,6 @@ import { GitHubContributions } from './GitHubContributions';
 import {
   IconMapPin,
   IconUser,
-  IconSchool,
   IconDownload,
   IconMail,
   IconFlask,
