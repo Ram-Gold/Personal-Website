@@ -1,19 +1,20 @@
 import React from 'react';
-import { 
-  IconMapPin, 
-  IconUser, 
-  IconSchool, 
-  IconDownload, 
-  IconMail, 
-  IconFlask, 
-  IconChevronRight, 
-  IconCompass, 
-  IconCertificate, 
-  IconBriefcase, 
+import { GitHubContributions } from './GitHubContributions';
+import {
+  IconMapPin,
+  IconUser,
+  IconSchool,
+  IconDownload,
+  IconMail,
+  IconFlask,
+  IconChevronRight,
+  IconCompass,
+  IconCertificate,
+  IconBriefcase,
   IconCode,
-  IconBrandGithub, 
-  IconBrandLinkedin, 
-  IconBrandFacebook, 
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandFacebook,
   IconBrandInstagram,
   IconArrowUpRight
 } from '@tabler/icons-react';
@@ -29,17 +30,17 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
         {/* Profile Header */}
         <section className="mb-8 animate-fade-in animate-slide-up">
           <div className="flex flex-col sm:flex-row items-start gap-4 md:gap-6">
-            <img 
+            <img
               className="w-36 h-36 rounded-2xl object-cover overflow-hidden shrink-0 border border-solid border-card-border"
-              src="assets/images/ram-guinto.png" 
-              alt="Ram Guinto" 
+              src="assets/images/ram-guinto.png"
+              alt="Ram Guinto"
             />
             <div className="flex flex-col justify-between py-1 self-stretch">
               <div>
-                <img 
-                  className="rounded-sm w-fit mb-2" 
-                  src="assets/images/ram-guinto-text-light.jpg" 
-                  alt="Ram Guinto" 
+                <img
+                  className="rounded-sm w-fit mb-2"
+                  src="assets/images/ram-guinto-text-light.jpg"
+                  alt="Ram Guinto"
                 />
                 <div className="flex items-center gap-1.5 text-[13px] text-neutral-400 mb-1">
                   <IconMapPin size={14} className="text-neutral-500 shrink-0" />
@@ -50,9 +51,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 </p>
               </div>
               <div className="flex items-center gap-2 mt-3">
-                <a 
-                  href="https://github.com/Ram-Gold" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/Ram-Gold"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border bg-card-bg/50 hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-white cursor-pointer"
                   aria-label="Visit Ram Guinto's GitHub Profile"
@@ -60,9 +61,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                   <IconBrandGithub size={14} className="shrink-0" />
                   <span>GitHub</span>
                 </a>
-                <a 
-                  href="https://www.linkedin.com/in/ram-guinto/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/ram-guinto/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border bg-card-bg/50 hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-white cursor-pointer"
                   aria-label="Visit Ram Guinto's LinkedIn Profile"
@@ -74,7 +75,6 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             </div>
           </div>
         </section>
-
         {/* Bento Grid */}
         <section className="grid grid-cols-1 md:grid-cols-8 gap-6">
           {/* About Me */}
@@ -101,8 +101,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               </p>
             </div>
             <div className="mt-4 shrink-0 flex items-center">
-              <a 
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-card-border bg-card-bg/30 hover:bg-neutral-800/50 hover:text-white focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-neutral-400 cursor-pointer" 
+              <a
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-card-border bg-card-bg/30 hover:bg-neutral-800/50 hover:text-white focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-neutral-400 cursor-pointer"
                 href="gear.html"
                 onClick={(e) => {
                   e.preventDefault();
@@ -168,7 +168,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           </div>
 
           {/* Download CV */}
-          <a 
+          <a
             href="mailto:ramgolds@proton.me"
             className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-white font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group"
           >
@@ -179,7 +179,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           </a>
 
           {/* Send Email */}
-          <a 
+          <a
             href="mailto:ramgolds@proton.me"
             className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-white font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group"
           >
@@ -196,8 +196,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <IconFlask size={20} className="text-neutral-400" />
                 <p className="font-semibold">Tech Stack</p>
               </div>
-              <a 
-                className="inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewall" 
+              <a
+                className="inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewall"
                 href="tech_stack.html"
                 onClick={(e) => {
                   e.preventDefault();
@@ -264,7 +264,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                   API</span>, embeddings, and semantic search.
                 I am always learning by doing, and I'm currently experimenting with <span
                   className="text-white font-medium">OpenRouter</span> and the <span
-                  className="text-white font-medium">Gemini API</span>.
+                    className="text-white font-medium">Gemini API</span>.
               </p>
             </div>
           </div>
@@ -276,8 +276,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <IconCertificate size={20} className="text-neutral-400" />
                 <p className="font-semibold">Certificates</p>
               </div>
-              <a 
-                className="inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewcert" 
+              <a
+                className="inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewcert"
                 href="certifications.html"
                 onClick={(e) => {
                   e.preventDefault();
@@ -289,7 +289,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               </a>
             </div>
             <div className="flex-grow flex flex-col justify-start gap-y-3">
-              <a 
+              <a
                 href="https://www.datacamp.com/certificate/AIEDA0017163812667"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -298,7 +298,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <p className="text-white font-semibold text-sm leading-tight">AI Engineer for Developers Associate</p>
                 <p className="text-neutral-400 text-xs mt-1">Datacamp</p>
               </a>
-              <a 
+              <a
                 href="https://www.coursera.org/account/accomplishments/verify/5PYDS4SXI81S"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -307,7 +307,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <p className="text-white font-semibold text-sm leading-tight">System Administration and IT Infrastructure Services</p>
                 <p className="text-neutral-400 text-xs mt-1">Coursera</p>
               </a>
-              <a 
+              <a
                 href="https://www.coursera.org/account/accomplishments/verify/HYCSR8DB3KWC"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -329,7 +329,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             </div>
             <div className="flex-grow flex flex-col justify-start">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a 
+                <a
                   href="project_idol_chant.html"
                   onClick={(e) => {
                     e.preventDefault();
@@ -347,7 +347,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     </div>
                   </div>
                 </a>
-                <a 
+                <a
                   href="pubmats.html"
                   onClick={(e) => {
                     e.preventDefault();
@@ -373,6 +373,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           </div>
         </section>
 
+        {/* GitHub Contributions Calendar */}
+        <GitHubContributions />
+
         {/* Footer */}
         <footer className="col-span-1 mt-8 animate-fade-in animation-delay-600">
           <hr className="my-4 border-card-border" />
@@ -382,36 +385,36 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               Email: ramgolds@proton.me
             </p>
             <div className="flex justify-end gap-2">
-              <a 
-                href="https://www.facebook.com/ramachilles.guinto" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/ramachilles.guinto"
+                target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-800/40 hover:text-blue-500 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-neutral-400"
                 aria-label="Facebook Profile"
               >
                 <IconBrandFacebook size={22} />
               </a>
-              <a 
-                href="https://www.instagram.com/ramgold.png/" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/ramgold.png/"
+                target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-800/40 hover:text-pink-500 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-neutral-400"
                 aria-label="Instagram Profile"
               >
                 <IconBrandInstagram size={22} />
               </a>
-              <a 
-                href="https://www.linkedin.com/in/ram-guinto/" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/ram-guinto/"
+                target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-800/40 hover:text-blue-400 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-neutral-400"
                 aria-label="LinkedIn Profile"
               >
                 <IconBrandLinkedin size={22} />
               </a>
-              <a 
-                href="https://github.com/Ram-Gold" 
-                target="_blank" 
+              <a
+                href="https://github.com/Ram-Gold"
+                target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-800/40 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-neutral-400"
                 aria-label="GitHub Profile"
