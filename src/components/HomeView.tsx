@@ -241,6 +241,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     <div className="tag"><p>Notion</p></div>
                     <div className="tag"><p>Discord</p></div>
                     <div className="tag"><p>Linux</p></div>
+                    <div className="tag-more"><p>more +</p></div>
                   </div>
                 </div>
               </div>
@@ -411,7 +412,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                       <p>AI</p>
                     </div>
                     <div className="tag-more">
-                      <p>(more +)</p>
+                      <p>more +</p>
                     </div>
                   </div>
                 </a>

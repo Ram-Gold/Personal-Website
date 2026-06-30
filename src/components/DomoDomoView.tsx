@@ -8,7 +8,7 @@ interface DomoDomoViewProps {
 export const DomoDomoView: React.FC<DomoDomoViewProps> = ({ onBack }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <a 
+      <a
         className="inline-flex items-center gap-1.5 text-sm text-neutral-400 mb-6 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
         onClick={(e) => {
           e.preventDefault();
@@ -28,9 +28,9 @@ export const DomoDomoView: React.FC<DomoDomoViewProps> = ({ onBack }) => {
               <p className="text-neutral-400 text-sm mt-1">Free all-in-one toolbox with 110+ online browser utilities</p>
             </div>
           </div>
-          <a 
-            href="https://domodomo.site/" 
-            target="_blank" 
+          <a
+            href="https://domodomo.site/"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border bg-card-bg hover:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded-lg transition-all text-sm font-semibold text-white w-full md:w-auto cursor-pointer group/livesite"
           >
@@ -42,10 +42,10 @@ export const DomoDomoView: React.FC<DomoDomoViewProps> = ({ onBack }) => {
           {/* Preview Section */}
           <div className="w-full group animate-fade-in animate-slide-up animation-delay-200">
             <div className="w-full rounded-xl overflow-hidden border border-card-border bg-card-bg relative shadow-2xl">
-              <img 
-                src="assets/images/domodomo_preview.png" 
+              <img
+                src="assets/images/domodomo_preview.png"
                 alt="DomoDomo Website Preview"
-                className="w-full h-auto object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100" 
+                className="w-full h-auto object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
               />
             </div>
           </div>
@@ -70,7 +70,7 @@ export const DomoDomoView: React.FC<DomoDomoViewProps> = ({ onBack }) => {
                 <p>WebGPU</p>
               </div>
               <div className="tag-more">
-                <p>(more +)</p>
+                <p>more +</p>
               </div>
             </div>
           </div>
