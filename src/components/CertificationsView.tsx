@@ -185,7 +185,7 @@ export const CertificationsView: React.FC<CertificationsViewProps> = ({ onBack }
                       <p className="text-theme-muted text-xs">{cert.issuer}</p>
                     </div>
                     
-                    <div className="mt-auto pt-2 border-t border-card-border flex items-center justify-between gap-2">
+                    <div className="mt-auto pt-2 border-t border-card-border">
                       <StyledLink 
                         href={cert.url}
                         className="text-theme-muted hover:text-theme-text text-xs"
@@ -193,15 +193,6 @@ export const CertificationsView: React.FC<CertificationsViewProps> = ({ onBack }
                       >
                         {cert.isImageLink ? 'View Certificate Image' : 'Verify Certificate'}
                       </StyledLink>
-                      {cert.imageUrl && (
-                        <StyledLink 
-                          href={cert.imageUrl}
-                          className="text-theme-muted hover:text-theme-text text-xs"
-                          parentHover={true}
-                        >
-                          View Image
-                        </StyledLink>
-                      )}
                     </div>
                   </div>
                 ))}
