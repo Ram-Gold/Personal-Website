@@ -102,19 +102,19 @@ const StyledLink: React.FC<{
       className={`inline-flex items-center gap-1.5 transition-colors group/link cursor-pointer ${className}`}
     >
       {showDot && (
-        <span className={`w-1 h-1 rounded-full bg-neutral-600 transition-colors duration-200 mr-0.5 shrink-0 ${
-          parentHover ? 'group-hover:bg-neutral-400' : 'group-hover/link:bg-neutral-400'
+        <span className={`w-1 h-1 rounded-full bg-theme-faint transition-colors duration-200 mr-0.5 shrink-0 ${
+          parentHover ? 'group-hover:bg-theme-muted' : 'group-hover/link:bg-theme-muted'
         }`} />
       )}
       <span className={`transition-colors duration-200 border-b border-transparent pb-[0.5px] leading-tight ${
-        parentHover ? 'group-hover:text-white group-hover:border-neutral-400' : 'hover:text-white hover:border-neutral-400'
+        parentHover ? 'group-hover:text-theme-text group-hover:border-theme-muted' : 'hover:text-theme-text hover:border-theme-muted'
       }`}>
         {children}
       </span>
       <span className="relative flex items-center justify-center shrink-0 w-3.5 h-3.5 overflow-hidden">
         <IconArrowUpRight 
           size={iconSize} 
-          className={`absolute opacity-0 -translate-x-1.5 translate-y-1.5 transition-all duration-300 ease-out text-neutral-400 ${
+          className={`absolute opacity-0 -translate-x-1.5 translate-y-1.5 transition-all duration-300 ease-out text-theme-muted ${
             parentHover 
               ? 'group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0' 
               : 'group-hover/link:opacity-100 group-hover/link:translate-x-0 group-hover/link:translate-y-0'
@@ -129,23 +129,23 @@ export const CertificationsView: React.FC<CertificationsViewProps> = ({ onBack }
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <a 
-        className="inline-flex items-center gap-1.5 text-sm text-neutral-400 mb-6 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 cursor-pointer animate-fade-in group/back" 
+        className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 cursor-pointer animate-fade-in group/back" 
         href="index.html"
         onClick={(e) => {
           e.preventDefault();
           onBack();
         }}
       >
-        <IconArrowLeft size={16} className="text-neutral-400 group-hover/back:text-white transition-colors" /> Back to Home
+        <IconArrowLeft size={16} className="text-theme-muted group-hover/back:text-theme-text transition-colors" /> Back to Home
       </a>
       
       <div className="card p-6 md:p-8 flex flex-col gap-y-6 animate-fade-in animate-slide-up animation-delay-100">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-card-border pb-6">
           <div className="flex items-center gap-3">
-            <IconCertificate size={24} className="text-neutral-400" />
+            <IconCertificate size={24} className="text-theme-muted" />
             <div>
-              <h1 className="font-bold text-2xl text-white">Certifications</h1>
-              <p className="text-neutral-400 text-sm mt-1">Courses, hackathons, and technical achievements</p>
+              <h1 className="font-bold text-2xl text-theme-text">Certifications</h1>
+              <p className="text-theme-muted text-sm mt-1">Courses, hackathons, and technical achievements</p>
             </div>
           </div>
         </div>
@@ -153,27 +153,28 @@ export const CertificationsView: React.FC<CertificationsViewProps> = ({ onBack }
         <div className="flex flex-col gap-y-8">
           {categorizedCertifications.map((group, groupIndex) => (
             <div key={groupIndex} className="flex flex-col gap-y-4">
-              <h2 className="text-lg font-semibold text-neutral-200 border-l-2 border-neutral-600 pl-3">
+              <h2 className="text-lg font-semibold text-theme-text border-l-2 border-theme-border-accent pl-3">
                 {group.categoryName}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {group.items.map((cert, certIndex) => (
                   <div 
                     key={certIndex}
-                    className="card border border-card-border bg-card-bg/30 rounded-xl p-5 flex flex-col justify-between gap-y-4 hover:border-neutral-700/85 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 group"
+                    className="card border border-card-border rounded-xl p-5 flex flex-col justify-between gap-y-4 hover:border-theme-border-accent transition-all duration-300 transform hover:-translate-y-1 group"
+                    style={{ boxShadow: `0 4px 20px var(--theme-shadow)` }}
                   >
                     {/* Certificate Details */}
                     <div className="flex flex-col gap-y-1">
-                      <h3 className="font-semibold text-white text-base leading-snug group-hover:text-white transition-colors duration-200">
+                      <h3 className="font-semibold text-theme-text text-base leading-snug group-hover:text-theme-text transition-colors duration-200">
                         {cert.title}
                       </h3>
-                      <p className="text-neutral-400 text-xs">{cert.issuer}</p>
+                      <p className="text-theme-muted text-xs">{cert.issuer}</p>
                     </div>
                     
-                    <div className="mt-auto pt-2 border-t border-card-border/50">
+                    <div className="mt-auto pt-2 border-t border-card-border">
                       <StyledLink 
                         href={cert.url}
-                        className="text-neutral-400 hover:text-white text-xs"
+                        className="text-theme-muted hover:text-theme-text text-xs"
                         parentHover={true}
                       >
                         {cert.isImageLink ? 'View Certificate Image' : 'Verify Certificate'}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { IconBrandGithub } from '@tabler/icons-react';
+import { useTheme } from '../utils/ThemeContext';
 
 const GITHUB_USERNAME = 'Ram-Gold';
 
@@ -14,8 +15,8 @@ interface ContributionData {
   contributions: ContributionDay[];
 }
 
-// GitHub-inspired green palette on dark bg
-const LEVEL_COLORS = [
+// GitHub-inspired green palette — theme-aware
+const LEVEL_COLORS_DARK = [
   'rgba(255,255,255,0.04)',  // level 0 — empty
   '#0e4429',                  // level 1
   '#006d32',                  // level 2
@@ -23,16 +24,27 @@ const LEVEL_COLORS = [
   '#39d353',                  // level 4
 ];
 
+const LEVEL_COLORS_LIGHT = [
+  '#ebedf0',                  // level 0 — empty (GitHub light)
+  '#9be9a8',                  // level 1
+  '#40c463',                  // level 2
+  '#30a14e',                  // level 3
+  '#216e39',                  // level 4
+];
+
 const MONTH_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const DAY_LABELS = ['Mon', 'Wed', 'Fri'];
 
 export const GitHubContributions: React.FC = () => {
+  const { theme } = useTheme();
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const levelColors = theme === 'dark' ? LEVEL_COLORS_DARK : LEVEL_COLORS_LIGHT;
 
   useEffect(() => {
     const fetchContributions = async () => {
@@ -132,10 +144,10 @@ export const GitHubContributions: React.FC = () => {
       <section className="mt-8 mb-6 animate-fade-in">
         <div className="card p-4">
           <div className="flex items-center gap-2 mb-4">
-            <IconBrandGithub size={20} className="text-neutral-400" />
-            <p className="font-semibold text-white">Contributions</p>
+            <IconBrandGithub size={20} className="text-theme-muted" />
+            <p className="font-semibold text-theme-text">Contributions</p>
           </div>
-          <div className="h-[120px] bg-neutral-800/30 rounded-lg animate-pulse" />
+          <div className="h-[120px] bg-theme-hover rounded-lg animate-pulse" />
         </div>
       </section>
     );
@@ -157,11 +169,11 @@ export const GitHubContributions: React.FC = () => {
   return (
     <section className="mt-8 mb-6 animate-fade-in animate-slide-up">
       <div className="card p-4">
-        <div className="flex items-center justify-between text-white mb-3 shrink-0">
+        <div className="flex items-center justify-between text-theme-text mb-3 shrink-0">
           <div className="flex items-center gap-2">
-            <IconBrandGithub size={20} className="text-neutral-400" />
+            <IconBrandGithub size={20} className="text-theme-muted" />
             <p className="font-semibold">Contributions</p>
-            <span className="text-xs text-neutral-500 font-mono ml-1">
+            <span className="text-xs text-theme-subtle font-mono ml-1">
               {totalCount.toLocaleString()} in the last year
             </span>
           </div>
@@ -169,7 +181,7 @@ export const GitHubContributions: React.FC = () => {
             href={`https://github.com/${GITHUB_USERNAME}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors font-mono"
+            className="text-xs text-theme-subtle hover:text-theme-muted transition-colors font-mono"
           >
             @{GITHUB_USERNAME}
           </a>
@@ -179,11 +191,13 @@ export const GitHubContributions: React.FC = () => {
           {/* Tooltip */}
           {tooltip && (
             <div
-              className="absolute z-50 px-2.5 py-1.5 text-[11px] text-white bg-neutral-800 border border-neutral-700 rounded-md shadow-lg pointer-events-none whitespace-nowrap font-mono"
+              className="absolute z-50 px-2.5 py-1.5 text-[11px] text-theme-text border border-card-border rounded-md shadow-lg pointer-events-none whitespace-nowrap font-mono"
               style={{
                 left: tooltip.x,
                 top: tooltip.y,
                 transform: 'translate(-50%, -100%)',
+                background: `color-mix(in srgb, var(--theme-card-bg) 95%, transparent)`,
+                backdropFilter: 'blur(8px)',
               }}
             >
               {tooltip.text}
@@ -202,7 +216,7 @@ export const GitHubContributions: React.FC = () => {
                 key={`month-${weekIndex}`}
                 x={leftPadding + weekIndex * step}
                 y={10}
-                className="fill-neutral-500"
+                className="fill-theme-subtle"
                 fontSize="10"
                 fontFamily="monospace"
               >
@@ -219,7 +233,7 @@ export const GitHubContributions: React.FC = () => {
                   key={`day-${label}`}
                   x={0}
                   y={topPadding + row * step + cellSize - 1}
-                  className="fill-neutral-500"
+                  className="fill-theme-subtle"
                   fontSize="10"
                   fontFamily="monospace"
                 >
@@ -241,7 +255,7 @@ export const GitHubContributions: React.FC = () => {
                     height={cellSize}
                     rx={2}
                     ry={2}
-                    fill={LEVEL_COLORS[day.level]}
+                    fill={levelColors[day.level]}
                     className="transition-opacity duration-150 cursor-pointer"
                     onMouseEnter={(e) => handleMouseEnter(day, e)}
                     onMouseLeave={handleMouseLeave}
@@ -254,15 +268,15 @@ export const GitHubContributions: React.FC = () => {
 
         {/* Legend */}
         <div className="flex items-center justify-end gap-1.5 mt-2">
-          <span className="text-[10px] text-neutral-500 font-mono mr-1">Less</span>
-          {LEVEL_COLORS.map((color, i) => (
+          <span className="text-[10px] text-theme-subtle font-mono mr-1">Less</span>
+          {levelColors.map((color, i) => (
             <div
               key={i}
               className="w-[11px] h-[11px] rounded-[2px]"
               style={{ backgroundColor: color }}
             />
           ))}
-          <span className="text-[10px] text-neutral-500 font-mono ml-1">More</span>
+          <span className="text-[10px] text-theme-subtle font-mono ml-1">More</span>
         </div>
       </div>
     </section>
