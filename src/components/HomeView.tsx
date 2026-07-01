@@ -150,18 +150,6 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     <p className="text-neutral-500 text-[11px] mt-1 font-mono">2023 - Present • 3 years</p>
                   </div>
                 </div>
-
-                {/* St. Anthony School */}
-                <div className="relative flex flex-row gap-4 items-start">
-                  <div className="z-10 w-10 h-10 rounded-xl bg-neutral-900 border border-card-border flex items-center justify-center shrink-0 font-bold text-xs text-neutral-300">
-                    SAS
-                  </div>
-                  <div className="flex flex-col pt-1">
-                    <p className="text-white font-semibold text-sm leading-tight">St. Anthony School</p>
-                    <p className="text-neutral-400 text-xs mt-0.5">Elementary to Senior High</p>
-                    <p className="text-neutral-500 text-[11px] mt-1 font-mono">2011 - 2023 • 12 years</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
