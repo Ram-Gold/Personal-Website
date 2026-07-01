@@ -9,6 +9,7 @@ interface Certification {
   title: string;
   issuer: string;
   url: string;
+  imageUrl?: string;
   isImageLink?: boolean;
 }
 
@@ -34,7 +35,20 @@ const categorizedCertifications: CategoryGroup[] = [
       {
         title: "Anthropic AI Fluency",
         issuer: "Anthropic",
-        url: "https://verify.skilljar.com/c/t9ib9g662pif"
+        url: "https://verify.skilljar.com/c/t9ib9g662pif",
+        imageUrl: "/assets/images/certifications/anthropic_ai_fluency.jpg"
+      },
+      {
+        title: "Claude 101",
+        issuer: "Anthropic",
+        url: "https://verify.skilljar.com/c/a4x6zrxetdwu",
+        imageUrl: "/assets/images/certifications/claude_101.png"
+      },
+      {
+        title: "Claude in Action",
+        issuer: "Anthropic",
+        url: "https://verify.skilljar.com/c/nmwxvt77zodt",
+        imageUrl: "/assets/images/certifications/claude_in_action.jpg"
       }
     ]
   },
@@ -171,7 +185,7 @@ export const CertificationsView: React.FC<CertificationsViewProps> = ({ onBack }
                       <p className="text-theme-muted text-xs">{cert.issuer}</p>
                     </div>
                     
-                    <div className="mt-auto pt-2 border-t border-card-border">
+                    <div className="mt-auto pt-2 border-t border-card-border flex items-center justify-between gap-2">
                       <StyledLink 
                         href={cert.url}
                         className="text-theme-muted hover:text-theme-text text-xs"
@@ -179,6 +193,15 @@ export const CertificationsView: React.FC<CertificationsViewProps> = ({ onBack }
                       >
                         {cert.isImageLink ? 'View Certificate Image' : 'Verify Certificate'}
                       </StyledLink>
+                      {cert.imageUrl && (
+                        <StyledLink 
+                          href={cert.imageUrl}
+                          className="text-theme-muted hover:text-theme-text text-xs"
+                          parentHover={true}
+                        >
+                          View Image
+                        </StyledLink>
+                      )}
                     </div>
                   </div>
                 ))}
