@@ -25,14 +25,14 @@ export const KoncentrateView: React.FC<KoncentrateViewProps> = ({ onBack }) => {
           <div className="flex items-center gap-3">
             <div>
               <h1 className="font-bold text-2xl text-theme-text">Koncentrate</h1>
-              <p className="text-theme-muted text-sm mt-1">A KDE Plasma 6 Pomodoro timer with a built-in To-Do List</p>
+              <p className="text-theme-muted text-sm mt-1">A KDE Plasma 6 widget combining a Pomodoro timer & To-Do List</p>
             </div>
           </div>
           <a 
             href="https://github.com/Ram-Gold/koncentrate" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
+            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
             style={{ background: `var(--theme-card-bg)` }}
           >
             <span>View on GitHub</span> <IconExternalLink size={16} className="text-theme-muted group-hover/livesite:text-theme-text transition-colors" />
@@ -47,7 +47,7 @@ export const KoncentrateView: React.FC<KoncentrateViewProps> = ({ onBack }) => {
             >
               <img 
                 src="assets/images/koncentrate_preview.png" 
-                alt="Koncentrate KDE Widget Preview"
+                alt="Koncentrate KDE Widget Banner"
                 className="w-full h-auto object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100" 
               />
             </div>
@@ -61,7 +61,16 @@ export const KoncentrateView: React.FC<KoncentrateViewProps> = ({ onBack }) => {
             </h2>
             <div className="flex flex-wrap gap-2">
               <div className="tag">
-                <p>QT</p>
+                <p>KDE Plasma 6</p>
+              </div>
+              <div className="tag">
+                <p>Qt / QML</p>
+              </div>
+              <div className="tag">
+                <p>Linux</p>
+              </div>
+              <div className="tag">
+                <p>C++</p>
               </div>
             </div>
           </div>
@@ -73,7 +82,7 @@ export const KoncentrateView: React.FC<KoncentrateViewProps> = ({ onBack }) => {
               About the Project
             </h2>
             <p className="text-theme-muted leading-relaxed text-sm max-w-4xl">
-              {/* About section left intentionally empty for the user to fill in */}
+              A KDE Plasma 6 widget that combines a Pomodoro timer with a built-in To-Do List - so you can manage your tasks and stay focused, all from your desktop.
             </p>
           </div>
         </div>

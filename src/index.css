@@ -126,8 +126,10 @@
     --color-theme-pubmat-bg: var(--theme-pubmat-bg);
     --color-theme-border-accent: var(--theme-border-accent);
 
-    --animate-fade-in: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-    --animate-slide-up: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    /* Emil Kowalski custom ease-out for responsive UI */
+    --ease-out-emil: cubic-bezier(0.23, 1, 0.32, 1);
+    --animate-fade-in: fade-in 0.25s cubic-bezier(0.23, 1, 0.32, 1) both;
+    --animate-slide-up: slide-up 0.35s cubic-bezier(0.23, 1, 0.32, 1) both;
 
     @keyframes fade-in {
         from {
@@ -140,7 +142,7 @@
 
     @keyframes slide-up {
         from {
-            transform: translateY(24px);
+            transform: translateY(12px);
             opacity: 0;
         }
         to {
@@ -157,6 +159,14 @@
         color: var(--theme-text);
         overflow-x: hidden;
         min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Apple-style typography: size-specific tracking & leading */
+    h1, h2, h3, h4 {
+        letter-spacing: -0.02em;
+        font-optical-sizing: auto;
     }
 
     /* Smooth theme transitions */
@@ -164,7 +174,7 @@
     html.theme-transition *,
     html.theme-transition *::before,
     html.theme-transition *::after {
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
     }
 
     body {
@@ -185,67 +195,127 @@
     }
 }
 
+/* Stagger animation delays for fast entrance */
 @utility animation-delay-100 {
-    animation-delay: 100ms;
+    animation-delay: 30ms;
 }
 @utility animation-delay-200 {
-    animation-delay: 200ms;
+    animation-delay: 60ms;
 }
 @utility animation-delay-300 {
-    animation-delay: 300ms;
+    animation-delay: 90ms;
 }
 @utility animation-delay-400 {
-    animation-delay: 400ms;
+    animation-delay: 120ms;
 }
 @utility animation-delay-500 {
-    animation-delay: 500ms;
+    animation-delay: 150ms;
 }
 @utility animation-delay-600 {
-    animation-delay: 600ms;
+    animation-delay: 180ms;
 }
 @utility animation-delay-700 {
-    animation-delay: 700ms;
+    animation-delay: 210ms;
 }
 @utility animation-delay-800 {
-    animation-delay: 800ms;
+    animation-delay: 240ms;
 }
 
 @layer components {
+    /* Apple-style translucent material surface with light-catching top border edge */
     .card {
         @apply border border-card-border rounded-xl;
-        background: color-mix(in srgb, var(--theme-card-bg) 50%, transparent);
-        backdrop-filter: blur(12px);
+        background: color-mix(in srgb, var(--theme-card-bg) 60%, transparent);
+        backdrop-filter: blur(16px) saturate(180%);
+        box-shadow: 0 4px 20px var(--theme-shadow);
+        transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1), border-color 200ms ease, box-shadow 200ms ease;
     }
 
     .tag {
-        @apply px-3 py-0.5 rounded-full flex items-center justify-center text-xs w-fit transition-colors duration-200;
+        @apply px-3 py-0.5 rounded-full flex items-center justify-center text-xs w-fit select-none cursor-pointer;
         border: 1px solid var(--theme-tag-border);
         background: var(--theme-tag-bg);
         color: var(--theme-tag-text);
+        transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), color 160ms ease, border-color 160ms ease;
     }
     .tag:hover {
         color: var(--theme-text);
         border-color: var(--theme-border-accent);
     }
+    .tag:active {
+        transform: scale(0.95);
+    }
 
     .tag-more {
-        @apply px-3 py-0.5 rounded-full flex items-center justify-center text-xs w-fit transition-colors duration-200;
+        @apply px-3 py-0.5 rounded-full flex items-center justify-center text-xs w-fit select-none cursor-pointer;
         border: 1px dashed var(--theme-card-border);
         background: var(--theme-tag-bg);
         color: var(--theme-text-subtle);
+        transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), color 160ms ease, border-color 160ms ease;
     }
     .tag-more:hover {
         color: var(--theme-text-muted);
         border-color: var(--theme-border-accent);
     }
+    .tag-more:active {
+        transform: scale(0.95);
+    }
 
     .project-card {
         @apply border border-card-border rounded-xl p-5 mb-2.5;
-        background: color-mix(in srgb, var(--theme-card-bg) 30%, transparent);
+        background: color-mix(in srgb, var(--theme-card-bg) 35%, transparent);
+        backdrop-filter: blur(8px) saturate(140%);
+        transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms ease, background-color 160ms ease;
+    }
+    .project-card:hover {
+        border-color: var(--theme-border-accent);
+    }
+    .project-card:active {
+        transform: scale(0.98);
     }
 
     .action-card {
         @apply relative overflow-hidden border border-card-border rounded-xl cursor-pointer z-10;
         background: var(--theme-action-bg);
+        backdrop-filter: blur(12px) saturate(160%);
+        transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms ease, background-color 160ms ease;
+    }
+    .action-card:hover {
+        border-color: var(--theme-border-accent);
+    }
+    .action-card:active {
+        transform: scale(0.97);
+    }
+
+    .btn-pressable {
+        transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease, border-color 160ms ease;
+    }
+    .btn-pressable:active {
+        transform: scale(0.97);
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Reduced transparency accessibility */
+@media (prefers-reduced-transparency: reduce) {
+    .card, .project-card, .action-card {
+        background: var(--theme-card-bg) !important;
+        backdrop-filter: none !important;
+    }
+}
+
+/* High contrast accessibility */
+@media (prefers-contrast: more) {
+    .card, .project-card, .action-card {
+        border-color: var(--theme-text-subtle) !important;
     }
 }

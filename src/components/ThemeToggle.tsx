@@ -8,7 +8,7 @@ export const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="w-10 h-10 flex items-center justify-center rounded-xl border border-card-border cursor-pointer transition-all duration-300 hover:scale-105 focus-visible:ring-2 focus-visible:ring-pink-500 outline-none shrink-0"
+      className="w-10 h-10 flex items-center justify-center rounded-xl border border-card-border cursor-pointer transition-all duration-200 active:scale-[0.93] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none shrink-0"
       style={{
         background: `color-mix(in srgb, var(--theme-card-bg) 70%, transparent)`,
         backdropFilter: 'blur(12px)',
@@ -17,7 +17,7 @@ export const ThemeToggle: React.FC = () => {
       title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <span
-        className="flex items-center justify-center transition-transform duration-500 ease-out"
+        className="flex items-center justify-center transition-transform duration-350 cubic-bezier(0.23, 1, 0.32, 1)"
         style={{
           transform: theme === 'dark' ? 'rotate(0deg)' : 'rotate(360deg)',
         }}

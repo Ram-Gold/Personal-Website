@@ -25,14 +25,14 @@ export const DomoDomoView: React.FC<DomoDomoViewProps> = ({ onBack }) => {
           <div className="flex items-center gap-3">
             <div>
               <h1 className="font-bold text-2xl text-theme-text">DomoDomo</h1>
-              <p className="text-theme-muted text-sm mt-1">Free all-in-one toolbox with 110+ online browser utilities</p>
+              <p className="text-theme-muted text-sm mt-1">Multi-purpose open-source web utility suite — 100% client-side & privacy-respecting</p>
             </div>
           </div>
           <a
             href="https://domodomo.site/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
+            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
             style={{ background: `var(--theme-card-bg)` }}
           >
             <span>Visit Live Site</span> <IconExternalLink size={16} className="text-theme-muted group-hover/livesite:text-theme-text transition-colors" />
@@ -85,7 +85,7 @@ export const DomoDomoView: React.FC<DomoDomoViewProps> = ({ onBack }) => {
               About the Project
             </h2>
             <p className="text-theme-muted leading-relaxed text-sm max-w-4xl">
-              {/* About section left intentionally empty for the user to fill in */}
+              A multi-purpose, open-source web utility suite. Run high-performance file conversions, image editing, and PDF manipulation directly in your browser. 100% client-side, secure, and privacy-respecting. Unlike cloud utilities, DomoDomo keeps processing in your browser sandbox so private documents, images, audio, video, and AI inputs stay on your machine.
             </p>
           </div>
         </div>

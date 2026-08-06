@@ -56,10 +56,20 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 </div>
                 <div className="flex items-center gap-2 mt-3">
                   <a
+                    href="assets/images/ram-guinto.png"
+                    download="ram-guinto-profile.png"
+                    className="inline-flex items-center justify-center p-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
+                    aria-label="Download Ram Guinto's profile picture"
+                    title="Download Profile Picture"
+                  >
+                    <IconDownload size={14} className="shrink-0" />
+                  </a>
+                  <a
                     href="https://github.com/Ram-Gold"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-theme-text cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Visit Ram Guinto's GitHub Profile"
                   >
@@ -70,7 +80,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     href="https://www.linkedin.com/in/ram-guinto/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-theme-text cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Visit Ram Guinto's LinkedIn Profile"
                   >
@@ -169,11 +179,15 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
 
           {/* Download CV */}
           <a
-            href="mailto:ramgolds@proton.me"
-            className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group"
+            href="assets/Ram_Achilles_Guinto_CV.pdf"
+            download="Ram_Achilles_Guinto_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group cursor-pointer"
+            aria-label="Download Ram Achilles Guinto CV PDF"
           >
             <div className="flex justify-center gap-2 px-4 py-2 w-full">
-              <IconDownload size={20} className="text-theme-muted" />
+              <IconDownload size={20} className="text-theme-muted group-hover:text-theme-text transition-colors" />
               <span>Download CV</span>
             </div>
           </a>
@@ -417,6 +431,32 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     </div>
                   </div>
                 </a>
+
+                {/* Coming Soon Project 1 */}
+                <div className="project-card border-dashed border-card-border opacity-70 select-none block">
+                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
+                    <p className="text-theme-muted font-semibold text-sm leading-tight">Coming Soon</p>
+                    <span className="text-theme-subtle text-[11px] font-mono">TBA</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <div className="tag-more">
+                      <p>In Development</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Coming Soon Project 2 */}
+                <div className="project-card border-dashed border-card-border opacity-70 select-none block">
+                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
+                    <p className="text-theme-muted font-semibold text-sm leading-tight">Coming Soon</p>
+                    <span className="text-theme-subtle text-[11px] font-mono">TBA</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <div className="tag-more">
+                      <p>In Development</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

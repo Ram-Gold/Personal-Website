@@ -145,35 +145,6 @@ export const GearView: React.FC<GearViewProps> = ({ onBack }) => {
                   </h3>
                 </div>
               </div>
-              
-              {/* Phone 2 */}
-              <div className="card overflow-hidden border border-card-border rounded-xl flex flex-col h-full group hover:border-theme-border-accent transition-all duration-300">
-                <a 
-                  href="https://support.apple.com/en-ph/111880"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full aspect-square bg-white flex items-center justify-center border-b border-card-border overflow-hidden shrink-0 block cursor-pointer p-6"
-                >
-                  <img 
-                    src="https://d1rlzxa98cyc61.cloudfront.net/catalog/product/cache/1801c418208f9607a371e61f8d9184d9/a/p/apple-iphone-xs-max-256gb-sgry.jpg" 
-                    alt="iPhone XS Max" 
-                    className="max-w-full max-h-full object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
-                  />
-                </a>
-                <div className="p-5 flex flex-col flex-grow justify-between gap-y-4">
-                  <h3 className="font-semibold text-theme-text text-base">
-                    <StyledLink 
-                      href="https://support.apple.com/en-ph/111880" 
-                      className="text-theme-text hover:text-theme-text"
-                      iconSize={16}
-                      showDot={false}
-                      parentHover={true}
-                    >
-                      iPhone XS Max
-                    </StyledLink>
-                  </h3>
-                </div>
-              </div>
 
               {/* Earbuds */}
               <div className="card overflow-hidden border border-card-border rounded-xl flex flex-col h-full group hover:border-theme-border-accent transition-all duration-300">
