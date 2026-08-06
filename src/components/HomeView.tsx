@@ -1,7 +1,6 @@
 import React from 'react';
 import { GitHubContributions } from './GitHubContributions';
 import { useTheme } from '../utils/ThemeContext';
-import { ThemeToggle } from './ThemeToggle';
 import {
   IconMapPin,
   IconUser,
@@ -89,10 +88,6 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                   </a>
                 </div>
               </div>
-            </div>
-            {/* Theme Toggle positioned at the top right of the profile header */}
-            <div className="sm:self-start">
-              <ThemeToggle />
             </div>
           </div>
         </section>

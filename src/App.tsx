@@ -9,6 +9,8 @@ import { KoncentrateView } from './components/KoncentrateView';
 import { DomoDomoView } from './components/DomoDomoView';
 import { GearView } from './components/GearView';
 
+import { ThemeToggle } from './components/ThemeToggle';
+
 export default function App() {
   const [view, setView] = useState<'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear'>('home');
 
@@ -46,6 +48,7 @@ export default function App() {
 
   return (
     <ThemeProvider>
+      <ThemeToggle />
       {renderView()}
     </ThemeProvider>
   );

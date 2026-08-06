@@ -319,3 +319,7 @@
         border-color: var(--theme-text-subtle) !important;
     }
 }
+
+.absolute-pullcord {
+    position: absolute !important;
+}
