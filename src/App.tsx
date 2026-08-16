@@ -8,18 +8,20 @@ import { PubmatsView } from './components/PubmatsView';
 import { KoncentrateView } from './components/KoncentrateView';
 import { DomoDomoView } from './components/DomoDomoView';
 import { GearView } from './components/GearView';
-
 import { ThemeToggle } from './components/ThemeToggle';
+import { hapticLight } from './utils/haptics';
 
 export default function App() {
   const [view, setView] = useState<'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear'>('home');
 
   const handleBack = () => {
+    hapticLight();
     setView('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleNavigate = (targetView: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear') => {
+    hapticLight();
     setView(targetView);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { IconArrowLeft, IconArrowUpRight } from '@tabler/icons-react';
+import { hapticLight } from '../utils/haptics';
 
 interface GearViewProps {
   onBack: () => void;
@@ -18,6 +19,7 @@ const StyledLink: React.FC<{
       href={href} 
       target="_blank" 
       rel="noopener noreferrer" 
+      onClick={hapticLight}
       className={`inline-flex items-center gap-1.5 transition-colors group/link cursor-pointer ${className}`}
     >
       {showDot && (
@@ -79,6 +81,7 @@ export const GearView: React.FC<GearViewProps> = ({ onBack }) => {
                   href="https://psref.lenovo.com/syspool/Sys/PDF/IdeaPad/IdeaPad_1_15ALC7/IdeaPad_1_15ALC7_Spec.html?ver=68fa65d3-d5b2-40db-8dfe-c584ac7f3fd9"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={hapticLight}
                   className="w-full aspect-square bg-white flex items-center justify-center border-b border-card-border overflow-hidden shrink-0 block cursor-pointer p-6"
                 >
                   <img 
@@ -123,6 +126,7 @@ export const GearView: React.FC<GearViewProps> = ({ onBack }) => {
                   href="https://www.mi.com/global/product/redmi-15-5g/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={hapticLight}
                   className="w-full aspect-square bg-white flex items-center justify-center border-b border-card-border overflow-hidden shrink-0 block cursor-pointer p-6"
                 >
                   <img 
@@ -204,6 +208,7 @@ export const GearView: React.FC<GearViewProps> = ({ onBack }) => {
                   href="https://www.asus.com/laptops/for-home/everyday-use/asus-m509/techspec/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={hapticLight}
                   className="w-full aspect-square bg-white flex items-center justify-center border-b border-card-border overflow-hidden shrink-0 block cursor-pointer p-6"
                 >
                   <img 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { IconBrandGithub } from '@tabler/icons-react';
 import { useTheme } from '../utils/ThemeContext';
+import { hapticLight, hapticSelection } from '../utils/haptics';
 
 const GITHUB_USERNAME = 'Ram-Gold';
 
@@ -181,6 +182,7 @@ export const GitHubContributions: React.FC = () => {
             href={`https://github.com/${GITHUB_USERNAME}`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={hapticLight}
             className="text-xs text-theme-subtle hover:text-theme-muted transition-colors font-mono"
           >
             @{GITHUB_USERNAME}
@@ -257,6 +259,7 @@ export const GitHubContributions: React.FC = () => {
                     ry={2}
                     fill={levelColors[day.level]}
                     className="transition-opacity duration-150 cursor-pointer"
+                    onClick={() => hapticSelection()}
                     onMouseEnter={(e) => handleMouseEnter(day, e)}
                     onMouseLeave={handleMouseLeave}
                   />

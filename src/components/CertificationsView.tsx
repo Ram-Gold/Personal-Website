@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IconArrowLeft, IconArrowUpRight, IconCertificate, IconChevronDown, IconChevronUp } from '@tabler/icons-react';
+import { hapticLight, hapticSelection } from '../utils/haptics';
 
 interface CertificationsViewProps {
   onBack: () => void;
@@ -203,6 +204,7 @@ const StyledLink: React.FC<{
       href={href} 
       target="_blank" 
       rel="noopener noreferrer" 
+      onClick={hapticLight}
       className={`inline-flex items-center gap-1.5 transition-colors group/link cursor-pointer ${className}`}
     >
       {showDot && (
@@ -233,6 +235,7 @@ export const CertificationsView: React.FC<CertificationsViewProps> = ({ onBack }
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
   const toggleCategory = (categoryName: string) => {
+    hapticSelection();
     setExpandedCategories(prev => ({
       ...prev,
       [categoryName]: !prev[categoryName]

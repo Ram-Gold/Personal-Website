@@ -1,6 +1,7 @@
 import React from 'react';
 import { GitHubContributions } from './GitHubContributions';
 import { useTheme } from '../utils/ThemeContext';
+import { hapticLight, hapticSuccess } from '../utils/haptics';
 import {
   IconMapPin,
   IconUser,
@@ -57,6 +58,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                   <a
                     href="assets/images/ram-guinto.png"
                     download="ram-guinto-profile.png"
+                    onClick={hapticSuccess}
                     className="inline-flex items-center justify-center p-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Download Ram Guinto's profile picture"
@@ -68,6 +70,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     href="https://github.com/Ram-Gold"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={hapticLight}
                     className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Visit Ram Guinto's GitHub Profile"
@@ -79,6 +82,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     href="https://www.linkedin.com/in/ram-guinto/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={hapticLight}
                     className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Visit Ram Guinto's LinkedIn Profile"
@@ -178,6 +182,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             download="Ram_Achilles_Guinto_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={hapticSuccess}
             className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group cursor-pointer"
             aria-label="Download Ram Achilles Guinto CV PDF"
           >
@@ -190,6 +195,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           {/* Send Email */}
           <a
             href="mailto:ramgolds@proton.me"
+            onClick={hapticLight}
             className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group"
           >
             <div className="flex justify-center gap-2 px-4 py-2 w-full">
@@ -303,6 +309,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 href="https://www.datacamp.com/certificate/AIEDA0017163812667"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={hapticLight}
                 className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
               >
                 <p className="text-theme-text font-semibold text-sm leading-tight">AI Engineer for Developers Associate</p>
@@ -312,6 +319,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 href="https://www.coursera.org/account/accomplishments/verify/5PYDS4SXI81S"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={hapticLight}
                 className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
               >
                 <p className="text-theme-text font-semibold text-sm leading-tight">System Administration and IT Infrastructure Services</p>
@@ -321,6 +329,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 href="https://www.coursera.org/account/accomplishments/verify/HYCSR8DB3KWC"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={hapticLight}
                 className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
               >
                 <p className="text-theme-text font-semibold text-sm leading-tight">Operating Systems: Overview, Administration, and Security</p>
@@ -473,6 +482,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 href="https://www.facebook.com/ramachilles.guinto"
                 target="_blank"
                 rel="noreferrer"
+                onClick={hapticLight}
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-blue-500 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
                 aria-label="Facebook Profile"
               >
@@ -482,6 +492,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 href="https://www.instagram.com/ramgold.png/"
                 target="_blank"
                 rel="noreferrer"
+                onClick={hapticLight}
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-pink-500 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
                 aria-label="Instagram Profile"
               >
@@ -491,6 +502,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 href="https://www.linkedin.com/in/ram-guinto/"
                 target="_blank"
                 rel="noreferrer"
+                onClick={hapticLight}
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-blue-400 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
                 aria-label="LinkedIn Profile"
               >
@@ -500,6 +512,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 href="https://github.com/Ram-Gold"
                 target="_blank"
                 rel="noreferrer"
+                onClick={hapticLight}
                 className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-theme-text transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
                 aria-label="GitHub Profile"
               >

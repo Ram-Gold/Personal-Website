@@ -1,5 +1,6 @@
 import React from 'react';
 import { IconArrowLeft, IconExternalLink, IconCode, IconInfoCircle } from '@tabler/icons-react';
+import { hapticLight } from '../utils/haptics';
 
 interface KoncentrateViewProps {
   onBack: () => void;
@@ -32,6 +33,7 @@ export const KoncentrateView: React.FC<KoncentrateViewProps> = ({ onBack }) => {
             href="https://github.com/Ram-Gold/koncentrate" 
             target="_blank" 
             rel="noopener noreferrer"
+            onClick={hapticLight}
             className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
             style={{ background: `var(--theme-card-bg)` }}
           >
