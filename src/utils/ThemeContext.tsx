@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 type Theme = 'light' | 'dark';
 
@@ -17,28 +18,45 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     const root = document.documentElement;
-
-    // Enable transition
-    root.classList.add('theme-transition');
-
     if (theme === 'dark') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-
     localStorage.setItem('theme', theme);
-
-    // Remove transition class after animation completes to avoid interfering with other animations
-    const timeout = setTimeout(() => {
-      root.classList.remove('theme-transition');
-    }, 350);
-
-    return () => clearTimeout(timeout);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+
+    const updateDOM = (newTheme: Theme) => {
+      const root = document.documentElement;
+      if (newTheme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+      localStorage.setItem('theme', newTheme);
+    };
+
+    // Use native View Transitions for seamless, GPU-accelerated cross-fade without DOM transition lag
+    const doc = document as any;
+    if (
+      typeof doc !== 'undefined' &&
+      typeof doc.startViewTransition === 'function' &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      doc.startViewTransition(() => {
+        updateDOM(nextTheme);
+        flushSync(() => {
+          setTheme(nextTheme);
+        });
+      });
+    } else {
+      // Instant unified change: update DOM class and state synchronously in lockstep
+      updateDOM(nextTheme);
+      setTheme(nextTheme);
+    }
   };
 
   return (
