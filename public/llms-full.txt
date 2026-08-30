@@ -1,0 +1,137 @@
+# Ram Achilles Guinto - Comprehensive Portfolio & Knowledge Base for AI Agents
+
+## Overview
+- **Full Name**: Ram Achilles Guinto
+- **Preferred Name**: Ram Guinto
+- **Role**: Front-End Developer, AI Engineering Associate, Graphic Designer, and IT Student
+- **Location**: Manila, Philippines
+- **Email**: ramgolds@proton.me
+- **Website**: https://ram-gold.github.io/Personal-Website/
+- **GitHub**: https://github.com/Ram-Gold
+- **LinkedIn**: https://www.linkedin.com/in/ram-guinto/
+- **Instagram**: https://www.instagram.com/ramgold.png/
+- **Facebook**: https://www.facebook.com/ramachilles.guinto
+
+---
+
+## Professional Summary
+Ram Guinto is a front-end developer and aspiring AI engineer based in Manila, Philippines. He is currently pursuing a Bachelor of Science in Information Technology (BSIT) at National Teacher's College (NTC, 2023–Present). Ram specializes in modern responsive web development (React 19, Tailwind CSS, TypeScript, JavaScript) and practical AI integrations (OpenAI API, Gemini API, Claude API, Model Context Protocol). He has commercial internship experience in Front-End AI Engineering at FlyrankAI.
+
+Ram is actively open to internships, entry-level front-end developer roles, and AI engineering opportunities.
+
+---
+
+## Work Experience
+### FlyrankAI — Front-End AI Engineering Intern
+- **Duration**: July 2026 – August 2026 (6 weeks)
+- **Focus**: Integrating intelligent AI capabilities into responsive modern front-end web interfaces.
+
+### National Teacher's College (NTC) — BS in Information Technology
+- **Duration**: 2023 – Present (Expected graduation: 2027)
+- **Focus**: Software engineering, database design, networking, system administration, and computer architecture.
+
+---
+
+## Detailed Project Catalog
+
+### 1. DomoDomo (Co-Founder & Developer)
+- **Live URL**: https://domodomo.site/
+- **Category**: AI Web Utility Suite / Client-Side Tools
+- **Tech Stack**: React, Tailwind CSS, WebGPU, Vercel
+- **Description**: A multi-purpose open-source utility suite that runs high-performance file conversions, image editing, and PDF manipulation 100% inside the browser sandbox. No server uploads; fully private and client-side.
+
+### 2. Koncentrate
+- **Repository**: https://github.com/Ram-Gold/koncentrate
+- **Category**: Desktop Utility / Linux KDE Plasma 6 Widget
+- **Tech Stack**: C++, Qt 6 / QML, Linux
+- **Description**: A KDE Plasma 6 widget combining a Pomodoro focus timer with an integrated To-Do list to manage tasks and maintain productivity directly on the Linux desktop.
+
+### 3. Idol Chant & Mixes
+- **Live URL**: https://idol-mixes.vercel.app/
+- **Category**: Community Web Application
+- **Tech Stack**: Next.js, React, Tailwind CSS, Vercel
+- **Description**: A centralized platform for learning and searching wotagei culture chants, calls, and mixes, addressing fragmentation in the community with interactive callouts.
+
+### 4. Pubmats & Graphic Design Works
+- **URL**: https://ram-gold.github.io/Personal-Website/?view=pubmats
+- **Category**: Graphic Design / Event Media
+- **Tools**: Adobe Photoshop, Illustrator, Figma
+- **Highlights**: Promotional flyers including BSIT Quiz Bee and EDSA Revolution Commemorative materials.
+
+---
+
+## Technical Stack & Tools Breakdown
+
+### Frontend
+- **Languages**: TypeScript, JavaScript (ES6+), HTML5, CSS3
+- **Frameworks & Libraries**: React 19, Next.js, Tailwind CSS v4, React Flow, Tabler Icons, Lucide Icons
+
+### Backend & Cloud
+- **Databases**: Supabase, PostgreSQL, MySQL
+- **Hosting & Deployment**: Vercel, GitHub Pages
+
+### Artificial Intelligence & LLMs
+- **APIs & Models**: OpenAI API, Google Gemini API, Anthropic Claude API, Hugging Face, Ollama
+- **Specializations**: Model Context Protocol (MCP), Tool Use, Subagents, Embeddings, Semantic Search, AI Workflows
+
+### AI IDEs & Development Environments
+- Cursor, Antigravity, Claude Code CLI, JetBrains Junie, GitHub Copilot
+
+### Developer Tools & Systems
+- **Version Control**: Git, GitHub
+- **Operating Systems**: Linux (CachyOS with Niri, Ubuntu Server)
+- **IDEs**: JetBrains WebStorm, JetBrains DataSpell, VS Code, Android Studio
+- **Design & Organization**: Figma, Notion, Obsidian
+
+---
+
+## Complete Certifications Directory
+
+### Anthropic Claude & AI Architecture
+1. **Anthropic AI Fluency** (Certificate ID: `t9ib9g662pif`)
+2. **Claude 101** (Certificate ID: `a4x6zrxetdwu`)
+3. **Claude in Action** (Certificate ID: `nmwxvt77zodt`)
+4. **Building with the Claude API** (Certificate ID: `y84jd29s9gsn`)
+5. **Introduction to Model Context Protocol (MCP)** (Certificate ID: `vjyzyh5cfvny`)
+6. **Model Context Protocol: Advanced Topics** (Certificate ID: `dyswnsfvvbzg`)
+7. **Introduction to Subagents** (Certificate ID: `tcjeh3yqr55r`)
+8. **Introduction to Agent Skills** (Certificate ID: `gdu32o57xbya`)
+9. **Claude Code 101** (Certificate ID: `74uxx4yaqycp`)
+10. **Claude Platform 101** (Certificate ID: `j9fesk52o3dq`)
+11. **Claude with Amazon Bedrock** (Certificate ID: `4iyvjm7y2u9f`)
+12. **Claude on Google Cloud** (Certificate ID: `p89juuop5r4h`)
+13. **AI Fluency: Framework and Foundations** (Certificate ID: `dc6orjbugk2x`)
+14. **AI Capabilities and Limitations** (Certificate ID: `mk8mygz99uev`)
+15. **AI Fluency for Builders** (Certificate ID: `6myco6q3kstp`)
+16. **AI Fluency for Small Business** (Certificate ID: `t7uhsrg24cxn`)
+17. **Introduction to Claude Cowork** (Certificate ID: `rnoxhcmrtjhh`)
+
+### DataCamp
+1. **AI Engineer for Developers Associate** (Certificate ID: `AIEDA0017163812667`)
+2. **AI Fundamentals** (Verification ID: `AIF0029525974649`)
+
+### Google / Coursera
+1. **System Administration and IT Infrastructure Services** (Coursera ID: `5PYDS4SXI81S`)
+2. **Operating Systems: Overview, Administration, and Security** (Coursera ID: `HYCSR8DB3KWC`)
+
+### Hackathons & Achievements
+1. **ASEAN AI Hackathon 2026 Certificate** (Code: `P2A2026AI0409` via Contact ASEAN / P2A)
+2. **KadaKareer x Home Credit Hackathon Certificate** (2026)
+
+### Codédex
+1. **The Origins III: JavaScript** (Certificate ID: `c54f60ff-af06-41df-953d-a207d913f2d2`)
+2. **The Origins I: HTML** (Certificate ID: `705f30b7-b864-4549-98a4-9e27606e7b3c`)
+
+---
+
+## Daily Hardware & Workspace Setup
+- **Main Workstation**: Lenovo Ideapad 1 15ALC7 (AMD Ryzen 5 5500U) running Linux CachyOS with Niri window manager
+- **Everyday Carry**: Redmi 15 5G, Soundcore R100 earbuds, Muji Double-wire notebook & Gel pens
+- **Home Server**: Acer M509D running Ubuntu Server, Tailscale, Navidrome (Music), Jellyfin (Media), Pi-Hole (DNS Adblocking)
+
+---
+
+## Contact & Hiring Inquiries
+- **Email**: ramgolds@proton.me
+- **Availability**: Open for Front-End Developer / AI Engineer internships and entry-level positions.
+- **Location**: Manila, Philippines (Available for on-site, hybrid, and remote roles worldwide).

@@ -1,0 +1,36 @@
+# Ram Achilles Guinto
+
+> Front-End Developer, Graphic Designer, and AI Engineering Associate based in Manila, Philippines. Studying BS Information Technology at National Teacher's College. Passionate about building fast, responsive, and intelligent web applications using React, Tailwind CSS, TypeScript, and modern AI APIs (OpenAI, Gemini, Claude, Model Context Protocol).
+
+## Key Profiles & Links
+- Website: https://ram-gold.github.io/Personal-Website/
+- Full AI Context: https://ram-gold.github.io/Personal-Website/llms-full.txt
+- GitHub: https://github.com/Ram-Gold
+- LinkedIn: https://www.linkedin.com/in/ram-guinto/
+- Email: ramgolds@proton.me
+
+## Featured Projects
+- [DomoDomo](https://domodomo.site/): Multi-purpose, open-source web utility suite for high-performance file conversions, image editing, and PDF manipulation directly in the browser. 100% client-side, WebGPU-accelerated, privacy-first.
+- [Koncentrate](https://github.com/Ram-Gold/koncentrate): KDE Plasma 6 desktop widget combining a Pomodoro focus timer with an integrated To-Do list, built in C++, Qt/QML for Linux.
+- [Idol Chant & Mixes](https://idol-mixes.vercel.app/): Centralized web platform for wotagei culture, idol chants, calls, and mixes built with Next.js, React, and Tailwind CSS.
+- [Pubmats & Graphic Design](https://ram-gold.github.io/Personal-Website/?view=pubmats): Graphic design portfolio featuring promotional event flyers and commemorative materials.
+
+## Technical Skills
+- **Frontend**: React 19, TypeScript, JavaScript (ESNext), Tailwind CSS v4, Next.js, HTML5/CSS3.
+- **Backend & Databases**: Supabase, PostgreSQL, MySQL, REST APIs.
+- **AI & Machine Learning**: OpenAI API, Google Gemini API, Anthropic Claude API, Model Context Protocol (MCP), Hugging Face, Ollama, Semantic Search & Embeddings.
+- **AI IDEs & Workflows**: Antigravity, Cursor, Claude Code CLI, GitHub Copilot.
+- **Developer Tools**: Git, GitHub, Linux (CachyOS / Ubuntu), Docker, JetBrains WebStorm, Figma, Notion.
+
+## Experience & Education
+- **FlyrankAI** (July 2026 - August 2026): Front-End AI Engineering Intern.
+- **National Teacher's College** (2023 - Present): BS in Information Technology.
+
+## Certifications
+- **Anthropic**: 16+ Certifications including *Anthropic AI Fluency*, *Claude in Action*, *Building with Claude API*, *Introduction to Model Context Protocol (MCP)*, *Introduction to Subagents*, *Claude Platform 101*, and *Claude Code 101*.
+- **DataCamp**: *AI Engineer for Developers Associate*, *AI Fundamentals*.
+- **Google / Coursera**: *System Administration and IT Infrastructure Services*, *Operating Systems Overview, Administration & Security*.
+- **Hackathons**: *ASEAN AI Hackathon 2026*, *KadaKareer x Home Credit Hackathon*.
+
+## Optional
+- [Full LLM Knowledge Base](https://ram-gold.github.io/Personal-Website/llms-full.txt): Detailed comprehensive bio, full project specifications, complete certification list, and technical setup.

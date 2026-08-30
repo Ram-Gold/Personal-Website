@@ -173,7 +173,7 @@ export const GitHubContributions: React.FC = () => {
         <div className="flex items-center justify-between text-theme-text mb-3 shrink-0">
           <div className="flex items-center gap-2">
             <IconBrandGithub size={20} className="text-theme-muted" />
-            <p className="font-semibold">Contributions</p>
+            <h2 className="font-semibold text-base">Contributions</h2>
             <span className="text-xs text-theme-subtle font-mono ml-1">
               {totalCount.toLocaleString()} in the last year
             </span>

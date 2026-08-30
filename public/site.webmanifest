@@ -1,0 +1,16 @@
+{
+  "name": "Ram Guinto | Portfolio",
+  "short_name": "Ram Guinto",
+  "description": "Front-End Developer, Graphic Designer & AI Engineering Associate in Manila, Philippines.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "/assets/images/ram-guinto.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

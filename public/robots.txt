@@ -1,0 +1,41 @@
+# Allow all search engines and AI crawlers
+User-agent: *
+Allow: /
+
+# Explicit rules for AI Agents and Search LLMs
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Sitemaps and AI Agent discovery endpoints
+Sitemap: https://ram-gold.github.io/Personal-Website/sitemap.xml
+# AI Agents & LLM Knowledge: /llms.txt and /llms-full.txt

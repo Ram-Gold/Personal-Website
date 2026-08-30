@@ -19,22 +19,27 @@ export const PubmatsView: React.FC<PubmatsViewProps> = ({ onBack }) => {
         <IconArrowLeft size={16} className="text-theme-muted group-hover/back:text-theme-text transition-colors" /> Back to Home
       </a>
 
+      <div className="mb-4">
+        <h1 className="font-bold text-2xl text-theme-text">Pubmats</h1>
+        <p className="text-theme-muted text-sm mt-1">Graphic design and promotional event materials</p>
+      </div>
+
       {/* Grouped into a responsive grid layout aligned to the system design rules */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
         <div className="card p-5 flex flex-col items-center text-center space-y-4 group animate-fade-in animate-slide-up animation-delay-100">
-          <p className="font-semibold text-theme-text">BSIT Quiz Bee</p>
+          <h2 className="font-semibold text-theme-text">BSIT Quiz Bee</h2>
           <div className="rounded-2xl overflow-hidden border border-card-border max-w-md w-full aspect-square"
             style={{ background: `var(--theme-pubmat-bg)` }}
           >
-            <img className="w-full h-full object-cover" src="assets/images/BSIT_Quiz_Bee.png" alt="Quiz Bee Flyer" />
+            <img className="w-full h-full object-cover" src="assets/images/BSIT_Quiz_Bee.png" alt="BSIT Quiz Bee Flyer designed by Ram Guinto" />
           </div>
         </div>
         <div className="card p-5 flex flex-col items-center text-center space-y-4 group animate-fade-in animate-slide-up animation-delay-200">
-          <p className="font-semibold text-theme-text">EDSA Revolution Anniv.</p>
+          <h2 className="font-semibold text-theme-text">EDSA Revolution Anniv.</h2>
           <div className="rounded-2xl overflow-hidden border border-card-border max-w-md w-full aspect-square"
             style={{ background: `var(--theme-pubmat-bg)` }}
           >
-            <img className="w-full h-full object-cover" src="assets/images/EDSA.jpg" alt="EDSA Revolution Commemorative flyer" />
+            <img className="w-full h-full object-cover" src="assets/images/EDSA.jpg" alt="EDSA Revolution Commemorative flyer designed by Ram Guinto" />
           </div>
         </div>
       </div>

@@ -21,36 +21,36 @@ export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
       <div className="card p-4 col-span-1 md:col-span-4 md:row-span-2 flex flex-col gap-y-3 animate-fade-in animate-slide-up animation-delay-100">
         <div className="flex items-center gap-2 mb-4 text-theme-text">
           <IconFlask size={20} className="text-theme-muted" />
-          <p className="font-semibold">Tech Stack</p>
+          <h1 className="font-semibold text-lg">Tech Stack</h1>
         </div>
         <div className="flex flex-col gap-2">
-          <p className="font-semibold text-theme-text">Frontend</p>
+          <h2 className="font-semibold text-theme-text">Frontend</h2>
           <div className="flex gap-2">
             <div className="tag"><p>Javascript</p></div>
             <div className="tag"><p>Tailwind CSS</p></div>
             <div className="tag"><p>React</p></div>
           </div>
 
-          <p className="font-semibold text-theme-text">Backend</p>
+          <h2 className="font-semibold text-theme-text">Backend</h2>
           <div className="flex gap-2">
             <div className="tag"><p>MySQL</p></div>
             <div className="tag"><p>Supabase</p></div>
           </div>
 
-          <p className="font-semibold text-theme-text">CMS & No-Code</p>
+          <h2 className="font-semibold text-theme-text">CMS & No-Code</h2>
           <div className="flex gap-2">
             <div className="tag"><p>Carrd</p></div>
             <div className="tag"><p>WebFlow</p></div>
           </div>
 
-          <p className="font-semibold text-theme-text">AI & Machine Learning</p>
+          <h2 className="font-semibold text-theme-text">AI & Machine Learning</h2>
           <div className="flex flex-wrap gap-2">
             <div className="tag"><p>Ollama</p></div>
             <div className="tag"><p>Hugging Face</p></div>
             <div className="tag"><p>OpenAI</p></div>
           </div>
 
-          <p className="font-semibold text-theme-text">AI IDE</p>
+          <h2 className="font-semibold text-theme-text">AI IDE</h2>
           <div className="flex flex-wrap gap-2">
             <div className="tag"><p>Cursor</p></div>
             <div className="tag"><p>Antigravity</p></div>
@@ -59,7 +59,7 @@ export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
             <div className="tag"><p>Github Copilot</p></div>
           </div>
 
-          <p className="font-semibold text-theme-text">Dev Tools</p>
+          <h2 className="font-semibold text-theme-text">Dev Tools</h2>
           <div className="flex flex-wrap gap-2">
             <div className="tag"><p>Git</p></div>
             <div className="tag"><p>Github</p></div>

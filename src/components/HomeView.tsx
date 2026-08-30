@@ -41,6 +41,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               />
               <div className="flex flex-col justify-between py-1 self-stretch flex-grow">
                 <div>
+                  <h1 className="sr-only">Ram Guinto - Front-End Developer, Graphic Designer & AI Engineering Associate</h1>
                   <img
                     className="rounded-sm w-fit mb-2"
                     src={theme === 'dark' ? 'assets/images/ram-guinto-text-light.jpg' : 'assets/images/ram-guinto-text.jpg'}
@@ -102,7 +103,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
                 <IconUser size={20} className="text-theme-muted" />
-                <p className="font-semibold">About Me</p>
+                <h2 className="font-semibold text-base">About Me</h2>
               </div>
             </div>
             <div className="flex-grow flex flex-col justify-start">
@@ -141,7 +142,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
                 <IconBriefcase size={20} className="text-theme-muted" />
-                <p className="font-semibold">Experience</p>
+                <h2 className="font-semibold text-base">Experience</h2>
               </div>
             </div>
             <div className="flex-grow flex flex-col justify-start">
@@ -209,7 +210,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
                 <IconFlask size={20} className="text-theme-muted" />
-                <p className="font-semibold">Tech Stack</p>
+                <h2 className="font-semibold text-base">Tech Stack</h2>
               </div>
               <a
                 className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewall"
@@ -269,7 +270,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
                 <IconCompass size={20} className="text-blue-400" />
-                <p className="font-semibold">Currently Exploring</p>
+                <h2 className="font-semibold text-base">Currently Exploring</h2>
               </div>
             </div>
             <div className="flex-grow flex flex-col justify-start">
@@ -290,7 +291,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
                 <IconCertificate size={20} className="text-theme-muted" />
-                <p className="font-semibold">Certificates</p>
+                <h2 className="font-semibold text-base">Certificates</h2>
               </div>
               <a
                 className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewcert"
@@ -343,7 +344,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
                 <IconCode size={20} className="text-theme-muted" />
-                <p className="font-semibold">Projects</p>
+                <h2 className="font-semibold text-base">Projects</h2>
               </div>
             </div>
             <div className="flex-grow flex flex-col justify-start">
