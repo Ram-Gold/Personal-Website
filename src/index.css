@@ -169,18 +169,10 @@
         font-optical-sizing: auto;
     }
 
-    /* View Transitions for seamless, GPU-accelerated theme switching without DOM lag */
+    /* View Transitions with circular clip-path reveal */
     ::view-transition-old(root),
     ::view-transition-new(root) {
-        animation-duration: 180ms;
-        animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    ::view-transition-old(root) {
-        mix-blend-mode: normal;
-    }
-
-    ::view-transition-new(root) {
+        animation: none;
         mix-blend-mode: normal;
     }
 

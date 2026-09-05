@@ -5,7 +5,7 @@ type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
-  toggleTheme: () => void;
+  toggleTheme: (coords?: { x?: number; y?: number } | null) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -26,7 +26,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = (coords?: { x?: number; y?: number } | null) => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
 
     const updateDOM = (newTheme: Theme) => {
@@ -39,21 +39,47 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       localStorage.setItem('theme', newTheme);
     };
 
-    // Use native View Transitions for seamless, GPU-accelerated cross-fade without DOM transition lag
+    // Use native View Transitions with circular clip-path reveal
     const doc = document as any;
     if (
       typeof doc !== 'undefined' &&
       typeof doc.startViewTransition === 'function' &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
-      doc.startViewTransition(() => {
+      // Originate clip-path from the top-right corner
+      const x = coords?.x ?? window.innerWidth;
+      const y = coords?.y ?? 0;
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      const transition = doc.startViewTransition(() => {
         updateDOM(nextTheme);
         flushSync(() => {
           setTheme(nextTheme);
         });
       });
+
+      transition.ready
+        .then(() => {
+          document.documentElement.animate(
+            {
+              clipPath: [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${endRadius}px at ${x}px ${y}px)`,
+              ],
+            },
+            {
+              duration: 500,
+              easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+              pseudoElement: '::view-transition-new(root)',
+            }
+          );
+        })
+        .catch(() => {});
     } else {
-      // Instant unified change: update DOM class and state synchronously in lockstep
+      // Instant change fallback
       updateDOM(nextTheme);
       setTheme(nextTheme);
     }
