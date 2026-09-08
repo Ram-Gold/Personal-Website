@@ -18,6 +18,9 @@
 
 # IDE / Editor
 .idea
+.kiro
+.github
+.junie
 .vscode
 *.suo
 *.ntvs*

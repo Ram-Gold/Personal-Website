@@ -10,7 +10,6 @@ import {
   IconMail,
   IconFlask,
   IconChevronRight,
-  IconCompass,
   IconCertificate,
   IconBriefcase,
   IconCode,
@@ -19,11 +18,12 @@ import {
   IconBrandFacebook,
   IconBrandInstagram,
   IconBrandDiscord,
-  IconArrowUpRight
+  IconArrowUpRight,
+  IconArticle
 } from '@tabler/icons-react';
 
 interface HomeViewProps {
-  onNavigate?: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear') => void;
+  onNavigate?: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear' | 'blog') => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = () => {
@@ -66,7 +66,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                     href="/assets/images/ram-guinto.png"
                     download="ram-guinto-profile.png"
                     onClick={hapticSuccess}
-                    className="inline-flex items-center justify-center p-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    className="inline-flex items-center justify-center p-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Download Ram Guinto's profile picture"
                     title="Download Profile Picture"
@@ -78,7 +78,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={hapticLight}
-                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Visit Ram Guinto's GitHub Profile"
                   >
@@ -90,7 +90,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={hapticLight}
-                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Visit Ram Guinto's LinkedIn Profile"
                   >
@@ -102,7 +102,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={hapticLight}
-                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
                     style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
                     aria-label="Connect with Ram Guinto on Discord"
                   >
@@ -141,7 +141,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
             </div>
             <div className="mt-4 shrink-0 flex items-center">
               <Link
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-card-border hover:bg-theme-hover hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-theme-muted cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-card-border hover:bg-theme-hover hover:text-theme-text focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded transition-all text-xs font-semibold text-theme-muted cursor-pointer"
                 style={{ background: `color-mix(in srgb, var(--theme-card-bg) 30%, transparent)` }}
                 href="/gear"
                 prefetch={true}
@@ -200,7 +200,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={hapticSuccess}
-            className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group cursor-pointer"
+            className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group cursor-pointer"
             aria-label="Download Ram Achilles Guinto CV PDF"
           >
             <div className="flex justify-center gap-2 px-4 py-2 w-full">
@@ -213,7 +213,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
           <a
             href="mailto:ramgolds@proton.me"
             onClick={hapticLight}
-            className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group"
+            className="action-card p-4 col-span-1 md:col-span-2 md:row-span-1 flex flex-col justify-center gap-y-3.5 items-center focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-text font-semibold w-full animate-fade-in animate-slide-up animation-delay-300 group"
           >
             <div className="flex justify-center gap-2 px-4 py-2 w-full">
               <IconMail size={20} className="text-theme-muted" />
@@ -229,7 +229,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 <h2 className="font-semibold text-base">Tech Stack</h2>
               </div>
               <Link
-                className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewall"
+                className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 transition-colors cursor-pointer group/viewall"
                 href="/tech-stack"
                 prefetch={true}
                 onClick={hapticLight}
@@ -279,24 +279,45 @@ export const HomeView: React.FC<HomeViewProps> = () => {
             </div>
           </div>
 
-          {/* Currently Exploring */}
-          <div className="card p-4 col-span-1 md:col-span-4 md:row-span-1 flex flex-col h-full group animate-fade-in animate-slide-up animation-delay-400">
+          {/* Blog Posts */}
+          <div className="card p-4 col-span-1 md:col-span-4 md:row-span-1 flex flex-col h-full group/blog animate-fade-in animate-slide-up animation-delay-400">
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
-                <IconCompass size={20} className="text-blue-400" />
-                <h2 className="font-semibold text-base">Currently Exploring</h2>
+                <IconArticle size={20} className="text-theme-muted" />
+                <h2 className="font-semibold text-base">Blog Posts</h2>
               </div>
+              <Link
+                className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 transition-colors cursor-pointer group/viewblog"
+                href="/blog"
+                prefetch={true}
+                onClick={hapticLight}
+              >
+                <span>View All</span>
+                <IconChevronRight size={16} className="text-theme-muted group-hover/viewblog:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
             <div className="flex-grow flex flex-col justify-start">
-              <p className="text-theme-muted leading-relaxed text-sm">
-                I'm actively expanding into <span className="text-theme-text font-medium">AI engineering</span>.
-                I have completed certifications in AI Engineering and AI Fundamentals,
-                with hands-on experience working with the <span className="text-theme-text font-medium">OpenAI
-                  API</span>, embeddings, and semantic search.
-                I am always learning by doing, and I'm currently experimenting with <span
-                  className="text-theme-text font-medium">OpenRouter</span> and the <span
-                    className="text-theme-text font-medium">Gemini API</span>.
-              </p>
+              <Link
+                href="/blog"
+                prefetch={true}
+                onClick={hapticLight}
+                className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
+              >
+                <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
+                  <p className="text-theme-text font-semibold text-sm leading-tight">
+                    Exploring Agentic AI & MCP Systems
+                  </p>
+                  <span className="text-theme-subtle text-[11px] font-mono">2026</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <div className="tag">
+                    <p>AI Engineering</p>
+                  </div>
+                  <div className="tag">
+                    <p>4 min read</p>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
 
@@ -308,7 +329,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 <h2 className="font-semibold text-base">Certificates</h2>
               </div>
               <Link
-                className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewcert"
+                className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 transition-colors cursor-pointer group/viewcert"
                 href="/certifications"
                 prefetch={true}
                 onClick={hapticLight}
@@ -323,7 +344,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={hapticLight}
-                className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
               >
                 <p className="text-theme-text font-semibold text-sm leading-tight">AI Engineer for Developers Associate</p>
                 <p className="text-theme-muted text-xs mt-1">Datacamp</p>
@@ -333,7 +354,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={hapticLight}
-                className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
               >
                 <p className="text-theme-text font-semibold text-sm leading-tight">System Administration and IT Infrastructure Services</p>
                 <p className="text-theme-muted text-xs mt-1">Coursera</p>
@@ -343,7 +364,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={hapticLight}
-                className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
               >
                 <p className="text-theme-text font-semibold text-sm leading-tight">Operating Systems: Overview, Administration, and Security</p>
                 <p className="text-theme-muted text-xs mt-1">Coursera</p>
@@ -365,7 +386,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                   href="/project-idol-chant"
                   prefetch={true}
                   onClick={hapticLight}
-                  className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
                     <p className="text-theme-text font-semibold text-sm leading-tight">Idol Chant & Mixes</p>
@@ -381,7 +402,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                   href="/pubmats"
                   prefetch={true}
                   onClick={hapticLight}
-                  className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
                     <p className="text-theme-text font-semibold text-sm leading-tight">Pubmats</p>
@@ -400,7 +421,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                   href="/project-koncentrate"
                   prefetch={true}
                   onClick={hapticLight}
-                  className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
                     <p className="text-theme-text font-semibold text-sm leading-tight">Koncentrate</p>
@@ -422,7 +443,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                   href="/project-domodomo"
                   prefetch={true}
                   onClick={hapticLight}
-                  className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
+                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
                     <p className="text-theme-text font-semibold text-sm leading-tight">DomoDomo</p>
@@ -488,7 +509,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noreferrer"
                 onClick={hapticLight}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-blue-500 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-blue-500 transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-muted"
                 aria-label="Facebook Profile"
               >
                 <IconBrandFacebook size={22} />
@@ -498,7 +519,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noreferrer"
                 onClick={hapticLight}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-pink-500 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-muted"
                 aria-label="Instagram Profile"
               >
                 <IconBrandInstagram size={22} />
@@ -508,7 +529,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noreferrer"
                 onClick={hapticLight}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-blue-400 transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-blue-400 transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-muted"
                 aria-label="LinkedIn Profile"
               >
                 <IconBrandLinkedin size={22} />
@@ -518,7 +539,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noreferrer"
                 onClick={hapticLight}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-[#5865F2] transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-[#5865F2] transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-muted"
                 aria-label="Discord Profile"
               >
                 <IconBrandDiscord size={22} />
@@ -528,7 +549,7 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 target="_blank"
                 rel="noreferrer"
                 onClick={hapticLight}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-theme-text transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-muted"
                 aria-label="GitHub Profile"
               >
                 <IconBrandGithub size={22} />

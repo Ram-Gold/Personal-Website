@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: Args) {
             />
           </div>
         )}
-        <div className="prose prose-invert prose-pink max-w-none text-theme-text">
+        <div className="prose prose-invert prose-neutral max-w-none text-theme-text">
           <RichText data={post.content as any} />
         </div>
       </article>

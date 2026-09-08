@@ -249,7 +249,7 @@ export const CertificationsView: React.FC<CertificationsViewProps> = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <Link 
-        className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 cursor-pointer animate-fade-in group/back" 
+        className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back" 
         href="/"
         prefetch={true}
         onClick={hapticLight}
@@ -320,7 +320,7 @@ export const CertificationsView: React.FC<CertificationsViewProps> = () => {
                   <div className="flex justify-center mt-2">
                     <button
                       onClick={() => toggleCategory(group.categoryName)}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-card-border hover:border-theme-border-accent hover:bg-theme-hover active:scale-[0.97] transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-card-border hover:border-theme-border-accent hover:bg-theme-hover active:scale-[0.97] transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-theme-border-accent"
                       style={{ background: `color-mix(in srgb, var(--theme-card-bg) 60%, transparent)` }}
                     >
                       <span>

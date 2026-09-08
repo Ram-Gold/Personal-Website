@@ -12,7 +12,7 @@ export const IdolChantView: React.FC<IdolChantViewProps> = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <Link 
-        className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
+        className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
         href="/"
         prefetch={true}
         onClick={hapticLight}
@@ -34,10 +34,10 @@ export const IdolChantView: React.FC<IdolChantViewProps> = () => {
             target="_blank" 
             rel="noopener noreferrer"
             onClick={hapticLight}
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-pink-500/10 hover:border-pink-500/30 hover:text-pink-400 focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
+            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover active:scale-[0.97] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
             style={{ background: `var(--theme-card-bg)` }}
           >
-            <span>Visit Live Site</span> <IconExternalLink size={16} className="text-theme-muted group-hover/livesite:text-pink-400 transition-colors" />
+            <span>Visit Live Site</span> <IconExternalLink size={16} className="text-theme-muted group-hover/livesite:text-theme-text transition-colors" />
           </a>
         </div>
 

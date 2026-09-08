@@ -43,6 +43,16 @@ export const Posts: CollectionConfig = {
       name: 'coverImage',
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        description: 'Upload an image file for this blog post',
+      },
+    },
+    {
+      name: 'imageUrl',
+      type: 'text',
+      admin: {
+        description: 'Or specify an image URL / local path (e.g. /assets/images/blog/... or https://...)',
+      },
     },
     {
       name: 'content',
@@ -73,7 +83,15 @@ export const Posts: CollectionConfig = {
       type: 'number',
       admin: {
         position: 'sidebar',
-        readOnly: true,
+        description: 'Estimated reading time in minutes',
+      },
+    },
+    {
+      name: 'category',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        description: 'Primary category (e.g. AI Engineering, Front-End, Tools)',
       },
     },
     {

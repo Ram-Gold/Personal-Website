@@ -153,7 +153,14 @@ export interface Post {
   title: string;
   slug: string;
   excerpt?: string | null;
+  /**
+   * Upload an image file for this blog post
+   */
   coverImage?: (number | null) | Media;
+  /**
+   * Or specify an image URL / local path (e.g. /assets/images/blog/... or https://...)
+   */
+  imageUrl?: string | null;
   content: {
     root: {
       type: string;
@@ -171,7 +178,14 @@ export interface Post {
   };
   status?: ('draft' | 'published') | null;
   publishedDate?: string | null;
+  /**
+   * Estimated reading time in minutes
+   */
   readingTime?: number | null;
+  /**
+   * Primary category (e.g. AI Engineering, Front-End, Tools)
+   */
+  category?: string | null;
   tags?:
     | {
         tag?: string | null;
@@ -310,10 +324,12 @@ export interface PostsSelect<T extends boolean = true> {
   slug?: T;
   excerpt?: T;
   coverImage?: T;
+  imageUrl?: T;
   content?: T;
   status?: T;
   publishedDate?: T;
   readingTime?: T;
+  category?: T;
   tags?:
     | T
     | {
