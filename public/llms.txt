@@ -7,6 +7,7 @@
 - Full AI Context: https://ram-gold.github.io/Personal-Website/llms-full.txt
 - GitHub: https://github.com/Ram-Gold
 - LinkedIn: https://www.linkedin.com/in/ram-guinto/
+- Discord: https://discord.com/users/1546186052262436914
 - Email: ramgolds@proton.me
 
 ## Featured Projects

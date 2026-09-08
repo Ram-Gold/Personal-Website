@@ -4,34 +4,40 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
+    "@payloadcms/db-postgres": "^3.88.0",
+    "@payloadcms/next": "^3.88.0",
+    "@payloadcms/richtext-lexical": "^3.88.0",
+    "@payloadcms/storage-vercel-blob": "^3.88.0",
     "@tabler/icons-react": "^3.44.0",
     "@tailwindcss/cli": "^4.3.2",
-    "@tailwindcss/vite": "^4.3.2",
+    "@tailwindcss/postcss": "^4.3.3",
     "dagre": "^0.8.5",
-    "lucide-react": "^1.22.0",
+    "graphql": "^16.14.2",
+    "next": "^16.3.4",
+    "payload": "^3.88.0",
+    "postcss": "^8.5.28",
     "pullcord": "^0.1.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "reactflow": "^11.11.4",
     "tailwindcss": "^4.3.2",
     "web-haptics": "^0.0.6"
   },
   "devDependencies": {
     "@types/dagre": "^0.7.54",
+    "@types/node": "26.5.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.3",
-    "typescript": "^6.0.3",
-    "vite": "^8.1.0"
+    "typescript": "^6.0.3"
   }
 }

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState, useRef } from 'react';
 import { IconBrandGithub } from '@tabler/icons-react';
 import { useTheme } from '../utils/ThemeContext';
@@ -15,6 +16,9 @@ interface ContributionData {
   total: Record<string, number>;
   contributions: ContributionDay[];
 }
+
+// In-memory module cache to eliminate fetch delays on page transitions
+let cachedContributionData: { totalCount: number; contributions: ContributionDay[] } | null = null;
 
 // GitHub-inspired green palette — theme-aware
 const LEVEL_COLORS_DARK = [
@@ -38,9 +42,13 @@ const DAY_LABELS = ['Mon', 'Wed', 'Fri'];
 
 export const GitHubContributions: React.FC = () => {
   const { theme } = useTheme();
-  const [contributions, setContributions] = useState<ContributionDay[]>([]);
-  const [totalCount, setTotalCount] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [contributions, setContributions] = useState<ContributionDay[]>(
+    () => cachedContributionData?.contributions ?? []
+  );
+  const [totalCount, setTotalCount] = useState<number>(
+    () => cachedContributionData?.totalCount ?? 0
+  );
+  const [loading, setLoading] = useState<boolean>(() => !cachedContributionData);
   const [error, setError] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,6 +56,7 @@ export const GitHubContributions: React.FC = () => {
   const levelColors = theme === 'dark' ? LEVEL_COLORS_DARK : LEVEL_COLORS_LIGHT;
 
   useEffect(() => {
+    // If already cached, don't show spinner or trigger slow re-renders
     const fetchContributions = async () => {
       try {
         const response = await fetch(
@@ -55,12 +64,14 @@ export const GitHubContributions: React.FC = () => {
         );
         if (!response.ok) throw new Error(`API error: ${response.status}`);
         const data: ContributionData = await response.json();
-        setContributions(data.contributions);
-        // Sum total from all years in response
         const total = Object.values(data.total).reduce((sum, n) => sum + n, 0);
+        cachedContributionData = { totalCount: total, contributions: data.contributions };
+        setContributions(data.contributions);
         setTotalCount(total);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load');
+        if (!cachedContributionData) {
+          setError(err instanceof Error ? err.message : 'Failed to load');
+        }
       } finally {
         setLoading(false);
       }

@@ -1,23 +1,24 @@
+"use client";
 import React from 'react';
+import Link from 'next/link';
 import { IconArrowLeft, IconFlask } from '@tabler/icons-react';
+import { hapticLight } from '../utils/haptics';
 
 interface TechStackViewProps {
-  onBack: () => void;
+  onBack?: () => void;
 }
 
-export const TechStackView: React.FC<TechStackViewProps> = ({ onBack }) => {
+export const TechStackView: React.FC<TechStackViewProps> = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <a
+      <Link
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-4 animate-fade-in hover:text-theme-text transition-colors cursor-pointer group/back"
-        href="index.html"
-        onClick={(e) => {
-          e.preventDefault();
-          onBack();
-        }}
+        href="/"
+        prefetch={true}
+        onClick={hapticLight}
       >
         <IconArrowLeft size={16} className="text-theme-muted group-hover:text-theme-text transition-colors" /> Back to Home
-      </a>
+      </Link>
       <div className="card p-4 col-span-1 md:col-span-4 md:row-span-2 flex flex-col gap-y-3 animate-fade-in animate-slide-up animation-delay-100">
         <div className="flex items-center gap-2 mb-4 text-theme-text">
           <IconFlask size={20} className="text-theme-muted" />

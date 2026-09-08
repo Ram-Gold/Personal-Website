@@ -9,6 +9,7 @@
 - **Website**: https://ram-gold.github.io/Personal-Website/
 - **GitHub**: https://github.com/Ram-Gold
 - **LinkedIn**: https://www.linkedin.com/in/ram-guinto/
+- **Discord**: https://discord.com/users/1546186052262436914
 - **Instagram**: https://www.instagram.com/ramgold.png/
 - **Facebook**: https://www.facebook.com/ramachilles.guinto
 
@@ -64,7 +65,7 @@ Ram is actively open to internships, entry-level front-end developer roles, and 
 
 ### Frontend
 - **Languages**: TypeScript, JavaScript (ES6+), HTML5, CSS3
-- **Frameworks & Libraries**: React 19, Next.js, Tailwind CSS v4, React Flow, Tabler Icons, Lucide Icons
+- **Frameworks & Libraries**: React 19, Next.js, Tailwind CSS v4, React Flow, Tabler Icons
 
 ### Backend & Cloud
 - **Databases**: Supabase, PostgreSQL, MySQL

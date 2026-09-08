@@ -169,18 +169,18 @@
         font-optical-sizing: auto;
     }
 
-    /* View Transitions with circular clip-path reveal */
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
+    /* View Transitions with circular clip-path reveal (strictly scoped to theme toggle) */
+    html.theme-transitioning::view-transition-old(root),
+    html.theme-transitioning::view-transition-new(root) {
         animation: none;
         mix-blend-mode: normal;
     }
 
-    ::view-transition-old(root) {
+    html.theme-transitioning::view-transition-old(root) {
         z-index: 1;
     }
 
-    ::view-transition-new(root) {
+    html.theme-transitioning::view-transition-new(root) {
         z-index: 9999;
         -webkit-clip-path: circle(0px at var(--cord-x, calc(100vw - 7rem)) var(--cord-y, 180px));
         clip-path: circle(0px at var(--cord-x, calc(100vw - 7rem)) var(--cord-y, 180px));

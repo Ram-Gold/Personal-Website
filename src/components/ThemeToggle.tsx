@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from 'react';
 import { PullCord } from 'pullcord';
 import 'pullcord/pullcord.css';
@@ -5,7 +6,7 @@ import { useTheme } from '../utils/ThemeContext';
 import { hapticMedium } from '../utils/haptics';
 
 export const ThemeToggle: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mounted } = useTheme();
   const lastPullTimeRef = useRef(0);
 
   const handlePull = () => {
@@ -30,7 +31,7 @@ export const ThemeToggle: React.FC = () => {
   return (
     <PullCord
       onPull={handlePull}
-      pulled={theme === 'light'}
+      pulled={mounted ? theme === 'light' : false}
       ariaLabel="Toggle theme"
       className="absolute-pullcord"
     />

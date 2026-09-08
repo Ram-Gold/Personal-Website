@@ -1,9 +1,11 @@
+"use client";
 import React from 'react';
+import Link from 'next/link';
 import { IconArrowLeft, IconArrowUpRight } from '@tabler/icons-react';
 import { hapticLight } from '../utils/haptics';
 
 interface GearViewProps {
-  onBack: () => void;
+  onBack?: () => void;
 }
 
 const StyledLink: React.FC<{
@@ -46,20 +48,18 @@ const StyledLink: React.FC<{
   );
 };
 
-export const GearView: React.FC<GearViewProps> = ({ onBack }) => {
+export const GearView: React.FC<GearViewProps> = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <a 
+      <Link 
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
-        onClick={(e) => {
-          e.preventDefault();
-          onBack();
-        }}
-        href="index.html"
+        href="/"
+        prefetch={true}
+        onClick={hapticLight}
       >
         <IconArrowLeft size={16} className="text-theme-muted group-hover/back:text-theme-text transition-colors" />
         Back to Home
-      </a>
+      </Link>
 
       <div className="card p-6 md:p-8 flex flex-col gap-y-6 animate-fade-in animate-slide-up animation-delay-100">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-card-border pb-6">

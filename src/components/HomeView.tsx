@@ -1,6 +1,7 @@
+"use client";
 import React from 'react';
+import Link from 'next/link';
 import { GitHubContributions } from './GitHubContributions';
-import { useTheme } from '../utils/ThemeContext';
 import { hapticLight, hapticSuccess } from '../utils/haptics';
 import {
   IconMapPin,
@@ -17,15 +18,15 @@ import {
   IconBrandLinkedin,
   IconBrandFacebook,
   IconBrandInstagram,
+  IconBrandDiscord,
   IconArrowUpRight
 } from '@tabler/icons-react';
 
 interface HomeViewProps {
-  onNavigate: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear') => void;
+  onNavigate?: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear') => void;
 }
 
-export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
-  const { theme } = useTheme();
+export const HomeView: React.FC<HomeViewProps> = () => {
 
   return (
     <main className="animate-fade-in">
@@ -36,15 +37,20 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <div className="flex flex-col sm:flex-row items-start gap-4 md:gap-6 flex-grow">
               <img
                 className="w-36 h-36 rounded-2xl object-cover overflow-hidden shrink-0 border border-solid border-card-border"
-                src="assets/images/ram-guinto.png"
+                src="/assets/images/ram-guinto.png"
                 alt="Ram Guinto"
               />
               <div className="flex flex-col justify-between py-1 self-stretch flex-grow">
                 <div>
                   <h1 className="sr-only">Ram Guinto - Front-End Developer, Graphic Designer & AI Engineering Associate</h1>
                   <img
-                    className="rounded-sm w-fit mb-2"
-                    src={theme === 'dark' ? 'assets/images/ram-guinto-text-light.jpg' : 'assets/images/ram-guinto-text.jpg'}
+                    className="rounded-sm w-fit mb-2 dark:hidden block"
+                    src="/assets/images/ram-guinto-text.jpg"
+                    alt="Ram Guinto"
+                  />
+                  <img
+                    className="rounded-sm w-fit mb-2 hidden dark:block"
+                    src="/assets/images/ram-guinto-text-light.jpg"
                     alt="Ram Guinto"
                   />
                   <div className="flex items-center gap-1.5 text-[13px] text-theme-muted mb-1">
@@ -57,7 +63,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 </div>
                 <div className="flex items-center gap-2 mt-3">
                   <a
-                    href="assets/images/ram-guinto.png"
+                    href="/assets/images/ram-guinto.png"
                     download="ram-guinto-profile.png"
                     onClick={hapticSuccess}
                     className="inline-flex items-center justify-center p-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
@@ -91,6 +97,18 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     <IconBrandLinkedin size={14} className="shrink-0" />
                     <span>LinkedIn</span>
                   </a>
+                  <a
+                    href="https://discord.com/users/1546186052262436914"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={hapticLight}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
+                    aria-label="Connect with Ram Guinto on Discord"
+                  >
+                    <IconBrandDiscord size={14} className="shrink-0" />
+                    <span>Discord</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -122,18 +140,16 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               </p>
             </div>
             <div className="mt-4 shrink-0 flex items-center">
-              <a
+              <Link
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-card-border hover:bg-theme-hover hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded transition-all text-xs font-semibold text-theme-muted cursor-pointer"
                 style={{ background: `color-mix(in srgb, var(--theme-card-bg) 30%, transparent)` }}
-                href="gear.html"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('gear');
-                }}
+                href="/gear"
+                prefetch={true}
+                onClick={hapticLight}
               >
                 <span>My Gear</span>
                 <IconArrowUpRight size={14} className="text-theme-muted" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -212,17 +228,15 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <IconFlask size={20} className="text-theme-muted" />
                 <h2 className="font-semibold text-base">Tech Stack</h2>
               </div>
-              <a
+              <Link
                 className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewall"
-                href="tech_stack.html"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('tech_stack');
-                }}
+                href="/tech-stack"
+                prefetch={true}
+                onClick={hapticLight}
               >
                 <span>View All</span>
                 <IconChevronRight size={16} className="text-theme-muted" />
-              </a>
+              </Link>
             </div>
             <div className="flex-grow flex flex-col justify-start">
               <div className="flex flex-col gap-y-3">
@@ -293,17 +307,15 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <IconCertificate size={20} className="text-theme-muted" />
                 <h2 className="font-semibold text-base">Certificates</h2>
               </div>
-              <a
+              <Link
                 className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-2 focus-visible:ring-pink-500 outline-none rounded p-1 transition-colors cursor-pointer group/viewcert"
-                href="certifications.html"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('certifications');
-                }}
+                href="/certifications"
+                prefetch={true}
+                onClick={hapticLight}
               >
                 <span>View All</span>
                 <IconChevronRight size={16} className="text-theme-muted" />
-              </a>
+              </Link>
             </div>
             <div className="flex-grow flex flex-col justify-start gap-y-3">
               <a
@@ -349,12 +361,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             </div>
             <div className="flex-grow flex flex-col justify-start">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a
-                  href="project_idol_chant.html"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('project_idol_chant');
-                  }}
+                <Link
+                  href="/project-idol-chant"
+                  prefetch={true}
+                  onClick={hapticLight}
                   className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
@@ -366,13 +376,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                       <p>Website</p>
                     </div>
                   </div>
-                </a>
-                <a
-                  href="pubmats.html"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('pubmats');
-                  }}
+                </Link>
+                <Link
+                  href="/pubmats"
+                  prefetch={true}
+                  onClick={hapticLight}
                   className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
@@ -387,13 +395,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                       <p>Miscellaneous</p>
                     </div>
                   </div>
-                </a>
-                <a
-                  href="project_koncentrate.html"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('project_koncentrate');
-                  }}
+                </Link>
+                <Link
+                  href="/project-koncentrate"
+                  prefetch={true}
+                  onClick={hapticLight}
                   className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
@@ -411,13 +417,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                       <p>KDE</p>
                     </div>
                   </div>
-                </a>
-                <a
-                  href="project_domodomo.html"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate('project_domodomo');
-                  }}
+                </Link>
+                <Link
+                  href="/project-domodomo"
+                  prefetch={true}
+                  onClick={hapticLight}
                   className="project-card focus-visible:ring-2 focus-visible:ring-pink-500 outline-none block cursor-pointer"
                 >
                   <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
@@ -435,7 +439,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                       <p>more +</p>
                     </div>
                   </div>
-                </a>
+                </Link>
 
                 {/* Coming Soon Project 1 */}
                 <div className="project-card border-dashed border-card-border opacity-70 select-none block">
@@ -508,6 +512,16 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 aria-label="LinkedIn Profile"
               >
                 <IconBrandLinkedin size={22} />
+              </a>
+              <a
+                href="https://discord.com/users/1546186052262436914"
+                target="_blank"
+                rel="noreferrer"
+                onClick={hapticLight}
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-[#5865F2] transition-colors focus-visible:ring-2 focus-visible:ring-pink-500 outline-none text-theme-muted"
+                aria-label="Discord Profile"
+              >
+                <IconBrandDiscord size={22} />
               </a>
               <a
                 href="https://github.com/Ram-Gold"

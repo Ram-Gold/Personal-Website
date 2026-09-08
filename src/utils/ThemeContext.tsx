@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
@@ -6,15 +7,22 @@ type Theme = 'light' | 'dark';
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: (coords?: { x?: number; y?: number } | null) => void;
+  mounted: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
+  const [theme, setTheme] = useState<Theme>('dark');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
     const stored = localStorage.getItem('theme') as Theme | null;
-    return stored || 'dark';
-  });
+    if (stored) {
+      setTheme(stored);
+    }
+  }, []);
 
   const isTransitioningRef = useRef(false);
   const cooldownTimerRef = useRef<number | null>(null);
@@ -91,6 +99,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         document.documentElement.style.setProperty('--cord-x', `${x}px`);
         document.documentElement.style.setProperty('--cord-y', `${y}px`);
         document.documentElement.style.setProperty('--cord-r', `${endRadius}px`);
+        document.documentElement.classList.add('theme-transitioning');
 
         const transition = doc.startViewTransition(() => {
           updateDOM(nextTheme);
@@ -121,9 +130,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         transition.finished
           .catch(() => {})
           .finally(() => {
+            document.documentElement.classList.remove('theme-transitioning');
             resetCooldown();
           });
       } catch {
+        document.documentElement.classList.remove('theme-transitioning');
         updateDOM(nextTheme);
         setTheme(nextTheme);
         resetCooldown();
@@ -137,7 +148,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, mounted }}>
       {children}
     </ThemeContext.Provider>
   );
