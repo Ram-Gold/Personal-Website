@@ -1,6 +1,8 @@
 # Allow all search engines and AI crawlers
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
 
 # Explicit rules for AI Agents and Search LLMs
 User-agent: GPTBot

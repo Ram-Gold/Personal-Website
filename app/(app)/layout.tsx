@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from 'next';
-import './globals.css';
-import { ThemeProvider } from '../src/utils/ThemeContext';
-import { ThemeToggle } from '../src/components/ThemeToggle';
-import Script from 'next/script';
+import '../globals.css';
+import { ThemeProvider } from '@/src/utils/ThemeContext';
+import { ThemeToggle } from '@/src/components/ThemeToggle';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -17,6 +16,15 @@ export const metadata: Metadata = {
   keywords: 'Ram Guinto, Ram Achilles Guinto, Front-End Developer, AI Engineer, React, TypeScript, Tailwind CSS, Manila Philippines, DomoDomo, Koncentrate, Model Context Protocol, Anthropic Claude',
   authors: [{ name: 'Ram Achilles Guinto' }],
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  icons: {
+    icon: '/assets/images/ram-guinto.png',
+    apple: '/assets/images/ram-guinto.png',
+  },
+  alternates: {
+    types: {
+      'text/markdown': '/llms.txt',
+    },
+  },
   openGraph: {
     type: 'website',
     url: 'https://ram-gold.github.io/Personal-Website/',
@@ -42,23 +50,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/assets/images/ram-guinto.png" />
-        <link rel="apple-touch-icon" href="/assets/images/ram-guinto.png" />
-        <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Documentation" />
-        <Script id="theme-script" strategy="beforeInteractive">
-          {`
-            (function() {
-              var theme = localStorage.getItem('theme') || 'dark';
-              if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-              } else {
-                document.documentElement.classList.remove('dark');
-              }
-            })();
-          `}
-        </Script>
-      </head>
       <body>
         <ThemeProvider>
           <ThemeToggle />
