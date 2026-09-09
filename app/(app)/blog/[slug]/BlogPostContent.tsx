@@ -271,11 +271,17 @@ export function BlogPostContent({ post }: { post: Post }) {
     post.coverImage && typeof post.coverImage !== 'number'
       ? (post.coverImage as Media)
       : null;
-  const bannerUrl = coverImage?.url || post.imageUrl || null;
+  const rawCoverUrl = coverImage?.url;
+  const bannerUrl =
+    (rawCoverUrl && !rawCoverUrl.startsWith('/api/media/file/') ? rawCoverUrl : null) ||
+    post.imageUrl ||
+    rawCoverUrl ||
+    null;
   const bannerAlt = coverImage?.alt || post.title;
 
   const topicName =
-    (post.topic && typeof post.topic !== 'number' ? (post.topic as any).name : null) ||
+    (post.topic && typeof post.topic === 'object' && 'name' in post.topic ? (post.topic as any).name : null) ||
+    (typeof post.topic === 'string' ? post.topic : null) ||
     post.category ||
     null;
 

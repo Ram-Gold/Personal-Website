@@ -3,6 +3,9 @@ import configPromise from '@payload-config';
 import { HomeView } from '@/src/components/HomeView';
 import type { Post } from '@/payload-types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Page() {
   let posts: Post[] = [];
   try {

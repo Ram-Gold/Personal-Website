@@ -17,15 +17,19 @@ import {
   normalizePost,
   formatBlogDate,
 } from '../data/blogPosts';
-import type { Post } from '@/payload-types';
+import type { Post, Topic } from '@/payload-types';
 
 interface BlogViewProps {
   initialPosts?: (Post | BlogPostItem)[];
+  initialTopics?: (Topic | string)[];
 }
 
 type ViewMode = 'list' | 'grid';
 
-export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
+export const BlogView: React.FC<BlogViewProps> = ({
+  initialPosts = [],
+  initialTopics = [],
+}) => {
   const [selectedTopic, setSelectedTopic] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
@@ -35,22 +39,29 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
     return initialPosts.map(normalizePost);
   }, [initialPosts]);
 
-  // Extract distinct topics dynamically from published posts
+  // Combine topics from database with distinct topics from published posts
   const topics: string[] = useMemo(() => {
     const set = new Set<string>();
+    if (initialTopics && initialTopics.length > 0) {
+      initialTopics.forEach((t) => {
+        const name = typeof t === 'string' ? t : t.name;
+        if (name && name.trim().length > 0) set.add(name.trim());
+      });
+    }
     activePosts.forEach((post) => {
       const t = post.topic || post.category;
-      if (t) set.add(t);
+      if (t && t.trim().length > 0) set.add(t.trim());
     });
     return ['All', ...Array.from(set)];
-  }, [activePosts]);
+  }, [initialTopics, activePosts]);
 
   // Filter posts based on topic and live search query
   const filteredPosts = useMemo(() => {
     return activePosts.filter((post) => {
       const topicValue = post.topic || post.category;
       const matchesTopic =
-        selectedTopic === 'All' || topicValue === selectedTopic;
+        selectedTopic === 'All' ||
+        (topicValue && topicValue.toLowerCase() === selectedTopic.toLowerCase());
 
       const q = searchQuery.trim().toLowerCase();
       const matchesSearch =

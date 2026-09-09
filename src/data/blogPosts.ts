@@ -27,18 +27,32 @@ export function normalizePost(post: Post | BlogPostItem): BlogPostItem {
   }
 
   let resolvedImageUrl: string | null = null;
-  if ('imageUrl' in post && post.imageUrl) {
-    resolvedImageUrl = post.imageUrl;
-  } else if ('coverImage' in post && post.coverImage) {
-    if (typeof post.coverImage === 'object' && post.coverImage !== null && 'url' in post.coverImage) {
-      resolvedImageUrl = (post.coverImage as { url?: string | null }).url || null;
+
+  // 1. Prefer uploaded coverImage from Payload CMS / Vercel Blob
+  if ('coverImage' in post && post.coverImage && typeof post.coverImage === 'object') {
+    const coverUrl = (post.coverImage as { url?: string | null }).url;
+    // Prefer remote / Vercel Blob URLs or valid local paths
+    if (coverUrl && !coverUrl.startsWith('/api/media/file/')) {
+      resolvedImageUrl = coverUrl;
+    } else if (coverUrl && (!('imageUrl' in post) || !post.imageUrl)) {
+      resolvedImageUrl = coverUrl;
     }
+  }
+
+  // 2. Fallback to manual imageUrl / local asset path (e.g. /assets/images/blog/...)
+  if (!resolvedImageUrl && 'imageUrl' in post && post.imageUrl) {
+    resolvedImageUrl = post.imageUrl;
+  }
+
+  // 3. Last fallback to coverImage URL if available
+  if (!resolvedImageUrl && 'coverImage' in post && post.coverImage && typeof post.coverImage === 'object') {
+    resolvedImageUrl = (post.coverImage as { url?: string | null }).url || null;
   }
 
   // Resolve topic display name (handles populated Topic object, string, or fallback category)
   let topicName: string | null = null;
   if ('topic' in post && post.topic) {
-    if (typeof post.topic === 'object' && 'name' in post.topic) {
+    if (typeof post.topic === 'object' && post.topic !== null && 'name' in post.topic) {
       topicName = post.topic.name;
     } else if (typeof post.topic === 'string') {
       topicName = post.topic;

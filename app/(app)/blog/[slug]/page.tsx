@@ -5,6 +5,9 @@ import type { Post, Media } from '@/payload-types';
 import NotFound from '@/app/(app)/not-found';
 import { BlogPostContent } from './BlogPostContent';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 type Args = {
   params: Promise<{
     slug: string;
@@ -36,10 +39,15 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const post = await getPost(resolvedParams.slug);
   if (!post) return { title: 'Post Not Found' };
 
-  const coverUrl =
+  const rawCoverUrl =
     post.coverImage && typeof post.coverImage !== 'number'
       ? (post.coverImage as Media).url ?? undefined
-      : post.imageUrl ?? undefined;
+      : undefined;
+  const coverUrl =
+    (rawCoverUrl && !rawCoverUrl.startsWith('/api/media/file/') ? rawCoverUrl : undefined) ||
+    post.imageUrl ||
+    rawCoverUrl ||
+    undefined;
 
   return {
     title: `${post.title} | Ram Guinto`,
