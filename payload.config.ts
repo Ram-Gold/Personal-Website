@@ -12,6 +12,12 @@ import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+if (process.env.VERCEL && !process.env.BLOB_READ_WRITE_TOKEN) {
+  console.warn(
+    '[Payload] WARNING: Running on Vercel but BLOB_READ_WRITE_TOKEN is missing. Uploads to Media will fail because serverless filesystems are read-only.'
+  );
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
