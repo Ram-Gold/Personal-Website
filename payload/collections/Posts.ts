@@ -1,4 +1,24 @@
 import type { CollectionConfig } from 'payload';
+import {
+  lexicalEditor,
+  HeadingFeature,
+  BlockquoteFeature,
+  LinkFeature,
+  UploadFeature,
+  HorizontalRuleFeature,
+  OrderedListFeature,
+  UnorderedListFeature,
+  ChecklistFeature,
+  BoldFeature,
+  ItalicFeature,
+  UnderlineFeature,
+  StrikethroughFeature,
+  InlineCodeFeature,
+  FixedToolbarFeature,
+  InlineToolbarFeature,
+  BlocksFeature,
+  CodeBlock,
+} from '@payloadcms/richtext-lexical';
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -58,6 +78,26 @@ export const Posts: CollectionConfig = {
       name: 'content',
       type: 'richText',
       required: true,
+      editor: lexicalEditor({
+        features: [
+          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3', 'h4'] }),
+          BlockquoteFeature(),
+          LinkFeature(),
+          UploadFeature(),
+          HorizontalRuleFeature(),
+          OrderedListFeature(),
+          UnorderedListFeature(),
+          ChecklistFeature(),
+          BoldFeature(),
+          ItalicFeature(),
+          UnderlineFeature(),
+          StrikethroughFeature(),
+          InlineCodeFeature(),
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
+          BlocksFeature({ blocks: [CodeBlock()] }),
+        ],
+      }),
     },
     {
       name: 'status',
@@ -87,25 +127,31 @@ export const Posts: CollectionConfig = {
       },
     },
     {
+      name: 'topic',
+      type: 'relationship',
+      relationTo: 'topics',
+      hasMany: false,
+      admin: {
+        position: 'sidebar',
+        description: 'Primary topic for this article (e.g. AI Engineering, Front-End)',
+      },
+    },
+    {
       name: 'category',
       type: 'text',
       admin: {
         position: 'sidebar',
-        description: 'Primary category (e.g. AI Engineering, Front-End, Tools)',
+        description: 'Legacy category field (kept for compatibility)',
       },
     },
     {
       name: 'tags',
-      type: 'array',
-      fields: [
-        {
-          name: 'tag',
-          type: 'text',
-        }
-      ],
+      type: 'text',
+      hasMany: true,
       admin: {
         position: 'sidebar',
+        description: 'Plain string tags (e.g. AI Engineering, MCP, Claude)',
       },
-    }
+    },
   ],
 };

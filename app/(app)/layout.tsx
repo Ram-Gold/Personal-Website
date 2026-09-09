@@ -51,16 +51,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
+      <body>
         {process.env.NODE_ENV === 'development' && (
           <Script
             src="//unpkg.com/react-grab/dist/index.global.js"
             crossOrigin="anonymous"
-            strategy="beforeInteractive"
           />
         )}
-      </head>
-      <body>
         <ThemeProvider>
           <ThemeToggle />
           <div id="root">

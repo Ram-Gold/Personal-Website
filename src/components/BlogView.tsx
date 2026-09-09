@@ -12,8 +12,6 @@ import {
 import { hapticLight, hapticSelection } from '../utils/haptics';
 import {
   BlogPostItem,
-  INITIAL_BLOG_POSTS,
-  COMING_SOON_POSTS,
   normalizePost,
   formatBlogDate,
 } from '../data/blogPosts';
@@ -24,31 +22,30 @@ interface BlogViewProps {
 }
 
 export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedTopic, setSelectedTopic] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // Normalize server CMS posts or fall back to curated portfolio articles
+  // Normalize server CMS posts
   const activePosts: BlogPostItem[] = useMemo(() => {
-    if (initialPosts && initialPosts.length > 0) {
-      return initialPosts.map(normalizePost);
-    }
-    return INITIAL_BLOG_POSTS;
+    return initialPosts.map(normalizePost);
   }, [initialPosts]);
 
-  // Extract distinct categories dynamically
-  const categories: string[] = useMemo(() => {
-    const cats = new Set<string>();
+  // Extract distinct topics dynamically from published posts
+  const topics: string[] = useMemo(() => {
+    const set = new Set<string>();
     activePosts.forEach((post) => {
-      if (post.category) cats.add(post.category);
+      const t = post.topic || post.category;
+      if (t) set.add(t);
     });
-    return ['All', ...Array.from(cats)];
+    return ['All', ...Array.from(set)];
   }, [activePosts]);
 
-  // Filter posts based on category and live search query
+  // Filter posts based on topic and live search query
   const filteredPosts = useMemo(() => {
     return activePosts.filter((post) => {
-      const matchesCategory =
-        selectedCategory === 'All' || post.category === selectedCategory;
+      const topicValue = post.topic || post.category;
+      const matchesTopic =
+        selectedTopic === 'All' || topicValue === selectedTopic;
 
       const q = searchQuery.trim().toLowerCase();
       const matchesSearch =
@@ -57,23 +54,9 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
         (post.excerpt && post.excerpt.toLowerCase().includes(q)) ||
         post.tags.some((tag) => tag.toLowerCase().includes(q));
 
-      return matchesCategory && matchesSearch;
+      return matchesTopic && matchesSearch;
     });
-  }, [activePosts, selectedCategory, searchQuery]);
-
-  // Filter coming soon posts
-  const filteredComingSoon = useMemo(() => {
-    if (searchQuery.trim().length > 0) {
-      const q = searchQuery.trim().toLowerCase();
-      return COMING_SOON_POSTS.filter(
-        (post) =>
-          post.title.toLowerCase().includes(q) ||
-          post.tags.some((tag) => tag.toLowerCase().includes(q))
-      );
-    }
-    if (selectedCategory === 'All') return COMING_SOON_POSTS;
-    return COMING_SOON_POSTS.filter((post) => post.category === selectedCategory);
-  }, [selectedCategory, searchQuery]);
+  }, [activePosts, selectedTopic, searchQuery]);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -107,7 +90,7 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
             </div>
           </div>
 
-          {/* Search input: restrained and refined */}
+          {/* Search input */}
           <div className="relative w-full md:w-64">
             <IconSearch
               size={15}
@@ -138,170 +121,135 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
           </div>
         </div>
 
-        {/* Category Filter Pills: animated sliding indicator */}
-        <MotionConfig transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}>
-          <div
-            className="flex flex-wrap items-center gap-1 p-1 rounded-xl border border-card-border w-fit"
-            style={{ background: `color-mix(in srgb, var(--theme-card-bg) 40%, transparent)` }}
-          >
-            {categories.map((cat) => {
-              const isActive = selectedCategory === cat;
-              return (
-                <motion.button
-                  layout
-                  key={cat}
-                  onClick={() => {
-                    hapticSelection();
-                    setSelectedCategory(cat);
-                  }}
-                  className="relative px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer outline-none select-none z-10"
-                  style={{ color: isActive ? 'var(--theme-bg)' : 'var(--theme-text-muted)' }}
-                  whileHover={!isActive ? { color: 'var(--theme-text)' } : undefined}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="blog-category-pill"
-                      className="absolute inset-0 rounded-lg"
-                      style={{ background: 'var(--theme-text)' }}
-                      transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
-                    />
-                  )}
-                  <span className="relative z-10 font-semibold">{cat}</span>
-                </motion.button>
-              );
-            })}
-          </div>
-        </MotionConfig>
+        {/* Dynamic Topic Filter Pills */}
+        {topics.length > 1 && (
+          <MotionConfig transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}>
+            <div
+              className="flex flex-wrap items-center gap-1 p-1 rounded-xl border border-card-border w-fit"
+              style={{ background: `color-mix(in srgb, var(--theme-card-bg) 40%, transparent)` }}
+            >
+              {topics.map((topic) => {
+                const isActive = selectedTopic === topic;
+                return (
+                  <motion.button
+                    layout
+                    key={topic}
+                    onClick={() => {
+                      hapticSelection();
+                      setSelectedTopic(topic);
+                    }}
+                    className="relative px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer outline-none select-none z-10"
+                    style={{ color: isActive ? 'var(--theme-bg)' : 'var(--theme-text-muted)' }}
+                    whileHover={!isActive ? { color: 'var(--theme-text)' } : undefined}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="blog-category-pill"
+                        className="absolute inset-0 rounded-lg"
+                        style={{ background: 'var(--theme-text)' }}
+                        transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+                      />
+                    )}
+                    <span className="relative z-10 font-semibold">{topic}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </MotionConfig>
+        )}
 
-        {/* Posts List with Left-Aligned Images */}
+        {/* Posts List */}
         <div className="flex flex-col gap-4">
           {filteredPosts.map((post) => (
-            <article
+            <Link
               key={post.id}
-              className="project-card flex flex-col sm:flex-row items-stretch gap-4 md:gap-5 focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none group cursor-pointer !mb-0 !p-4 md:!p-5 active:scale-[0.99] transition-all duration-200"
+              href={`/blog/${post.slug}`}
+              prefetch={true}
+              onClick={hapticLight}
+              className="block outline-none focus-visible:ring-1 focus-visible:ring-theme-border-accent rounded-xl"
             >
-              {/* Left Side: Article Preview Image */}
-              <div className="w-full sm:w-44 md:w-48 lg:w-52 shrink-0 aspect-[16/10] sm:aspect-[4/3] rounded-lg overflow-hidden border border-card-border relative bg-theme-hover flex items-center justify-center p-0.5">
-                {post.imageUrl ? (
-                  <img
-                    src={post.imageUrl}
-                    alt={post.title}
-                    className="w-full h-full object-cover rounded-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-theme-hover text-theme-subtle">
-                    <IconArticle size={24} className="opacity-40" />
-                  </div>
-                )}
-              </div>
-
-              {/* Right Side: Article Details */}
-              <div className="flex flex-col justify-between flex-grow min-w-0">
-                <div>
-                  <div className="flex flex-wrap items-baseline justify-between mb-1.5 gap-2">
-                    <span className="text-[11px] font-mono text-theme-subtle uppercase tracking-wider">
-                      {post.category || 'Article'}
-                    </span>
-                    <span className="text-theme-subtle text-[11px] font-mono shrink-0">
-                      {formatBlogDate(post.publishedDate)}
-                      {post.readingTime ? ` • ${post.readingTime} min read` : ''}
-                    </span>
-                  </div>
-
-                  <h2 className="text-theme-text font-semibold text-base leading-snug group-hover:text-theme-hover-text transition-colors duration-200 mb-2">
-                    {post.title}
-                  </h2>
-
-                  {post.excerpt && (
-                    <p className="text-theme-muted text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-3">
-                      {post.excerpt}
-                    </p>
+              <article
+                className="project-card flex flex-col sm:flex-row items-stretch gap-4 md:gap-5 focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none group cursor-pointer !mb-0 !p-4 md:!p-5 active:scale-[0.99] transition-all duration-200"
+              >
+                {/* Left Side: Article Preview Image */}
+                <div className="w-full sm:w-44 md:w-48 lg:w-52 shrink-0 aspect-[16/10] sm:aspect-[4/3] rounded-lg overflow-hidden border border-card-border relative bg-theme-hover flex items-center justify-center p-0.5">
+                  {post.imageUrl ? (
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="w-full h-full object-cover rounded-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-theme-hover text-theme-subtle">
+                      <IconArticle size={24} className="opacity-40" />
+                    </div>
                   )}
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-card-border/60 mt-auto">
-                  <div className="flex flex-wrap gap-1.5">
-                    {post.tags.map((tag, idx) => (
-                      <div key={idx} className="tag">
-                        <p>{tag}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
+                {/* Right Side: Article Details */}
+                <div className="flex flex-col justify-between flex-grow min-w-0">
+                  <div>
+                    <div className="flex flex-wrap items-baseline justify-between mb-1.5 gap-2">
+                      <span className="text-[11px] font-mono text-theme-subtle uppercase tracking-wider">
+                        {post.topic || post.category || 'Article'}
+                      </span>
+                      <span className="text-theme-subtle text-[11px] font-mono shrink-0">
+                        {formatBlogDate(post.publishedDate)}
+                        {post.readingTime ? ` • ${post.readingTime} min read` : ''}
+                      </span>
+                    </div>
 
-          {/* Coming Soon Draft Post Cards */}
-          {filteredComingSoon.map((post) => (
-            <div
-              key={post.id}
-              className="project-card border-dashed border-card-border/80 opacity-75 select-none flex flex-col sm:flex-row items-stretch gap-4 md:gap-5 !mb-0 !p-4 md:!p-5"
-            >
-              {/* Left Side: Placeholder Artwork */}
-              <div className="w-full sm:w-44 md:w-48 lg:w-52 shrink-0 aspect-[16/10] sm:aspect-[4/3] rounded-lg overflow-hidden border border-dashed border-card-border/60 relative bg-theme-tag-bg flex items-center justify-center p-0.5">
-                <IconSparkles size={24} className="text-theme-subtle opacity-50" />
-              </div>
+                    <h2 className="text-theme-text font-semibold text-base leading-snug group-hover:text-theme-hover-text transition-colors duration-200 mb-2">
+                      {post.title}
+                    </h2>
 
-              {/* Right Side: Details */}
-              <div className="flex flex-col justify-between flex-grow min-w-0">
-                <div>
-                  <div className="flex flex-wrap items-baseline justify-between mb-1.5 gap-2">
-                    <span className="text-[11px] font-mono text-theme-subtle tracking-wider uppercase">
-                      {post.category || 'Upcoming'}
-                    </span>
-                    <span className="text-theme-subtle text-[11px] font-mono shrink-0">
-                      TBA
-                    </span>
+                    {post.excerpt && (
+                      <p className="text-theme-muted text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    )}
                   </div>
 
-                  <h2 className="text-theme-muted font-semibold text-base leading-snug mb-2">
-                    {post.title}
-                  </h2>
-
-                  {post.excerpt && (
-                    <p className="text-theme-subtle text-xs md:text-sm mb-3 leading-relaxed line-clamp-2 md:line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                  )}
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-card-border/40 mt-auto">
-                  <div className="flex flex-wrap gap-1.5">
-                    {post.tags.map((tag, idx) => (
-                      <div key={idx} className="tag-more">
-                        <p>{tag}</p>
-                      </div>
-                    ))}
+                  <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-card-border/60 mt-auto">
+                    <div className="flex flex-wrap gap-1.5">
+                      {post.tags.map((tag, idx) => (
+                        <div key={idx} className="tag">
+                          <p>{tag}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <span className="text-[11px] font-mono text-theme-subtle shrink-0">
-                    In Development
-                  </span>
                 </div>
-              </div>
-            </div>
+              </article>
+            </Link>
           ))}
         </div>
 
-        {/* Empty state when no posts match search/filter */}
-        {filteredPosts.length === 0 && filteredComingSoon.length === 0 && (
+        {/* Empty state when no posts exist or match filter */}
+        {filteredPosts.length === 0 && (
           <div className="py-12 flex flex-col items-center justify-center text-center">
             <IconSparkles size={28} className="text-theme-subtle mb-3" />
-            <p className="text-theme-text font-medium text-sm">No articles found</p>
-            <p className="text-theme-muted text-xs mt-1">
-              Try adjusting your search terms or selecting another category.
+            <p className="text-theme-text font-medium text-sm">
+              {searchQuery || selectedTopic !== 'All' ? 'No articles found' : 'No articles published yet'}
             </p>
-            <button
-              onClick={() => {
-                hapticLight();
-                setSelectedCategory('All');
-                setSearchQuery('');
-              }}
-              className="mt-4 px-3.5 py-1.5 rounded-lg border border-card-border text-xs font-medium text-theme-muted hover:text-theme-text hover:bg-theme-hover transition-colors cursor-pointer"
-            >
-              Reset Filters
-            </button>
+            <p className="text-theme-muted text-xs mt-1">
+              {searchQuery || selectedTopic !== 'All'
+                ? 'Try adjusting your search terms or selecting another topic.'
+                : 'Check back soon for new articles and engineering notes.'}
+            </p>
+            {(searchQuery || selectedTopic !== 'All') && (
+              <button
+                onClick={() => {
+                  hapticLight();
+                  setSelectedTopic('All');
+                  setSearchQuery('');
+                }}
+                className="mt-4 px-3.5 py-1.5 rounded-lg border border-card-border text-xs font-medium text-theme-muted hover:text-theme-text hover:bg-theme-hover transition-colors cursor-pointer"
+              >
+                Reset Filters
+              </button>
+            )}
           </div>
         )}
       </div>

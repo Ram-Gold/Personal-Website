@@ -1,8 +1,9 @@
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { RichText } from '@payloadcms/richtext-lexical/react';
+import type { Metadata } from 'next';
+import type { Post, Media } from '@/payload-types';
+import NotFound from '@/app/(app)/not-found';
+import { BlogPostContent } from './BlogPostContent';
 
 type Args = {
   params: Promise<{
@@ -10,60 +11,62 @@ type Args = {
   }>;
 };
 
-export default async function BlogPostPage({ params }: Args) {
-  const resolvedParams = await params;
-  let post: any = null;
+async function getPost(slug: string): Promise<Post | null> {
   try {
     const payload = await getPayload({ config: configPromise });
     const { docs } = await payload.find({
       collection: 'posts',
       where: {
-        slug: {
-          equals: resolvedParams.slug,
-        },
-        status: {
-          equals: 'published',
-        },
+        slug: { equals: slug },
+        status: { equals: 'published' },
       },
       limit: 1,
+      depth: 2,
     });
-    post = docs[0];
+    if (docs[0]) return docs[0];
   } catch (err) {
     console.warn('Database connection skipped during build:', err instanceof Error ? err.message : err);
   }
 
+  return null;
+}
+
+export async function generateMetadata({ params }: Args): Promise<Metadata> {
+  const resolvedParams = await params;
+  const post = await getPost(resolvedParams.slug);
+  if (!post) return { title: 'Post Not Found' };
+
+  const coverUrl =
+    post.coverImage && typeof post.coverImage !== 'number'
+      ? (post.coverImage as Media).url ?? undefined
+      : post.imageUrl ?? undefined;
+
+  return {
+    title: `${post.title} | Ram Guinto`,
+    description: post.excerpt ?? `Blog post by Ram Guinto — ${post.title}`,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt ?? undefined,
+      type: 'article',
+      publishedTime: post.publishedDate ?? undefined,
+      images: coverUrl ? [{ url: coverUrl }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt ?? undefined,
+      images: coverUrl ? [coverUrl] : undefined,
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: Args) {
+  const resolvedParams = await params;
+  const post = await getPost(resolvedParams.slug);
+
   if (!post) {
-    notFound();
+    return <NotFound />;
   }
 
-  return (
-    <main className="max-w-3xl mx-auto px-4 py-12 animate-fade-in">
-      <div className="mb-8">
-        <Link href="/blog" className="text-theme-muted hover:text-theme-text transition-colors">
-          ← Back to Blog
-        </Link>
-      </div>
-      <article>
-        <header className="mb-10">
-          <h1 className="text-4xl font-bold mb-4 text-theme-text">{post.title}</h1>
-          <div className="flex items-center gap-4 text-sm text-theme-subtle font-mono">
-            {post.publishedDate && <time>{new Date(post.publishedDate).toLocaleDateString()}</time>}
-            {post.readingTime && <span>{post.readingTime} min read</span>}
-          </div>
-        </header>
-        {post.coverImage && typeof post.coverImage !== 'string' && (
-          <div className="mb-10">
-            <img 
-              src={post.coverImage.url!} 
-              alt={post.coverImage.alt || post.title} 
-              className="rounded-xl w-full object-cover max-h-[500px]"
-            />
-          </div>
-        )}
-        <div className="prose prose-invert prose-neutral max-w-none text-theme-text">
-          <RichText data={post.content as any} />
-        </div>
-      </article>
-    </main>
-  );
+  return <BlogPostContent post={post} />;
 }

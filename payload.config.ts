@@ -4,6 +4,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { Users } from './payload/collections/Users';
 import { Posts } from './payload/collections/Posts';
+import { Topics } from './payload/collections/Topics';
 import { Media } from './payload/collections/Media';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { fileURLToPath } from 'url';
@@ -15,7 +16,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Posts, Media],
+  collections: [Users, Posts, Topics, Media],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || 'secret-key',
   typescript: {
@@ -23,7 +24,12 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URL || process.env.DATABASE_URI || '',
+      connectionString: (
+        process.env.POSTGRES_URL ||
+        process.env.DATABASE_URL ||
+        process.env.DATABASE_URI ||
+        ''
+      ).replace(/sslmode=(require|prefer|verify-ca)/gi, 'sslmode=verify-full'),
     },
   }),
   plugins: [

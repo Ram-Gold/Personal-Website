@@ -20,6 +20,7 @@ export default async function BlogPage() {
           equals: 'published',
         },
       },
+      depth: 2,
       sort: '-publishedDate',
     });
     posts = docs;

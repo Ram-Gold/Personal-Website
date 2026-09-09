@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     posts: Post;
+    topics: Topic;
     media: Media;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -79,6 +80,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    topics: TopicsSelect<false> | TopicsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -183,15 +185,17 @@ export interface Post {
    */
   readingTime?: number | null;
   /**
-   * Primary category (e.g. AI Engineering, Front-End, Tools)
+   * Primary topic for this article (e.g. AI Engineering, Front-End)
+   */
+  topic?: (number | null) | Topic;
+  /**
+   * Legacy category field (kept for compatibility)
    */
   category?: string | null;
-  tags?:
-    | {
-        tag?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  /**
+   * Plain string tags (e.g. AI Engineering, MCP, Claude)
+   */
+  tags?: string[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -214,6 +218,27 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topics".
+ */
+export interface Topic {
+  id: number;
+  /**
+   * The display name of this topic (e.g. AI Engineering, Front-End)
+   */
+  name: string;
+  /**
+   * URL-friendly identifier for the topic
+   */
+  slug: string;
+  /**
+   * Brief description of what this topic covers
+   */
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -246,6 +271,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'topics';
+        value: number | Topic;
       } | null)
     | ({
         relationTo: 'media';
@@ -329,13 +358,20 @@ export interface PostsSelect<T extends boolean = true> {
   status?: T;
   publishedDate?: T;
   readingTime?: T;
+  topic?: T;
   category?: T;
-  tags?:
-    | T
-    | {
-        tag?: T;
-        id?: T;
-      };
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topics_select".
+ */
+export interface TopicsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
