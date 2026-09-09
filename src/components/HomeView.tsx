@@ -1,6 +1,8 @@
 "use client";
 import React, { useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { ASSETS } from '../data/assets';
 import { GitHubContributions } from './GitHubContributions';
 import { hapticLight, hapticSuccess } from '../utils/haptics';
 import {
@@ -46,11 +48,16 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
         <section className="mb-8 animate-fade-in animate-slide-up">
           <div className="flex flex-col sm:flex-row items-start justify-between gap-4 md:gap-6">
             <div className="flex flex-col sm:flex-row items-start gap-4 md:gap-6 flex-grow">
-              <img
-                className="w-36 h-36 rounded-2xl object-cover overflow-hidden shrink-0 border border-solid border-card-border"
-                src="/assets/images/ram-guinto.png"
-                alt="Ram Guinto"
-              />
+              <div className="relative w-36 h-36 rounded-2xl overflow-hidden shrink-0 border border-solid border-card-border">
+                <Image
+                  src={ASSETS.profile.avatar}
+                  alt="Ram Guinto"
+                  fill
+                  sizes="144px"
+                  priority
+                  className="object-cover"
+                />
+              </div>
               <div className="flex flex-col justify-between py-1 self-stretch flex-grow">
                 <div>
                   <h1 className="sr-only">Ram Guinto - Front-End Developer, Graphic Designer & AI Engineering Associate</h1>
