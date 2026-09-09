@@ -1,8 +1,14 @@
 "use client";
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { GitHubContributions } from './GitHubContributions';
 import { hapticLight, hapticSuccess } from '../utils/haptics';
+import {
+  BlogPostItem,
+  normalizePost,
+  formatBlogDate,
+} from '../data/blogPosts';
+import type { Post } from '@/payload-types';
 import {
   IconMapPin,
   IconUser,
@@ -23,10 +29,15 @@ import {
 } from '@tabler/icons-react';
 
 interface HomeViewProps {
+  initialPosts?: (Post | BlogPostItem)[];
   onNavigate?: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear' | 'blog') => void;
 }
 
-export const HomeView: React.FC<HomeViewProps> = () => {
+export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
+  // Strictly limit to the 2 latest blog posts from the backend
+  const displayPosts: BlogPostItem[] = useMemo(() => {
+    return initialPosts.map(normalizePost).slice(0, 2);
+  }, [initialPosts]);
 
   return (
     <main className="animate-fade-in">
@@ -296,28 +307,41 @@ export const HomeView: React.FC<HomeViewProps> = () => {
                 <IconChevronRight size={16} className="text-theme-muted group-hover/viewblog:translate-x-0.5 transition-transform" />
               </Link>
             </div>
-            <div className="flex-grow flex flex-col justify-start">
-              <Link
-                href="/blog"
-                prefetch={true}
-                onClick={hapticLight}
-                className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
-              >
-                <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                  <p className="text-theme-text font-semibold text-sm leading-tight">
-                    Exploring Agentic AI & MCP Systems
-                  </p>
-                  <span className="text-theme-subtle text-[11px] font-mono">2026</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <div className="tag">
-                    <p>AI Engineering</p>
+            <div className="flex-grow flex flex-col justify-start gap-y-3">
+              {displayPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  prefetch={true}
+                  onClick={hapticLight}
+                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
+                >
+                  <div className="flex items-center justify-between mb-2 gap-2">
+                    <p className="text-theme-text font-semibold text-sm leading-tight line-clamp-1 flex-1 min-w-0">
+                      {post.title}
+                    </p>
+                    <span className="text-theme-subtle text-[11px] font-mono shrink-0">
+                      {formatBlogDate(post.publishedDate)} • {post.readingTime ? `${post.readingTime} min read` : '5 min read'}
+                    </span>
                   </div>
-                  <div className="tag">
-                    <p>4 min read</p>
+                  <div className="flex flex-wrap gap-2">
+                    {(post.topic || post.category) && (
+                      <div className="tag">
+                        <p>{post.topic || post.category}</p>
+                      </div>
+                    )}
+                    {post.tags &&
+                      post.tags
+                        .filter((t) => t !== (post.topic || post.category))
+                        .slice(0, 2)
+                        .map((tag, idx) => (
+                          <div key={idx} className="tag">
+                            <p>{tag}</p>
+                          </div>
+                        ))}
                   </div>
-                </div>
-              </Link>
+                </Link>
+              ))}
             </div>
           </div>
 

@@ -8,6 +8,8 @@ import {
   IconSearch,
   IconX,
   IconSparkles,
+  IconList,
+  IconLayoutGrid,
 } from '@tabler/icons-react';
 import { hapticLight, hapticSelection } from '../utils/haptics';
 import {
@@ -21,9 +23,12 @@ interface BlogViewProps {
   initialPosts?: (Post | BlogPostItem)[];
 }
 
+type ViewMode = 'list' | 'grid';
+
 export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
   const [selectedTopic, setSelectedTopic] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
   // Normalize server CMS posts
   const activePosts: BlogPostItem[] = useMemo(() => {
@@ -74,10 +79,10 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
         Back to Home
       </Link>
 
-      {/* Main Card Container */}
-      <div className="card p-6 md:p-8 flex flex-col gap-y-6 animate-fade-in animate-slide-up animation-delay-100">
+      {/* Main Container - Borderless & Minimal Padding */}
+      <div className="flex flex-col gap-y-8 animate-fade-in animate-slide-up animation-delay-100">
         {/* Header & Search */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-card-border pb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-card-border/60 pb-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-theme-hover border border-card-border flex items-center justify-center shrink-0 text-theme-muted">
               <IconArticle size={20} />
@@ -121,107 +126,238 @@ export const BlogView: React.FC<BlogViewProps> = ({ initialPosts = [] }) => {
           </div>
         </div>
 
-        {/* Dynamic Topic Filter Pills */}
-        {topics.length > 1 && (
+        {/* Controls Bar: Topics Filter (Left) & List/Grid View Toggle (Right) */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          {/* Dynamic Topic Filter Pills */}
+          {topics.length > 1 ? (
+            <MotionConfig transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}>
+              <div
+                className="flex flex-wrap items-center gap-1 p-1 rounded-xl border border-card-border w-fit"
+                style={{ background: `color-mix(in srgb, var(--theme-card-bg) 40%, transparent)` }}
+              >
+                {topics.map((topic) => {
+                  const isActive = selectedTopic === topic;
+                  return (
+                    <motion.button
+                      layout
+                      key={topic}
+                      onClick={() => {
+                        hapticSelection();
+                        setSelectedTopic(topic);
+                      }}
+                      className="relative px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer outline-none select-none z-10"
+                      style={{ color: isActive ? 'var(--theme-bg)' : 'var(--theme-text-muted)' }}
+                      whileHover={!isActive ? { color: 'var(--theme-text)' } : undefined}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId="blog-category-pill"
+                          className="absolute inset-0 rounded-lg"
+                          style={{ background: 'var(--theme-text)' }}
+                          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+                        />
+                      )}
+                      <span className="relative z-10 font-semibold">{topic}</span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </MotionConfig>
+          ) : (
+            <div />
+          )}
+
+          {/* View Mode Toggle (List vs 3-Card Grid) */}
           <MotionConfig transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}>
             <div
-              className="flex flex-wrap items-center gap-1 p-1 rounded-xl border border-card-border w-fit"
+              className="flex items-center gap-1 p-1 rounded-xl border border-card-border w-fit shrink-0 ml-auto"
               style={{ background: `color-mix(in srgb, var(--theme-card-bg) 40%, transparent)` }}
             >
-              {topics.map((topic) => {
-                const isActive = selectedTopic === topic;
-                return (
-                  <motion.button
-                    layout
-                    key={topic}
-                    onClick={() => {
-                      hapticSelection();
-                      setSelectedTopic(topic);
-                    }}
-                    className="relative px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer outline-none select-none z-10"
-                    style={{ color: isActive ? 'var(--theme-bg)' : 'var(--theme-text-muted)' }}
-                    whileHover={!isActive ? { color: 'var(--theme-text)' } : undefined}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="blog-category-pill"
-                        className="absolute inset-0 rounded-lg"
-                        style={{ background: 'var(--theme-text)' }}
-                        transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
-                      />
-                    )}
-                    <span className="relative z-10 font-semibold">{topic}</span>
-                  </motion.button>
-                );
-              })}
+              <motion.button
+                layout
+                onClick={() => {
+                  hapticSelection();
+                  setViewMode('list');
+                }}
+                className="relative p-1.5 rounded-lg cursor-pointer outline-none select-none z-10 flex items-center justify-center w-8 h-8"
+                style={{ color: viewMode === 'list' ? 'var(--theme-bg)' : 'var(--theme-text-muted)' }}
+                whileHover={viewMode !== 'list' ? { color: 'var(--theme-text)' } : undefined}
+                whileTap={{ scale: 0.95 }}
+                aria-label="List view"
+                title="List view"
+              >
+                {viewMode === 'list' && (
+                  <motion.div
+                    layoutId="blog-view-toggle-pill"
+                    className="absolute inset-0 rounded-lg"
+                    style={{ background: 'var(--theme-text)' }}
+                    transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+                  />
+                )}
+                <IconList size={16} className="relative z-10 shrink-0" />
+              </motion.button>
+
+              <motion.button
+                layout
+                onClick={() => {
+                  hapticSelection();
+                  setViewMode('grid');
+                }}
+                className="relative p-1.5 rounded-lg cursor-pointer outline-none select-none z-10 flex items-center justify-center w-8 h-8"
+                style={{ color: viewMode === 'grid' ? 'var(--theme-bg)' : 'var(--theme-text-muted)' }}
+                whileHover={viewMode !== 'grid' ? { color: 'var(--theme-text)' } : undefined}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Grid view"
+                title="Grid view"
+              >
+                {viewMode === 'grid' && (
+                  <motion.div
+                    layoutId="blog-view-toggle-pill"
+                    className="absolute inset-0 rounded-lg"
+                    style={{ background: 'var(--theme-text)' }}
+                    transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+                  />
+                )}
+                <IconLayoutGrid size={16} className="relative z-10 shrink-0" />
+              </motion.button>
             </div>
           </MotionConfig>
-        )}
+        </div>
 
-        {/* Posts List */}
-        <div className="flex flex-col gap-4">
+        {/* Posts List / Grid */}
+        <div
+          className={
+            viewMode === 'grid'
+              ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12'
+              : 'flex flex-col gap-10'
+          }
+        >
           {filteredPosts.map((post) => (
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
               prefetch={true}
               onClick={hapticLight}
-              className="block outline-none focus-visible:ring-1 focus-visible:ring-theme-border-accent rounded-xl"
+              className="block outline-none focus-visible:ring-1 focus-visible:ring-theme-border-accent rounded-2xl group"
             >
-              <article
-                className="project-card flex flex-col sm:flex-row items-stretch gap-4 md:gap-5 focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none group cursor-pointer !mb-0 !p-4 md:!p-5 active:scale-[0.99] transition-all duration-200"
-              >
-                {/* Left Side: Article Preview Image */}
-                <div className="w-full sm:w-44 md:w-48 lg:w-52 shrink-0 aspect-[16/10] sm:aspect-[4/3] rounded-lg overflow-hidden border border-card-border relative bg-theme-hover flex items-center justify-center p-0.5">
-                  {post.imageUrl ? (
-                    <img
-                      src={post.imageUrl}
-                      alt={post.title}
-                      className="w-full h-full object-cover rounded-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-theme-hover text-theme-subtle">
-                      <IconArticle size={24} className="opacity-40" />
-                    </div>
-                  )}
-                </div>
-
-                {/* Right Side: Article Details */}
-                <div className="flex flex-col justify-between flex-grow min-w-0">
-                  <div>
-                    <div className="flex flex-wrap items-baseline justify-between mb-1.5 gap-2">
-                      <span className="text-[11px] font-mono text-theme-subtle uppercase tracking-wider">
-                        {post.topic || post.category || 'Article'}
-                      </span>
-                      <span className="text-theme-subtle text-[11px] font-mono shrink-0">
-                        {formatBlogDate(post.publishedDate)}
-                        {post.readingTime ? ` • ${post.readingTime} min read` : ''}
-                      </span>
-                    </div>
-
-                    <h2 className="text-theme-text font-semibold text-base leading-snug group-hover:text-theme-hover-text transition-colors duration-200 mb-2">
-                      {post.title}
-                    </h2>
-
-                    {post.excerpt && (
-                      <p className="text-theme-muted text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-3">
-                        {post.excerpt}
-                      </p>
+              {viewMode === 'list' ? (
+                /* List View: Borderless, Zero Padding, Emil-style Spacing */
+                <article className="flex flex-col sm:flex-row items-stretch gap-6 group cursor-pointer transition-all duration-200">
+                  {/* Left Side: Article Preview Image */}
+                  <div className="w-full sm:w-52 md:w-60 lg:w-64 shrink-0 aspect-[16/10] rounded-2xl overflow-hidden bg-theme-hover relative">
+                    {post.imageUrl ? (
+                      <img
+                        src={post.imageUrl}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.025]"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-theme-hover text-theme-subtle">
+                        <IconArticle size={24} className="opacity-40" />
+                      </div>
                     )}
                   </div>
 
-                  <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-card-border/60 mt-auto">
-                    <div className="flex flex-wrap gap-1.5">
-                      {post.tags.map((tag, idx) => (
-                        <div key={idx} className="tag">
-                          <p>{tag}</p>
+                  {/* Right Side: Article Details */}
+                  <div className="flex flex-col justify-between flex-grow min-w-0 py-0.5">
+                    <div>
+                      {/* Date */}
+                      <div className="text-xs text-theme-subtle font-mono tracking-normal mb-1.5">
+                        {formatBlogDate(post.publishedDate)}
+                      </div>
+
+                      {/* Title */}
+                      <h2 className="font-sans font-bold text-lg md:text-xl leading-snug tracking-tight text-theme-text group-hover:text-theme-hover-text transition-colors duration-200 mb-2">
+                        {post.title}
+                      </h2>
+
+                      {/* Excerpt */}
+                      {post.excerpt && (
+                        <p className="text-theme-muted text-xs md:text-sm leading-relaxed line-clamp-2 mb-2.5">
+                          {post.excerpt}
+                        </p>
+                      )}
+
+                      {/* Read · X min */}
+                      <div className="text-xs text-theme-subtle/80 font-mono flex items-center gap-1.5">
+                        <span>Read</span>
+                        <span className="opacity-40">·</span>
+                        <span>{post.readingTime ? `${post.readingTime} min` : '5 min'}</span>
+                      </div>
+                    </div>
+
+                    {/* Scrollable Hidden Scrollbar Tags - Exact Original Pill Styling */}
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="mt-3.5 min-w-0">
+                        <div
+                          className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 flex-nowrap min-w-0 max-w-full"
+                          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        >
+                          {post.tags.map((tag, idx) => (
+                            <div key={idx} className="tag shrink-0">
+                              <p>{tag}</p>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              ) : (
+                /* Grid View: Borderless, Zero Padding, Emil-style Spacing Hierarchy (Matches Reference Image) */
+                <article className="flex flex-col justify-between h-full group cursor-pointer transition-all duration-200">
+                  <div>
+                    {/* Top: Image with rounded corners (rounded-2xl) */}
+                    <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden bg-theme-hover relative mb-3.5">
+                      {post.imageUrl ? (
+                        <img
+                          src={post.imageUrl}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.025]"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-theme-hover text-theme-subtle">
+                          <IconArticle size={24} className="opacity-40" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Date: Aug 2026 */}
+                    <div className="text-xs text-theme-subtle font-mono tracking-normal mb-1.5">
+                      {formatBlogDate(post.publishedDate)}
+                    </div>
+
+                    {/* Title: Bold Sans-serif with tight line height */}
+                    <h2 className="font-sans font-bold text-[17px] md:text-[18px] leading-[1.3] tracking-tight text-theme-text group-hover:text-theme-hover-text transition-colors duration-200 line-clamp-2 mb-2.5">
+                      {post.title}
+                    </h2>
+
+                    {/* Read · X min */}
+                    <div className="text-xs text-theme-subtle/80 font-mono flex items-center gap-1.5">
+                      <span>Read</span>
+                      <span className="opacity-40">·</span>
+                      <span>{post.readingTime ? `${post.readingTime} min` : '5 min'}</span>
                     </div>
                   </div>
-                </div>
-              </article>
+
+                  {/* Scrollable Hidden Scrollbar Tags - Exact Original Pill Styling */}
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="mt-3.5 min-w-0">
+                      <div
+                        className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 flex-nowrap min-w-0 max-w-full"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                      >
+                        {post.tags.map((tag, idx) => (
+                          <div key={idx} className="tag shrink-0">
+                            <p>{tag}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </article>
+              )}
             </Link>
           ))}
         </div>
