@@ -50,7 +50,7 @@ const StyledLink: React.FC<{
 
 export const GearView: React.FC<GearViewProps> = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <main id="main-content" className="max-w-6xl mx-auto px-4 py-8">
       <Link 
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
         href="/"
@@ -265,6 +265,6 @@ export const GearView: React.FC<GearViewProps> = () => {
 
         </div>
       </div>
-    </div>
+    </main>
   );
 };

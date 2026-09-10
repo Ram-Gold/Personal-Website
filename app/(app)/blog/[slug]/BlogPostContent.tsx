@@ -63,20 +63,23 @@ function CodeBlock({ code, language }: { code: string; language?: string }) {
         <button
           onClick={handleCopy}
           className="blog-code-copy"
-          aria-label="Copy code"
+          aria-label={copied ? "Code copied to clipboard" : `Copy ${lang} code to clipboard`}
         >
           {copied ? (
             <>
-              <IconCheck size={13} />
+              <IconCheck size={13} aria-hidden="true" />
               <span>Copied</span>
             </>
           ) : (
             <>
-              <IconCopy size={13} />
+              <IconCopy size={13} aria-hidden="true" />
               <span>Copy</span>
             </>
           )}
         </button>
+        <span className="sr-only" role="status" aria-live="polite">
+          {copied ? "Code copied to clipboard" : ""}
+        </span>
       </div>
       <pre className="blog-code-pre">
         <code
@@ -290,7 +293,7 @@ export function BlogPostContent({ post }: { post: Post }) {
     .filter((t): t is string => Boolean(t?.trim()));
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
+    <main id="main-content" className="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
       {/* Back navigation */}
       <Link
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-8 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer group/back"
@@ -410,6 +413,6 @@ export function BlogPostContent({ post }: { post: Post }) {
           &copy; 2026 Ram Guinto.
         </p>
       </footer>
-    </div>
+    </main>
   );
 }

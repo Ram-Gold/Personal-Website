@@ -1,9 +1,10 @@
 "use client";
-import React, { useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ASSETS } from '../data/assets';
 import { GitHubContributions } from './GitHubContributions';
+import { QrModal } from './QrModal';
 import { hapticLight, hapticSuccess } from '../utils/haptics';
 import {
   BlogPostItem,
@@ -29,7 +30,8 @@ import {
   IconBrandX,
   IconArrowUpRight,
   IconArticle,
-  IconRobotFace
+  IconRobotFace,
+  IconQrcode
 } from '@tabler/icons-react';
 
 interface HomeViewProps {
@@ -38,13 +40,15 @@ interface HomeViewProps {
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
+  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+
   // Strictly limit to the 2 latest blog posts from the backend
   const displayPosts: BlogPostItem[] = useMemo(() => {
     return initialPosts.map(normalizePost).slice(0, 2);
   }, [initialPosts]);
 
   return (
-    <main className="animate-fade-in">
+    <main id="main-content" className="animate-fade-in">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Profile Header */}
         <section className="mb-8 animate-fade-in animate-slide-up">
@@ -93,6 +97,22 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                   >
                     <IconDownload size={14} className="shrink-0" />
                   </a>
+                  <button
+                    id="qr-modal-trigger"
+                    type="button"
+                    onClick={() => {
+                      hapticLight();
+                      setIsQrModalOpen(true);
+                    }}
+                    className="inline-flex items-center justify-center p-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
+                    aria-label="View QR Code"
+                    aria-haspopup="dialog"
+                    aria-expanded={isQrModalOpen}
+                    title="View QR Code"
+                  >
+                    <IconQrcode size={14} className="shrink-0" />
+                  </button>
                   <a
                     href="/llms.txt"
                     target="_blank"
@@ -194,13 +214,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
               </div>
             </div>
             <div className="flex-grow flex flex-col justify-start">
-              <div className="relative flex flex-col gap-y-6 pl-1 mt-1">
+              <div className="relative flex flex-col gap-y-6 pl-1 mt-1" role="list" aria-label="Work and education history">
                 {/* Timeline Connector Line */}
-                <div className="absolute left-[24px] top-5 bottom-5 w-[1px] bg-theme-timeline-line z-0"></div>
+                <div className="absolute left-[24px] top-5 bottom-5 w-[1px] bg-theme-timeline-line z-0" aria-hidden="true"></div>
 
                 {/* FlyrankAI */}
-                <div className="relative flex flex-row gap-4 items-start">
-                  <div className="z-10 w-10 h-10 rounded-xl bg-theme-timeline-icon border border-card-border flex items-center justify-center shrink-0 font-bold text-xs text-theme-muted">
+                <div className="relative flex flex-row gap-4 items-start" role="listitem">
+                  <div className="z-10 w-10 h-10 rounded-xl bg-theme-timeline-icon border border-card-border flex items-center justify-center shrink-0 font-bold text-xs text-theme-muted" aria-hidden="true">
                     FR
                   </div>
                   <div className="flex flex-col pt-1">
@@ -211,8 +231,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                 </div>
 
                 {/* National Teacher's College */}
-                <div className="relative flex flex-row gap-4 items-start">
-                  <div className="z-10 w-10 h-10 rounded-xl bg-theme-timeline-icon border border-card-border flex items-center justify-center shrink-0 font-bold text-xs text-theme-muted">
+                <div className="relative flex flex-row gap-4 items-start" role="listitem">
+                  <div className="z-10 w-10 h-10 rounded-xl bg-theme-timeline-icon border border-card-border flex items-center justify-center shrink-0 font-bold text-xs text-theme-muted" aria-hidden="true">
                     NTC
                   </div>
                   <div className="flex flex-col pt-1">
@@ -265,6 +285,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                 href="/tech-stack"
                 prefetch={true}
                 onClick={hapticLight}
+                aria-label="View all technologies in tech stack"
               >
                 <span>View All</span>
                 <IconChevronRight size={16} className="text-theme-muted" />
@@ -323,6 +344,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                 href="/blog"
                 prefetch={true}
                 onClick={hapticLight}
+                aria-label="View all blog posts"
               >
                 <span>View All</span>
                 <IconChevronRight size={16} className="text-theme-muted group-hover/viewblog:translate-x-0.5 transition-transform" />
@@ -378,6 +400,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                 href="/certifications"
                 prefetch={true}
                 onClick={hapticLight}
+                aria-label="View all certificates"
               >
                 <span>View All</span>
                 <IconChevronRight size={16} className="text-theme-muted" />
@@ -613,6 +636,12 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
           </div>
         </footer>
       </div>
+
+      {/* QR Code Modal */}
+      <QrModal
+        isOpen={isQrModalOpen}
+        onClose={() => setIsQrModalOpen(false)}
+      />
     </main>
   );
 };

@@ -10,7 +10,7 @@ interface TechStackViewProps {
 
 export const TechStackView: React.FC<TechStackViewProps> = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <main id="main-content" className="max-w-6xl mx-auto px-4 py-8">
       <Link
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-4 animate-fade-in hover:text-theme-text transition-colors cursor-pointer group/back"
         href="/"
@@ -76,6 +76,6 @@ export const TechStackView: React.FC<TechStackViewProps> = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };

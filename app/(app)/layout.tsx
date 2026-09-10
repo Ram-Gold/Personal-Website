@@ -58,6 +58,12 @@ export default function RootLayout({
             crossOrigin="anonymous"
           />
         )}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-white dark:focus:bg-neutral-900 focus:text-neutral-900 dark:focus:text-white focus:border focus:border-neutral-300 dark:focus:border-neutral-700 focus:rounded-lg focus:shadow-xl focus:outline-none text-xs font-semibold"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider>
           <ThemeToggle />
           <div id="root">

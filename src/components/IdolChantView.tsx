@@ -10,7 +10,7 @@ interface IdolChantViewProps {
 
 export const IdolChantView: React.FC<IdolChantViewProps> = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <main id="main-content" className="max-w-6xl mx-auto px-4 py-8">
       <Link 
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
         href="/"
@@ -34,6 +34,7 @@ export const IdolChantView: React.FC<IdolChantViewProps> = () => {
             target="_blank" 
             rel="noopener noreferrer"
             onClick={hapticLight}
+            aria-label="Visit Idol Chant & Mixes live site (opens in new tab)"
             className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover active:scale-[0.97] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
             style={{ background: `var(--theme-card-bg)` }}
           >
@@ -91,6 +92,6 @@ export const IdolChantView: React.FC<IdolChantViewProps> = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };

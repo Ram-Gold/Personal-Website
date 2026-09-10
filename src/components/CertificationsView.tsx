@@ -200,13 +200,15 @@ const StyledLink: React.FC<{
   iconSize?: number;
   showDot?: boolean;
   parentHover?: boolean;
-}> = ({ href, children, className = '', iconSize = 14, showDot = false, parentHover = false }) => {
+  ariaLabel?: string;
+}> = ({ href, children, className = '', iconSize = 14, showDot = false, parentHover = false, ariaLabel }) => {
   return (
     <a 
       href={href} 
       target="_blank" 
       rel="noopener noreferrer" 
       onClick={hapticLight}
+      aria-label={ariaLabel}
       className={`inline-flex items-center gap-1.5 transition-colors group/link cursor-pointer ${className}`}
     >
       {showDot && (
@@ -247,7 +249,7 @@ export const CertificationsView: React.FC<CertificationsViewProps> = () => {
   const INITIAL_LIMIT = 6; // 2x3 grid on desktop
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <main id="main-content" className="max-w-6xl mx-auto px-4 py-8">
       <Link 
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back" 
         href="/"
@@ -288,7 +290,7 @@ export const CertificationsView: React.FC<CertificationsViewProps> = () => {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div id={`cert-group-${groupIndex}`} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {visibleItems.map((cert, certIndex) => (
                     <div 
                       key={certIndex}
@@ -308,6 +310,10 @@ export const CertificationsView: React.FC<CertificationsViewProps> = () => {
                           href={cert.url}
                           className="text-theme-muted hover:text-theme-text text-xs"
                           parentHover={true}
+                          ariaLabel={cert.isImageLink
+                            ? `View Certificate Image for ${cert.title} by ${cert.issuer} (opens in new tab)`
+                            : `Verify Certificate for ${cert.title} on ${cert.issuer} (opens in new tab)`
+                          }
                         >
                           {cert.isImageLink ? 'View Certificate Image' : 'Verify Certificate'}
                         </StyledLink>
@@ -320,6 +326,11 @@ export const CertificationsView: React.FC<CertificationsViewProps> = () => {
                   <div className="flex justify-center mt-2">
                     <button
                       onClick={() => toggleCategory(group.categoryName)}
+                      aria-expanded={isExpanded}
+                      aria-controls={`cert-group-${groupIndex}`}
+                      aria-label={isExpanded 
+                        ? `Show fewer ${group.categoryName} certificates` 
+                        : `Show all ${group.items.length} ${group.categoryName} certificates`}
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-card-border hover:border-theme-border-accent hover:bg-theme-hover active:scale-[0.97] transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-theme-border-accent"
                       style={{ background: `color-mix(in srgb, var(--theme-card-bg) 60%, transparent)` }}
                     >
@@ -341,6 +352,6 @@ export const CertificationsView: React.FC<CertificationsViewProps> = () => {
           })}
         </div>
       </div>
-    </div>
+    </main>
   );
 };

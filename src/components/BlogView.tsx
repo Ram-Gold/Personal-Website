@@ -75,7 +75,7 @@ export const BlogView: React.FC<BlogViewProps> = ({
   }, [activePosts, selectedTopic, searchQuery]);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <main id="main-content" className="max-w-6xl mx-auto px-4 py-8">
       {/* Back navigation */}
       <Link
         className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
@@ -117,6 +117,7 @@ export const BlogView: React.FC<BlogViewProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search posts or tags..."
+              aria-label="Search blog posts or tags"
               className="w-full pl-9 pr-8 py-2 rounded-lg text-xs border border-card-border text-theme-text placeholder:text-theme-subtle focus:border-theme-border-accent focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none transition-all duration-200"
               style={{
                 background: `color-mix(in srgb, var(--theme-card-bg) 60%, transparent)`,
@@ -143,6 +144,8 @@ export const BlogView: React.FC<BlogViewProps> = ({
           {topics.length > 1 ? (
             <MotionConfig transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}>
               <div
+                role="group"
+                aria-label="Filter blog posts by topic"
                 className="flex flex-wrap items-center gap-1 p-1 rounded-xl border border-card-border w-fit"
                 style={{ background: `color-mix(in srgb, var(--theme-card-bg) 40%, transparent)` }}
               >
@@ -152,6 +155,7 @@ export const BlogView: React.FC<BlogViewProps> = ({
                     <motion.button
                       layout
                       key={topic}
+                      aria-pressed={isActive}
                       onClick={() => {
                         hapticSelection();
                         setSelectedTopic(topic);
@@ -182,6 +186,8 @@ export const BlogView: React.FC<BlogViewProps> = ({
           {/* View Mode Toggle (List vs 3-Card Grid) */}
           <MotionConfig transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}>
             <div
+              role="group"
+              aria-label="Choose layout view"
               className="flex items-center gap-1 p-1 rounded-xl border border-card-border w-fit shrink-0 ml-auto"
               style={{ background: `color-mix(in srgb, var(--theme-card-bg) 40%, transparent)` }}
             >
@@ -196,6 +202,7 @@ export const BlogView: React.FC<BlogViewProps> = ({
                 whileHover={viewMode !== 'list' ? { color: 'var(--theme-text)' } : undefined}
                 whileTap={{ scale: 0.95 }}
                 aria-label="List view"
+                aria-pressed={viewMode === 'list'}
                 title="List view"
               >
                 {viewMode === 'list' && (
@@ -220,6 +227,7 @@ export const BlogView: React.FC<BlogViewProps> = ({
                 whileHover={viewMode !== 'grid' ? { color: 'var(--theme-text)' } : undefined}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Grid view"
+                aria-pressed={viewMode === 'grid'}
                 title="Grid view"
               >
                 {viewMode === 'grid' && (
@@ -234,6 +242,13 @@ export const BlogView: React.FC<BlogViewProps> = ({
               </motion.button>
             </div>
           </MotionConfig>
+        </div>
+
+        {/* Live Region for Screen Readers on Search & Filter Results */}
+        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {searchQuery || selectedTopic !== 'All'
+            ? `${filteredPosts.length} ${filteredPosts.length === 1 ? 'post' : 'posts'} found`
+            : ''}
         </div>
 
         {/* Posts List / Grid */}
@@ -400,6 +415,6 @@ export const BlogView: React.FC<BlogViewProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 };

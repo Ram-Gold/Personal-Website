@@ -218,11 +218,14 @@ export const GitHubContributions: React.FC = () => {
           )}
 
           <svg
+            role="img"
+            aria-label={`GitHub contribution calendar showing ${totalCount.toLocaleString()} contributions in the last year`}
             width={svgWidth}
             height={svgHeight}
             className="block"
             style={{ minWidth: svgWidth }}
           >
+            <title>GitHub Contributions Calendar</title>
             {/* Month labels */}
             {monthLabels.map(({ label, weekIndex }) => (
               <text
