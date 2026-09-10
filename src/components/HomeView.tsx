@@ -26,8 +26,10 @@ import {
   IconBrandFacebook,
   IconBrandInstagram,
   IconBrandDiscord,
+  IconBrandX,
   IconArrowUpRight,
-  IconArticle
+  IconArticle,
+  IconRobotFace
 } from '@tabler/icons-react';
 
 interface HomeViewProps {
@@ -79,7 +81,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                     Front-end developer, Graphic Designer and College Student
                   </p>
                 </div>
-                <div className="flex items-center gap-2 mt-3">
+                <div className="flex items-center gap-2 mt-3 flex-wrap">
                   <a
                     href="/assets/images/ram-guinto.png"
                     download="ram-guinto-profile.png"
@@ -90,6 +92,18 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                     title="Download Profile Picture"
                   >
                     <IconDownload size={14} className="shrink-0" />
+                  </a>
+                  <a
+                    href="/llms.txt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={hapticLight}
+                    className="inline-flex items-center justify-center p-2 border border-card-border hover:bg-theme-hover active:scale-[0.96] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded transition-all duration-200 text-xs font-semibold text-theme-text cursor-pointer"
+                    style={{ background: `color-mix(in srgb, var(--theme-card-bg) 50%, transparent)` }}
+                    aria-label="View as Agent"
+                    title="View as Agent (/llms.txt)"
+                  >
+                    <IconRobotFace size={14} className="shrink-0" />
                   </a>
                   <a
                     href="https://github.com/Ram-Gold"
@@ -554,6 +568,16 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
                 aria-label="Instagram Profile"
               >
                 <IconBrandInstagram size={22} />
+              </a>
+              <a
+                href="https://x.com/akipyr"
+                target="_blank"
+                rel="noreferrer"
+                onClick={hapticLight}
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-theme-hover hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none text-theme-muted"
+                aria-label="X (Twitter) Profile"
+              >
+                <IconBrandX size={22} />
               </a>
               <a
                 href="https://www.linkedin.com/in/ram-guinto/"

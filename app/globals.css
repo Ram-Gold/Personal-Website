@@ -340,6 +340,19 @@
 .absolute-pullcord {
     position: absolute !important;
     view-transition-name: none !important;
+    --pullcord-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .absolute-pullcord {
+        --pullcord-right: 3.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .absolute-pullcord {
+        --pullcord-right: 7rem;
+    }
 }
 
 /* ─── Blog Post Content Typography ─── */
