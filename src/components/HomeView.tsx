@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useMemo } from 'react';
+import { SelectedProjects } from './SelectedProjects';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ASSETS } from '../data/assets';
@@ -21,7 +22,7 @@ import {
   IconChevronRight,
   IconCertificate,
   IconBriefcase,
-  IconCode,
+  IconTrophy,
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandFacebook,
@@ -166,6 +167,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
             </div>
           </div>
         </section>
+
+        {/* Selected Projects Carousel */}
+        <SelectedProjects />
+
         {/* Bento Grid */}
         <section className="grid grid-cols-1 md:grid-cols-8 gap-6">
           {/* About Me */}
@@ -440,122 +445,17 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
             </div>
           </div>
 
-          {/* Projects */}
-          <div className="card p-4 col-span-1 md:col-span-5 md:row-span-2 flex flex-col h-full group/proj animate-fade-in animate-slide-up animation-delay-500">
+          {/* Hackathons */}
+          <div className="card p-4 col-span-1 md:col-span-5 md:row-span-2 flex flex-col h-full group/hack animate-fade-in animate-slide-up animation-delay-500">
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
-                <IconCode size={20} className="text-theme-muted" />
-                <h2 className="font-semibold text-base">Projects</h2>
+                <IconTrophy size={20} className="text-theme-muted" />
+                <h2 className="font-semibold text-base">Hackathons</h2>
               </div>
             </div>
-            <div className="flex-grow flex flex-col justify-start">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Link
-                  href="/project-idol-chant"
-                  prefetch={true}
-                  onClick={hapticLight}
-                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
-                >
-                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                    <p className="text-theme-text font-semibold text-sm leading-tight">Idol Chant & Mixes</p>
-                    <span className="text-theme-subtle text-[11px] font-mono">2026</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <div className="tag">
-                      <p>Website</p>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  href="/pubmats"
-                  prefetch={true}
-                  onClick={hapticLight}
-                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
-                >
-                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                    <p className="text-theme-text font-semibold text-sm leading-tight">Pubmats</p>
-                    <span className="text-theme-subtle text-[11px] font-mono">2026</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <div className="tag">
-                      <p>Graphic Design</p>
-                    </div>
-                    <div className="tag">
-                      <p>Miscellaneous</p>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  href="/project-koncentrate"
-                  prefetch={true}
-                  onClick={hapticLight}
-                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
-                >
-                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                    <p className="text-theme-text font-semibold text-sm leading-tight">Koncentrate</p>
-                    <span className="text-theme-subtle text-[11px] font-mono">2026</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <div className="tag">
-                      <p>Linux</p>
-                    </div>
-                    <div className="tag">
-                      <p>Widget</p>
-                    </div>
-                    <div className="tag">
-                      <p>KDE</p>
-                    </div>
-                  </div>
-                </Link>
-                <Link
-                  href="/project-domodomo"
-                  prefetch={true}
-                  onClick={hapticLight}
-                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
-                >
-                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                    <p className="text-theme-text font-semibold text-sm leading-tight">DomoDomo</p>
-                    <span className="text-theme-subtle text-[11px] font-mono">2026</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <div className="tag">
-                      <p>Co-Founded</p>
-                    </div>
-                    <div className="tag">
-                      <p>AI</p>
-                    </div>
-                    <div className="tag-more">
-                      <p>more +</p>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Coming Soon Project 1 */}
-                <div className="project-card border-dashed border-card-border opacity-70 select-none block">
-                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                    <p className="text-theme-muted font-semibold text-sm leading-tight">Coming Soon</p>
-                    <span className="text-theme-subtle text-[11px] font-mono">TBA</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <div className="tag-more">
-                      <p>In Development</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Coming Soon Project 2 */}
-                <div className="project-card border-dashed border-card-border opacity-70 select-none block">
-                  <div className="flex flex-wrap items-center justify-between mb-2 gap-2">
-                    <p className="text-theme-muted font-semibold text-sm leading-tight">Coming Soon</p>
-                    <span className="text-theme-subtle text-[11px] font-mono">TBA</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <div className="tag-more">
-                      <p>In Development</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex-grow flex flex-col items-center justify-center py-8">
+              <p className="text-theme-text-subtle text-sm text-center">Coming Soon</p>
+              <p className="text-theme-text-faint text-xs text-center mt-1">Hackathon experiences will be listed here</p>
             </div>
           </div>
         </section>
