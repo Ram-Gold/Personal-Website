@@ -1,7 +1,11 @@
 "use client";
+
 import React from 'react';
 import Link from 'next/link';
-import { IconArrowLeft, IconExternalLink, IconCode, IconInfoCircle } from '@tabler/icons-react';
+import {
+  IconArrowLeft,
+  IconArrowUpRight,
+} from '@tabler/icons-react';
 import { hapticLight } from '../utils/haptics';
 
 interface DomoDomoViewProps {
@@ -10,89 +14,134 @@ interface DomoDomoViewProps {
 
 export const DomoDomoView: React.FC<DomoDomoViewProps> = () => {
   return (
-    <main id="main-content" className="max-w-6xl mx-auto px-4 py-8">
+    <main id="main-content" className="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
+      {/* Back navigation */}
       <Link
-        className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
+        className="inline-flex items-center gap-1.5 text-xs text-theme-muted mb-8 hover:text-theme-text transition-colors group/back"
         href="/"
         prefetch={true}
         onClick={hapticLight}
       >
-        <IconArrowLeft size={16} className="text-theme-muted group-hover/back:text-theme-text transition-colors" />
+        <IconArrowLeft
+          size={14}
+          className="text-theme-muted group-hover/back:text-theme-text transition-colors"
+        />
         Back to Home
       </Link>
 
-      <div className="card p-6 md:p-8 flex flex-col gap-y-6 animate-fade-in animate-slide-up animation-delay-100">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-card-border pb-6">
-          <div className="flex items-center gap-3">
-            <div>
-              <h1 className="font-bold text-2xl text-theme-text">DomoDomo</h1>
-              <p className="text-theme-muted text-sm mt-1">Multi-purpose open-source web utility suite — 100% client-side & privacy-respecting</p>
-            </div>
-          </div>
-          <a
-            href="https://domodomo.site/"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={hapticLight}
-            aria-label="Visit DomoDomo live site (opens in new tab)"
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover active:scale-[0.97] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
-            style={{ background: `var(--theme-card-bg)` }}
-          >
-            <span>Visit Live Site</span> <IconExternalLink size={16} className="text-theme-muted group-hover/livesite:text-theme-text transition-colors" />
-          </a>
-        </div>
+      {/* Article container */}
+      <article className="animate-slide-up animation-delay-100">
+        {/* Header */}
+        <header className="mb-8">
+          <span className="text-[11px] font-mono uppercase tracking-wider text-theme-subtle mb-3 block">
+            Product · Web Utilities · Open Source
+          </span>
 
-        <div className="flex flex-col gap-8">
-          {/* Preview Section */}
-          <div className="w-full group animate-fade-in animate-slide-up animation-delay-200">
-            <div className="w-full rounded-xl overflow-hidden border border-card-border relative shadow-2xl"
-              style={{ background: `var(--theme-card-bg)` }}
+          <h1 className="text-3xl md:text-4xl font-bold text-theme-text tracking-tight leading-tight mb-4">
+            DomoDomo
+          </h1>
+
+          <p className="text-theme-muted text-base md:text-lg leading-relaxed mb-5">
+            A multi-purpose, open-source web utility suite — 100% client-side, local-first, and privacy-respecting.
+          </p>
+
+          {/* Minimal Meta row */}
+          <div className="flex flex-wrap items-center gap-3 text-xs text-theme-subtle font-mono">
+            <span>2026</span>
+            <span>·</span>
+            <a
+              href="https://domodomo.site/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={hapticLight}
+              className="blog-link inline-flex items-center gap-0.5 text-theme-text hover:underline"
             >
-              <img
-                src="/assets/images/domodomo_preview.png"
-                alt="DomoDomo Website Preview"
-                className="w-full h-auto object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
-              />
-            </div>
+              <span>Visit Live Site</span>
+              <IconArrowUpRight size={13} />
+            </a>
           </div>
+        </header>
 
-          {/* Tech Stack Section */}
-          <div className="w-full animate-fade-in animate-slide-up animation-delay-300">
-            <h2 className="text-sm font-semibold text-theme-text mb-3 flex items-center gap-2">
-              <IconCode size={18} className="text-theme-subtle" />
-              Tech Stack
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              <div className="tag">
-                <p>React</p>
-              </div>
-              <div className="tag">
-                <p>Tailwind CSS</p>
-              </div>
-              <div className="tag">
-                <p>Vercel</p>
-              </div>
-              <div className="tag">
-                <p>WebGPU</p>
-              </div>
-              <div className="tag-more">
-                <p>more +</p>
-              </div>
-            </div>
-          </div>
-
-          {/* About Section */}
-          <div className="w-full animate-fade-in animate-slide-up animation-delay-400">
-            <h2 className="text-sm font-semibold text-theme-text mb-3 flex items-center gap-2">
-              <IconInfoCircle size={18} className="text-theme-subtle" />
-              About the Project
-            </h2>
-            <p className="text-theme-muted leading-relaxed text-sm max-w-4xl">
-              A multi-purpose, open-source web utility suite. Run high-performance file conversions, image editing, and PDF manipulation directly in your browser. 100% client-side, secure, and privacy-respecting. Unlike cloud utilities, DomoDomo keeps processing in your browser sandbox so private documents, images, audio, video, and AI inputs stay on your machine.
-            </p>
-          </div>
+        {/* Hero Image Embed */}
+        <div className="mb-10 rounded-xl overflow-hidden border border-card-border bg-black/40">
+          <img
+            src="/assets/images/domodomo_preview.png"
+            alt="DomoDomo Website Preview"
+            className="w-full h-auto object-cover"
+          />
         </div>
-      </div>
+
+        {/* Divider */}
+        <hr className="blog-hr mb-8" />
+
+        {/* Blog Post Content */}
+        <div className="blog-content">
+          <p className="blog-p">
+            Most online utility sites — like PDF editors, file format converters, and image compressors — require uploading sensitive documents to third-party cloud servers. This introduces significant privacy risks, file size limits, rate limiting, and aggressive advertising trackers.
+          </p>
+
+          <p className="blog-p">
+            <strong>DomoDomo</strong> was built to challenge that model. It is an open-source utility suite running completely client-side in the user&apos;s browser, offering high-performance tools without compromising confidentiality.
+          </p>
+
+          <h2 className="blog-h2">1. The Zero-Upload Architecture</h2>
+          <p className="blog-p">
+            Unlike cloud utilities, DomoDomo never sends user data across the network:
+          </p>
+
+          <ul className="blog-ul">
+            <li className="blog-li">
+              <strong>Local Browser Sandbox:</strong> File manipulation, text processing, and conversions execute locally inside the browser thread and Web Workers.
+            </li>
+            <li className="blog-li">
+              <strong>Zero Data Collection:</strong> Documents, images, audio clips, and code snippets never touch external servers or cloud storage buckets.
+            </li>
+            <li className="blog-li">
+              <strong>Offline Capable:</strong> Once loaded, core utility modules function seamlessly without an active internet connection.
+            </li>
+          </ul>
+
+          <h2 className="blog-h2">2. Core Capabilities</h2>
+          <p className="blog-p">
+            The platform brings together essential daily digital utilities under a single unified, lightweight interface:
+          </p>
+
+          <ul className="blog-ul">
+            <li className="blog-li">
+              <strong>Document & PDF Tools:</strong> Merge, split, compress, extract pages, and convert PDF documents directly in memory.
+            </li>
+            <li className="blog-li">
+              <strong>Image Transformation:</strong> Format conversion (PNG, JPEG, WebP, AVIF), lossless optimization, and aspect ratio resizing.
+            </li>
+            <li className="blog-li">
+              <strong>Media & Audio Utilities:</strong> Fast client-side audio encoding, trimming, and spectrogram analysis.
+            </li>
+            <li className="blog-li">
+              <strong>Developer & Text Utilities:</strong> Regex matchers, JSON validators, base64 decoders, and markdown formatters.
+            </li>
+          </ul>
+
+          <h2 className="blog-h2">3. Tech Stack & Performance</h2>
+          <p className="blog-p">
+            To achieve near-native desktop speeds inside a web browser, DomoDomo utilizes modern web primitives:
+          </p>
+
+          <ul className="blog-ul">
+            <li className="blog-li">
+              <strong>WebAssembly (WASM):</strong> Intensive computing pipelines (codecs, PDF manipulation engines) are compiled to WASM for high computational throughput.
+            </li>
+            <li className="blog-li">
+              <strong>WebGPU & Canvas2D:</strong> Image filters and graphical rendering tasks leverage client hardware acceleration.
+            </li>
+            <li className="blog-li">
+              <strong>React & Tailwind CSS:</strong> Clean, responsive user interface with instant interaction feedback and dark mode support.
+            </li>
+            <li className="blog-li">
+              <strong>Vercel:</strong> Static edge delivery ensuring zero cold-starts and global CDN caching.
+            </li>
+          </ul>
+        </div>
+      </article>
     </main>
   );
 };

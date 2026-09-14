@@ -1,7 +1,11 @@
 "use client";
+
 import React from 'react';
 import Link from 'next/link';
-import { IconArrowLeft, IconExternalLink, IconCode, IconInfoCircle } from '@tabler/icons-react';
+import {
+  IconArrowLeft,
+  IconArrowUpRight,
+} from '@tabler/icons-react';
 import { hapticLight } from '../utils/haptics';
 
 interface IdolChantViewProps {
@@ -10,88 +14,124 @@ interface IdolChantViewProps {
 
 export const IdolChantView: React.FC<IdolChantViewProps> = () => {
   return (
-    <main id="main-content" className="max-w-6xl mx-auto px-4 py-8">
-      <Link 
-        className="inline-flex items-center gap-1.5 text-sm text-theme-muted mb-6 hover:text-theme-text transition-colors focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 cursor-pointer animate-fade-in group/back"
+    <main id="main-content" className="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
+      {/* Back navigation */}
+      <Link
+        className="inline-flex items-center gap-1.5 text-xs text-theme-muted mb-8 hover:text-theme-text transition-colors group/back"
         href="/"
         prefetch={true}
         onClick={hapticLight}
       >
-        <IconArrowLeft size={16} className="text-theme-muted group-hover/back:text-theme-text transition-colors" />
+        <IconArrowLeft
+          size={14}
+          className="text-theme-muted group-hover/back:text-theme-text transition-colors"
+        />
         Back to Home
       </Link>
 
-      <div className="card p-6 md:p-8 flex flex-col gap-y-6 animate-fade-in animate-slide-up animation-delay-100">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-card-border pb-6">
-          <div className="flex items-center gap-3">
-            <div>
-              <h1 className="font-bold text-2xl text-theme-text">Idol Chant & Mixes</h1>
-              <p className="text-theme-muted text-sm mt-1">A centralized hub for wotagei culture</p>
-            </div>
-          </div>
-          <a 
-            href="https://idol-mixes.vercel.app" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={hapticLight}
-            aria-label="Visit Idol Chant & Mixes live site (opens in new tab)"
-            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-card-border hover:bg-theme-hover active:scale-[0.97] focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded-lg transition-all text-sm font-semibold text-theme-text w-full md:w-auto cursor-pointer group/livesite"
-            style={{ background: `var(--theme-card-bg)` }}
-          >
-            <span>Visit Live Site</span> <IconExternalLink size={16} className="text-theme-muted group-hover/livesite:text-theme-text transition-colors" />
-          </a>
-        </div>
+      {/* Article container */}
+      <article className="animate-slide-up animation-delay-100">
+        {/* Header */}
+        <header className="mb-8">
+          <span className="text-[11px] font-mono uppercase tracking-wider text-theme-subtle mb-3 block">
+            Community · Culture · Web App
+          </span>
 
-        <div className="flex flex-col gap-8">
-          {/* Preview Section */}
-          <div className="w-full group animate-fade-in animate-slide-up animation-delay-200">
-            <div className="w-full rounded-xl overflow-hidden border border-card-border relative shadow-2xl"
-              style={{ background: `var(--theme-card-bg)` }}
+          <h1 className="text-3xl md:text-4xl font-bold text-theme-text tracking-tight leading-tight mb-4">
+            Idol Chant & Mixes
+          </h1>
+
+          <p className="text-theme-muted text-base md:text-lg leading-relaxed mb-5">
+            A centralized digital catalog for Japanese idol culture, synchronized crowd calls, and wotagei mixes.
+          </p>
+
+          {/* Minimal Meta row */}
+          <div className="flex flex-wrap items-center gap-3 text-xs text-theme-subtle font-mono">
+            <span>2026</span>
+            <span>·</span>
+            <a
+              href="https://idol-mixes.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={hapticLight}
+              className="blog-link inline-flex items-center gap-0.5 text-theme-text hover:underline"
             >
-              <img 
-                src="/assets/images/idol_chant_preview.png" 
-                alt="Idol Chant Finder Preview"
-                className="w-full h-auto object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100" 
-              />
-            </div>
+              <span>Visit Live Site</span>
+              <IconArrowUpRight size={13} />
+            </a>
           </div>
+        </header>
 
-          {/* Tech Stack Section */}
-          <div className="w-full animate-fade-in animate-slide-up animation-delay-300">
-            <h2 className="text-sm font-semibold text-theme-text mb-3 flex items-center gap-2">
-              <IconCode size={18} className="text-theme-subtle" />
-              Tech Stack
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              <div className="tag">
-                <p>Next.js</p>
-              </div>
-              <div className="tag">
-                <p>React</p>
-              </div>
-              <div className="tag">
-                <p>Tailwind CSS</p>
-              </div>
-              <div className="tag">
-                <p>Vercel</p>
-              </div>
-            </div>
-          </div>
-
-          {/* About Section */}
-          <div className="w-full animate-fade-in animate-slide-up animation-delay-400">
-            <h2 className="text-sm font-semibold text-theme-text mb-3 flex items-center gap-2">
-              <IconInfoCircle size={18} className="text-theme-subtle" />
-              About the Project
-            </h2>
-            <p className="text-theme-muted leading-relaxed text-sm max-w-4xl">
-              Inspired by wotagei, this website solves the problem of finding and organizing chants, which I
-              and others in the community have historically struggled with. It provides a centralized,
-              easy-to-use platform for learning wotagei calls and mixes.
-            </p>
-          </div>
+        {/* Hero Image Embed */}
+        <div className="mb-10 rounded-xl overflow-hidden border border-card-border bg-black/40">
+          <img
+            src="/assets/images/idol_chant_preview.png"
+            alt="Idol Chant & Mixes Website Preview"
+            className="w-full h-auto object-cover"
+          />
         </div>
-      </div>
+
+        {/* Divider */}
+        <hr className="blog-hr mb-8" />
+
+        {/* Blog Post Content */}
+        <div className="blog-content">
+          <p className="blog-p">
+            In Japanese idol concerts and live performances, crowd participation — known as <strong>wotagei</strong> and <strong>call & response</strong> — is a vibrant, synchronized tradition. Fans cheer with rhythmic chants, call out members&apos; names during instrumental intros, and recite rapid-fire phonetic &quot;mixes&quot; during song transitions.
+          </p>
+
+          <p className="blog-p">
+            Historically, learning these chants has been notoriously difficult for newcomers and international fans. Guides were scattered across disorganized blog pastes, obscure fan forums, or expired Google Docs with broken formatting.
+          </p>
+
+          <h2 className="blog-h2">1. The Centralized Hub</h2>
+          <p className="blog-p">
+            <strong>Idol Chant & Mixes</strong> was created to solve this knowledge gap. It provides a structured, easily searchable home for idol calls:
+          </p>
+
+          <ul className="blog-ul">
+            <li className="blog-li">
+              <strong>Phonetic Romanization:</strong> Complex Japanese chants are transcribed phonetically so fans of any language background can learn and participate.
+            </li>
+            <li className="blog-li">
+              <strong>Song & Group Index:</strong> Browse by idol group, track title, or chant category (Standard Mix, Japanese Mix, Ainu Mix, and custom variations).
+            </li>
+            <li className="blog-li">
+              <strong>Timing & Rhythm Guides:</strong> Line-by-line breakdowns showing exactly when calls trigger relative to musical intros, choruses, and instrumental breakdowns.
+            </li>
+          </ul>
+
+          <h2 className="blog-h2">2. Mobile-First Concert Usability</h2>
+          <p className="blog-p">
+            Concerts are fast-paced environments with low lighting and spotty cellular connectivity. The interface was engineered with specific constraints in mind:
+          </p>
+
+          <ul className="blog-ul">
+            <li className="blog-li">
+              <strong>High-Contrast Typography:</strong> Dark-themed by default with high-contrast text to remain legible on mobile screens inside concert venues.
+            </li>
+            <li className="blog-li">
+              <strong>Instant Client-Side Filtering:</strong> Fast, offline-tolerant search allowing fans to pull up a setlist chant in seconds.
+            </li>
+            <li className="blog-li">
+              <strong>Zero Clutter:</strong> Minimal, distraction-free reading experience without unnecessary ads or heavy assets.
+            </li>
+          </ul>
+
+          <h2 className="blog-h2">3. Tech Stack</h2>
+          <ul className="blog-ul">
+            <li className="blog-li">
+              <strong>Next.js & React:</strong> Fast server-rendered pages with pre-rendered static routes for optimal SEO and rapid initial loads.
+            </li>
+            <li className="blog-li">
+              <strong>Tailwind CSS:</strong> Highly maintainable utility styling with responsive breakpoints for phone and desktop viewports.
+            </li>
+            <li className="blog-li">
+              <strong>Vercel:</strong> Continuous deployment with global CDN edge caching.
+            </li>
+          </ul>
+        </div>
+      </article>
     </main>
   );
 };

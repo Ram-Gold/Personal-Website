@@ -40,6 +40,33 @@ interface HomeViewProps {
   onNavigate?: (view: 'home' | 'certifications' | 'tech_stack' | 'project_idol_chant' | 'pubmats' | 'project_koncentrate' | 'project_domodomo' | 'gear' | 'blog') => void;
 }
 
+interface HackathonItem {
+  name: string;
+  hasTrophy?: boolean;
+}
+
+const HACKATHONS: HackathonItem[] = [
+  {
+    name: 'NTC Web Design Hackathon',
+  },
+  {
+    name: 'CaffeineAI Hackathon',
+    hasTrophy: true,
+  },
+  {
+    name: 'University of Makati Web Design Contest',
+  },
+  {
+    name: 'KadaKareer Hackathon',
+  },
+  {
+    name: 'ASEAN Hackathon',
+  },
+  {
+    name: 'OpenAI Buildathon',
+  },
+];
+
 export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
 
@@ -337,59 +364,34 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
             </div>
           </div>
 
-          {/* Blog Posts */}
-          <div className="card p-4 col-span-1 md:col-span-4 md:row-span-1 flex flex-col h-full group/blog animate-fade-in animate-slide-up animation-delay-400">
+          {/* Hackathons Joined */}
+          <div className="card p-4 col-span-1 md:col-span-4 md:row-span-1 flex flex-col h-full animate-fade-in animate-slide-up animation-delay-400">
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
-                <IconArticle size={20} className="text-theme-muted" />
-                <h2 className="font-semibold text-base">Blog Posts</h2>
+                <IconTrophy size={20} className="text-theme-muted" />
+                <h2 className="font-semibold text-base">Hackathons Joined</h2>
               </div>
-              <Link
-                className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 transition-colors cursor-pointer group/viewblog"
-                href="/blog"
-                prefetch={true}
-                onClick={hapticLight}
-                aria-label="View all blog posts"
-              >
-                <span>View All</span>
-                <IconChevronRight size={16} className="text-theme-muted group-hover/viewblog:translate-x-0.5 transition-transform" />
-              </Link>
             </div>
-            <div className="flex-grow flex flex-col justify-start gap-y-3">
-              {displayPosts.map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  prefetch={true}
-                  onClick={hapticLight}
-                  className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
-                >
-                  <div className="flex items-center justify-between mb-2 gap-2">
-                    <p className="text-theme-text font-semibold text-sm leading-tight line-clamp-1 flex-1 min-w-0">
-                      {post.title}
-                    </p>
-                    <span className="text-theme-subtle text-[11px] font-mono shrink-0">
-                      {formatBlogDate(post.publishedDate)} • {post.readingTime ? `${post.readingTime} min read` : '5 min read'}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {(post.topic || post.category) && (
-                      <div className="tag">
-                        <p>{post.topic || post.category}</p>
-                      </div>
+            <div className="flex-grow flex flex-col justify-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {HACKATHONS.map((hackathon, index) => (
+                  <div
+                    key={index}
+                    className={`h-full min-h-[44px] flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-[11px] md:text-xs font-medium ${
+                      hackathon.hasTrophy
+                        ? 'border-amber-500/40 bg-amber-500/10 text-black dark:text-amber-200 shadow-sm shadow-amber-500/5'
+                        : 'border-card-border bg-theme-tag-bg text-theme-text'
+                    }`}
+                  >
+                    {hackathon.hasTrophy ? (
+                      <IconTrophy size={15} className="text-amber-600 dark:text-amber-400 shrink-0" />
+                    ) : (
+                      <span className="w-1.5 h-1.5 rounded-full bg-theme-subtle shrink-0" aria-hidden="true" />
                     )}
-                    {post.tags &&
-                      post.tags
-                        .filter((t) => t !== (post.topic || post.category))
-                        .slice(0, 2)
-                        .map((tag, idx) => (
-                          <div key={idx} className="tag">
-                            <p>{tag}</p>
-                          </div>
-                        ))}
+                    <span className="leading-tight">{hackathon.name}</span>
                   </div>
-                </Link>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -445,17 +447,66 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
             </div>
           </div>
 
-          {/* Hackathons */}
-          <div className="card p-4 col-span-1 md:col-span-5 md:row-span-2 flex flex-col h-full group/hack animate-fade-in animate-slide-up animation-delay-500">
+          {/* Blog Posts */}
+          <div className="card p-4 col-span-1 md:col-span-5 md:row-span-2 flex flex-col h-full group/blog animate-fade-in animate-slide-up animation-delay-500">
             <div className="flex items-center justify-between text-theme-text mb-4 shrink-0">
               <div className="flex items-center gap-2">
-                <IconTrophy size={20} className="text-theme-muted" />
-                <h2 className="font-semibold text-base">Hackathons</h2>
+                <IconArticle size={20} className="text-theme-muted" />
+                <h2 className="font-semibold text-base">Blog Posts</h2>
               </div>
+              <Link
+                className="inline-flex items-center gap-1.5 text-sm text-theme-muted hover:text-theme-text focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none rounded p-1 transition-colors cursor-pointer group/viewblog"
+                href="/blog"
+                prefetch={true}
+                onClick={hapticLight}
+                aria-label="View all blog posts"
+              >
+                <span>View All</span>
+                <IconChevronRight size={16} className="text-theme-muted group-hover/viewblog:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
-            <div className="flex-grow flex flex-col items-center justify-center py-8">
-              <p className="text-theme-text-subtle text-sm text-center">Coming Soon</p>
-              <p className="text-theme-text-faint text-xs text-center mt-1">Hackathon experiences will be listed here</p>
+            <div className="flex-grow flex flex-col justify-start gap-y-3">
+              {displayPosts.length > 0 ? (
+                displayPosts.map((post) => (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.slug}`}
+                    prefetch={true}
+                    onClick={hapticLight}
+                    className="project-card focus-visible:ring-1 focus-visible:ring-theme-border-accent outline-none block cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <p className="text-theme-text font-semibold text-sm leading-tight line-clamp-1 flex-1 min-w-0">
+                        {post.title}
+                      </p>
+                      <span className="text-theme-subtle text-[11px] font-mono shrink-0">
+                        {formatBlogDate(post.publishedDate)} • {post.readingTime ? `${post.readingTime} min read` : '5 min read'}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {(post.topic || post.category) && (
+                        <div className="tag">
+                          <p>{post.topic || post.category}</p>
+                        </div>
+                      )}
+                      {post.tags &&
+                        post.tags
+                          .filter((t) => t !== (post.topic || post.category))
+                          .slice(0, 2)
+                          .map((tag, idx) => (
+                            <div key={idx} className="tag">
+                              <p>{tag}</p>
+                            </div>
+                          ))}
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="flex-grow flex flex-col items-center justify-center py-8">
+                  <p className="text-theme-text-subtle text-sm text-center">Coming Soon</p>
+                  <p className="text-theme-text-faint text-xs text-center mt-1">Blog posts will be published here</p>
+                </div>
+              )}
             </div>
           </div>
         </section>
