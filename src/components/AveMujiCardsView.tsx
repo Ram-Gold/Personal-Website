@@ -266,37 +266,6 @@ export const AveMujiCardsView: React.FC<AveMujiCardsViewProps> = () => {
             </li>
           </ul>
 
-          <hr className="blog-hr my-10" />
-
-          {/* About Section */}
-          <h2 className="blog-h2">About the Project</h2>
-          <p className="blog-p">
-            <strong>Welcome to the world of Ave Mujica.</strong> This is an unofficial fan website dedicated to{' '}
-            <a
-              href="https://en.wikipedia.org/wiki/BanG_Dream!_Ave_Mujica"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="blog-link text-theme-text underline underline-offset-4"
-            >
-              the band
-            </a>
-            .
-          </p>
-          <p className="blog-p">
-            Created by{' '}
-            <a
-              href="https://ramguinto.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="blog-link text-theme-text underline underline-offset-4"
-            >
-              Ram Guinto
-            </a>
-            . This project leverages a Physically Based Rendering (PBR) pipeline alongside Three.js and React Three Fiber to bring the cards to life.
-          </p>
-          <p className="text-xs text-theme-subtle italic mt-6">
-            Card artwork by Bushiroad. All rights belong to their respective owners.
-          </p>
         </div>
       </article>
     </main>
