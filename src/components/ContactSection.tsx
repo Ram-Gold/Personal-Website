@@ -14,14 +14,38 @@ export const ContactSection: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !message.trim()) {
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       setStatus('error');
-      setErrorMessage('Please fill in all fields.');
+      setErrorMessage('Please fill in all required fields.');
+      return;
+    }
+
+    if (trimmedName.length > 100) {
+      setStatus('error');
+      setErrorMessage('Name is too long (maximum 100 characters).');
+      return;
+    }
+
+    if (trimmedEmail.length > 254) {
+      setStatus('error');
+      setErrorMessage('Email is too long.');
+      return;
+    }
+
+    if (trimmedMessage.length > 3000) {
+      setStatus('error');
+      setErrorMessage('Message is too long (maximum 3000 characters).');
       return;
     }
 
@@ -33,7 +57,12 @@ export const ContactSection: React.FC = () => {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage,
+          company_website_honeypot: honeypot,
+        }),
       });
 
       const data = await res.json();
@@ -47,6 +76,7 @@ export const ContactSection: React.FC = () => {
       setName('');
       setEmail('');
       setMessage('');
+      setHoneypot('');
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
       setStatus('error');
@@ -76,7 +106,7 @@ export const ContactSection: React.FC = () => {
             </div>
             <h3 className="text-base font-medium text-theme-text mb-1">Message Sent!</h3>
             <p className="text-xs md:text-sm text-theme-text-subtle max-w-sm mb-4">
-              Thank you for reaching out! Your message was received and saved. I will get back to you as soon as possible.
+              Thank you for reaching out! Your message was received and saved securely. I will get back to you as soon as possible.
             </p>
             <button
               type="button"
@@ -91,6 +121,19 @@ export const ContactSection: React.FC = () => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            {/* Hidden honeypot field for bot trap */}
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="company_website_honeypot">Leave this blank</label>
+              <input
+                id="company_website_honeypot"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="contact-name" className="block text-xs font-medium text-theme-text-subtle mb-1">
@@ -100,6 +143,7 @@ export const ContactSection: React.FC = () => {
                   id="contact-name"
                   type="text"
                   required
+                  maxLength={100}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your Name"
@@ -116,6 +160,7 @@ export const ContactSection: React.FC = () => {
                   id="contact-email"
                   type="email"
                   required
+                  maxLength={254}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your.email@example.com"
@@ -133,6 +178,7 @@ export const ContactSection: React.FC = () => {
                 id="contact-message"
                 required
                 rows={4}
+                maxLength={3000}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="What would you like to discuss?"
