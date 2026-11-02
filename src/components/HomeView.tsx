@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ASSETS } from '../data/assets';
 import { GitHubContributions } from './GitHubContributions';
+import { ContactSection } from './ContactSection';
 import { QrModal } from './QrModal';
 import { hapticLight, hapticSuccess } from '../utils/haptics';
 import {
@@ -513,6 +514,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ initialPosts = [] }) => {
 
         {/* GitHub Contributions Calendar */}
         <GitHubContributions />
+
+        {/* Contact Form Section */}
+        <ContactSection />
 
         {/* Footer */}
         <footer className="col-span-1 mt-8 animate-fade-in animation-delay-600">
